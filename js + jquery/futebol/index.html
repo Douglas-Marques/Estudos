@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="style/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="style/style.css" rel="stylesheet" type="text/css" media="all" />
+
+    <script src="libs/jquery-1.5.0.js"></script>
+    <script type="text/javascript" src="libs/times.js"></script>
+    <script type = "text/javascript" src = "libs/logica.js"></script>
+    <script type="text/javascript" src="libs/jquery-latest.js"></script>
+    <script type="text/javascript" src="libs/jquery.tablesorter.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <header class="row">
+        Tabela Brasileirão
+    </header>
+
+    <div class="row">
+        <div role="main" class="col-md-8">
+
+          <table class="table table-hover" id="tabela">
+            <thead>
+              <th>Pos</th>
+              <th>Clube</th>
+              <th id="pontos">P</th>
+              <th>J</th>
+              <th>V</th>
+              <th>E</th>
+              <th>D</th>
+              <th>GP</th>
+              <th>GC</th>
+              <th>SG</th>
+            </thead>
+            <tbody class="times">
+            </tbody>
+          </table>
+
+          <button type='submit' id="jogar" class='btn btn-success' >Jogar</button>
+          <button type='submit'id="cores">Atualizar cores</button>
+
+        </div>
+        <aside role="complementary" class="col-md-4">
+
+              <ul id="lista-jogos">
+              </ul>
+
+        </aside>
+    </div>
+
+    </div>
+
+  </body>
+</html>
