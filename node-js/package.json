@@ -1,0 +1,12 @@
+{
+	"name": "node-js",
+	"description": "Aulas de node-js",
+	"author": "eduardo <eduardo.dornel@hotmail.com>",
+	"version": "1.0.0",
+	"private": "true",
+	"dependencies": {
+		"mongoose": "*",
+		"express": "*"
+	}
+
+}
