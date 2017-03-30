@@ -1,0 +1,24 @@
+<html ng-app> 
+   <head>
+      <meta charset="utf-8">
+      <title>AngularJS - exemplo 001</title>
+  </head>
+  <body>
+    <nav ng-click="$event.preventDefault()">
+        <a href="#" ng-click="ativo= 'Home'">Home</a>
+        <a href="#" ng-click="ativo= 'Projetos'">Projetos</a>
+        <a href="#" ng-click="ativo= 'Serviços'">Serviços</a>
+        <a href="#" ng-click="ativo= 'Contato'">Contato</a>
+    </nav>
+    <p>Por favor, clique em um item do menu!</p>
+    <p>Sua escolha <b>{{ ativo }}</b> </p>
+
+
+    <div style="margin-top: 50px">
+        <input type="text" ng-model="nome">
+        <p>Meu nome é: {{ nome }}</p>
+    </div>
+
+    <script src="libs/angular.min.js"></script>
+  </body>
+</html>

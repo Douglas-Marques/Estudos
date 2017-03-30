@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html ng-app="MeuModulo">
+  <head>
+    <meta charset="utf-8">
+    <title>Agenda</title>
+      <script src="libs/angular.min.js"></script>
+      <script src="libs/app.js"></script>
+  </head>
+  <body ng-controller="MeuController">
+    <ul>
+      <li ng-repeat="agenda in registros">
+        {{agenda.nome}} -<em>{{agenda.email}}</em>
+      </li>
+    </ul>
+  </body>
+</html>

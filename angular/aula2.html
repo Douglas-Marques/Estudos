@@ -1,0 +1,20 @@
+<html ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS - exemplo 002</title>
+    <script src="libs/angular.min.js"></script>
+  </head>
+  <body>
+      <textarea maxlength="50" ng-model="descricao" ng-init="descricao=''">
+          {{descricao}}
+      </textarea> <br/>
+
+    <p ng-show="descricao.length < 10">Máximo de 50 caracteres, minimo 10</p>
+
+    <button ng-disabled="descricao.length < 10">Enviar</button>
+
+    <p>Restam: {{50 - descricao.length}} caracteres </p>
+
+
+  </body>
+</html>
