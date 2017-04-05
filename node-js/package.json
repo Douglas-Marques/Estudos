@@ -1,12 +1,17 @@
 {
-	"name": "node-js",
-	"description": "Aulas de node-js",
-	"author": "eduardo <eduardo.dornel@hotmail.com>",
-	"version": "1.0.0",
-	"private": "true",
-	"dependencies": {
-		"mongoose": "*",
-		"express": "*"
-	}
-
+  "name": "node-js",
+  "description": "Aulas de node-js",
+  "author": "eduardo <eduardo.dornel@hotmail.com>",
+  "version": "1.0.0",
+  "private": "true",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "*"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+    "scripts": {
+    "dev": "nodemon dia1.js"
+  }
 }
