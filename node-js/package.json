@@ -5,13 +5,15 @@
   "version": "1.0.0",
   "private": "true",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "mongodb": "^2.2.25",
     "mongoose": "*"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
   },
-    "scripts": {
+  "scripts": {
     "dev": "nodemon dia1.js"
   }
 }

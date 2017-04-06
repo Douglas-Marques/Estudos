@@ -16,6 +16,7 @@ function adicionarTimes(){
 function iniciar(){
   $('#jogar').click(function(){
     verificarJogo();
+    verificarQtdJogos();
   });
 }
 

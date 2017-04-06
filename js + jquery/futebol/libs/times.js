@@ -3,6 +3,13 @@ let times = ['Atlético-GO','Atlético-MG','Atlético-PR','Avaí','Bahia','Botaf
 
 let jogos = [];
 
+//desabilito o botão jogar quando o campeonato acabar
+window.verificarQtdJogos = function(){
+  if(jogos.length >= 380){
+     $('#jogar').attr('disabled', 'true');
+  }
+}
+
 //Aqui renderizo os 20 clubes zerados na tabela
 window.renderizarTabela = function(){
   let td = '<td>0</td>'
