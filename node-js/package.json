@@ -8,7 +8,8 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "mongodb": "^2.2.25",
-    "mongoose": "*"
+    "mongoose": "*",
+    "q": "^1.5.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
