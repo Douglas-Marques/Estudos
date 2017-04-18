@@ -130,6 +130,13 @@ db.inventory.update({
   {$set: {qty: 30 }}, 
   {multi: true }
 )
+//OU updateMany faz a mesma função que o multi...
+db.inventory.updateMany({
+  qty: 30
+}, 
+  {$set: {'size.w': 20 }}
+)
+
 
 //para remover atributos de uma collection, o $unset tirou o atributo status
 db.inventory.update({
@@ -139,8 +146,92 @@ db.inventory.update({
 
  //renomear o nome de uma propriedade(não o valor dela)
  db.inventory.update({
-   item: 'journal'
+    item: 'journal'
  },
  {$rename:  {'qty': 'quantidade' }})
 
- 
+ //relaçao one to one, one to many, many to one.
+//crio um objeto do tipo author
+ db.authors.insert({
+    name: 'Author 1',
+    age: 50,
+    books: 1
+ })
+ //dou um find no author e pego o object id dele
+ //crio um livro referenciando esse author
+ db.books.insert({
+    title: 'Book 1',
+    date: new Date(),
+    author: {
+        $ref: 'authors',
+        $id: ObjectId("58f620c6c65ca284b09efebd") 
+    }
+})
+ //ou
+db.books.insert({
+    title: 'Book 1',
+    date: new Date(),
+    author: ObjectId("58f620c6c65ca284b09efebd") 
+    })
+//ONE TO MANY
+ db.books.insert({
+    title: 'Book 6',
+    date: new Date(),
+    author: {
+        $ref: 'authors',
+        $id: [
+        ObjectId("58f620c6c65ca284b09efebd"),
+        ObjectId("58f620d3c65ca284b09efebe")
+        ] 
+    }
+})
+
+// inserir diretamente uma data
+new ISODate('2012-05-01 12:30:00')
+
+//para inserir varios dados cria-se um array + insertMany
+db.books.insertMany([{
+    title: 'Book 1',
+    description: 'A descriptions 1',
+    date: new Date(),
+    author: 'School of net'
+ }, {
+    title: 'Book 2',
+    description: 'A descriptions 1',
+    date: new Date(),
+    author: 'School of net'
+ }, {
+    title: 'Book 3',
+    description: 'A descriptions 1',
+    date: new Date(),
+    author: 'School of net'
+ }, {
+    title: 'Book 4',
+    description: 'A descriptions 1',
+    date: new ISODate('2012-05-01 12:30:00'),
+    author: 'School of net'
+ }])
+
+ //para trazer a quantidade de informações em uma collection
+ db.books.find().count()
+
+//agrupo a collection books pelo atributo author(o _id é padrão e sempre tem q ser o primeiro valor), com o dolar escolho o atributo que quero
+//o $sum 1 vai somar +1 a cada vez que achar uma author com o nome igual
+ db.books.aggregate([{
+    $group: {
+        _id: '$author',
+        total: {
+            $sum: 1
+            }
+        }
+    }])
+
+//pra pegar o valor minimo do campo like de cada autor
+db.books.aggregate([{
+    $group: {
+        _id: '$author',
+        total: {
+            $min: '$like' //$max pegaria o valor maximo, $avg tira a média
+            }
+        }
+    }])
