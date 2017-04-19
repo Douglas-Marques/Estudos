@@ -1,0 +1,39 @@
+{
+  "name": "node-api-example",
+  "version": "1.0.0",
+  "description": "API do node-api-example.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guilhermewm/node-api-example"
+  },
+  "keywords": [
+
+  ],
+  "author": "Guilherme Webber Mendes",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.0.1",
+    "body-parser": "^1.15.2",
+    "collections": "^5.0.4",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "glob": "^7.0.5",
+    "helmet": "^2.1.1",
+    "lodash": "^4.13.1",
+    "method-override": "^2.3.6",
+    "mm-node-logger": "0.0.1",
+    "mongojs": "^2.4.0",
+    "mongoose": "4.1.9",
+    "morgan": "^1.7.0",
+    "multer": "^1.1.0",
+    "nodemon": "^1.9.2",
+    "path": "^0.12.7",
+    "q": "^1.4.1",
+    "socket.io": "^1.7.2"
+  }
+}

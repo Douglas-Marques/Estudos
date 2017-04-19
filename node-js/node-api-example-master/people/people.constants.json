@@ -1,0 +1,63 @@
+{
+   "error" : {
+      "msg_people_conflict":{
+        "status": 409,
+        "message" : {
+          "result" : "error",
+          "message": "Conflict"
+        }
+      },
+
+      "msg_no_property":{
+        "status": 400,
+        "message" : {
+          "result" : "error",
+          "message": "No property defined"
+        }
+      },
+
+      "msg_bad_request":{
+        "status": 400,
+        "message" : {
+          "result" : "error",
+          "message": "Bad request"
+        }
+      },
+
+      "msg_no_people":{
+        "status": 400,
+        "message" : {
+          "result" : "error",
+          "message": "Unable to remove this people"
+        }
+      },
+
+      "msg_people_update":{
+        "status": 400,
+        "message" : {
+          "result" : "error",
+          "message": "Unable to update this people"
+        }
+      }
+
+
+   },
+
+   "success" : {
+     "msg_people_created" : {
+       "status": 201,
+       "message" : {
+         "result" : "success",
+         "message": "Created"
+       }
+     },
+
+     "msg_people_ok" : {
+       "status": 200,
+       "message" : {
+         "result" : "success",
+         "message": "OK"
+       }
+     }
+   }
+}
