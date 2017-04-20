@@ -1,0 +1,73 @@
+<html>
+  <head>  
+   <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta charset="utf-8">
+    <title><%= title %></title>
+  </head>
+  <body>
+    
+    <div class="container">
+
+    <header >
+        <%= title %>
+    </header>
+
+    
+    <div role="main" class="col-md-12">
+
+      
+<% if(carros.length < total){ %>
+    <form action="/add" method="post" name="form1">
+      <label >Placa</label>
+      <input class="form-control inp maiuscula" maxLength="8" minlength="8" type="text" name="placa" placeholder="XXX-0000">   
+      <button id="btn-input" class="btn btn-success" type="submit" >Entrar!</button>
+    </form>
+<% } %>
+    <div style="margin-top: 50px; margin-bottom: 50px">
+      <%= total - carros.length  %> vagas restantes
+    </div>
+
+    <table class="table table-hover" id="minha-tabela">
+     <thead>
+       <tr >
+         <th class="titulo-tabela">#</th>
+         <th class="titulo-tabela">Placa</th>
+         <th class="titulo-tabela">Data de entrada</th>
+         <th class="titulo-tabela">Efetuar pagamento</th>
+         <th class="titulo-tabela">Sair</th>
+       </tr>
+     </thead>
+     <tbody>
+       <% for(var i = 0; i < carros.length; i++){ %>
+
+       <% function retornaData(){ %>
+       <% var data = carros[i].date.getDate() + '/' + (carros[i].date.getMonth()+1)  + '/' + carros[i].date.getFullYear() + ' ' + carros[i].date.getHours() +':'+carros[i].date.getMinutes() %>
+       <% return data %>
+       <% } %>
+
+       <tr>
+        <td> <%= i+1 %> </td>
+        <td> <%= carros[i].placa %> </td>
+        <td> <%= retornaData() %></td>
+        <td >
+            <a href="/pagar/<%= carros[i]._id %>" class="<%= carros[i].pago ? 'btn disabled' : ' ' %>">
+                <span class="fa fa-dollar" aria-hidden="true"> </span>
+            </a>
+        </td>
+        <td>
+          <a href="/sair/<%= carros[i]._id %>" class="<%= carros[i].pago ? '' : 'btn disabled' %>">
+           <span class="<%= carros[i].pago ? 'fa fa-check' : 'fa fa-close'%>"></span>
+          </a>
+        </td>
+       </tr>
+       <% } %>
+     </tbody>
+    </table>
+
+     </div>
+    </div>
+    </div>
+  </body>
+</html>
