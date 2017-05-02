@@ -1,18 +1,17 @@
 package com.example.android.justjava;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private int quantity = 2;
-    private int price = 5;
-    private boolean checkBox = false;
+    private boolean whippedCream, chocolate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,34 +20,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void decrement(View view){
-        if(quantity >= 1) {
+        if(quantity >= 2) {
             quantity -= 1;
             displayQuantity();
         }
     }
 
     public void increment(View view){
-        quantity +=1;
-        displayQuantity();
+        if(quantity <= 99){
+            quantity +=1;
+            displayQuantity();
+        }
     }
 
     private int total(){
+        int price = 5;
+        if(chocolate){
+            price += 2;
+        }
+        if(whippedCream){
+            price += 1;
+        }
         return quantity * price;
     }
 
     private void preparePrice(){
-        displayMessage("Amount Due: R$" + total());
+        displayMessage(getResources().getString(R.string.money) + total());
     }
 
     private void displayQuantity(){
-        TextView quanitityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quanitityTextView.setText(Integer.toString(quantity));
-        if(quantity != 0){
-            preparePrice();
-        }
-        else{
-            displayMessage("Free");
-        }
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        quantityTextView.setText(Integer.toString(quantity));
+        preparePrice();
     }
 
     private void displayMessage(String message){
@@ -57,36 +60,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view){
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(formatOrder());
+        String formatEmail= formatOrder();
 
-        executeToast();
+        //enviar email
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));//only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + userName());
+        intent.putExtra(Intent.EXTRA_TEXT, formatEmail);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
     }
 
+    //Usando string format para se adequar a convenção
     private String formatOrder(){
-        return "Amount Due: R$" + total()+
-               "\nAdd whipped cream? " + checkBox +
-               "\nQuantity: " + quantity +
-               "\nTotal: R$" + total();
+        String email = String.format("%1s: %2s",  getResources().getString(R.string.name), userName());
+               email += String.format("\n%1s %2s", getResources().getString(R.string.addWhippedCream), whippedCream);
+               email += String.format("\n%1s %2s", getResources().getString(R.string.addChocolate), chocolate);
+               email += String.format("\n%1s: %2s", getResources().getString(R.string.quantity), quantity);
+               email += String.format("\n%1s: %2s%3s\n", getResources().getString(R.string.total), getResources().getString(R.string.money),total());
+               email += getResources().getString(R.string.thanks);
+        return email;
     }
 
-    private void executeToast(){
-        Context context = getApplicationContext();
-        Toast toastMessage = Toast.makeText(context, "Thank You!!!", Toast.LENGTH_SHORT);
-        toastMessage.show();
+    //pega o nome que o usuario digitar
+    private String userName(){
+        EditText name = (EditText) findViewById(R.id.name_field);
+        return name.getText().toString();
     }
 
-   /* public void onCheckBoxClicked(View view){
-        CheckBox checkBox = (CheckBox) findViewById(R.id.notify_me_checkbox);
-        //checkBox.isChecked() ? checkBox.setChecked(false) : checkBox.setChecked(true);
-        if(checkBox.isChecked()){
-            checkBox.setChecked(true);
-        }
-        else{
-            checkBox.setChecked(false);
-        }
-    }*/
-   public void onCheckBoxClicked(View view){
-       checkBox = !checkBox;
-   }
+    public void chocolateCheck(View view){
+        chocolate = !chocolate;
+        preparePrice();
+    }
+
+    public void whippedCreamCheck(View view){
+        whippedCream = !whippedCream;
+        preparePrice();
+    }
 }

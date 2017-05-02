@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">JustJava</string>
+    <string name="name">Nome</string>
+    <string name="topping">Cobertura</string>
+    <string name="whippedCream">Chantilly</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity">Quantidade</string>
+    <string name="minus">-</string>
+    <string name="more">+</string>
+    <string name="standardValue">2</string>
+    <string name="orderSummary">Resumo do pedido</string>
+    <string name="price">R$10</string>
+    <string name="order">Encomendar</string>
+    <string name="addWhippedCream">Adicionar Chantilly?</string>
+    <string name="addChocolate">Adicionar Chocolate?</string>
+    <string name="total">Total</string>
+    <string name="thanks">Obrigado!</string>
+    <string name="money">R$</string>
 </resources>
