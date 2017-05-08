@@ -13,27 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.miwok;
+package com.example.android.quakereport;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class EarthquakeActivity extends AppCompatActivity {
+
+    public static final String LOG_TAG = EarthquakeActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.earthquake_activity);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
 
-        CategoryAdapter adapter = new CategoryAdapter(this, getSupportFragmentManager());
+        ListView earthquakeListView = (ListView) findViewById(R.id.list);
 
-        viewPager.setAdapter(adapter);
+        EarthquakeAdapter adapter = new EarthquakeAdapter(this, earthquakes);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        // Set the adapter on the {@link ListView}
+        // so the list can be populated in the user interface
+        earthquakeListView.setAdapter(adapter);
     }
 }
