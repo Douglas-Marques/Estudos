@@ -31,8 +31,8 @@ getAllCars:function(req, res, next){
 
 
   registerCar:function(req, res, next){
-    if (req.body.id){
-      var placa = req.body.id;
+    if (req.body.placa){
+      var placa = req.body.placa;
       carsService.registerCar(placa, function(response){
         if (response){
           res.json(response);
