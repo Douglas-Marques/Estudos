@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
+
 router.post('/add', function(req, res, next){
   var body = req.body;
   body.pago = false;
