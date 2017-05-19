@@ -29,6 +29,17 @@ getAllCars:function(req, res, next){
     });
   },
 
+  pesquisarVagas:function(req, res, next){
+    carsService.pesquisarVagas(function(response){
+      if(response){
+        res.json(response);
+      } else {
+          res.json('Bad request');
+          res.status(400);
+        }
+    });
+  },
+
 
   registerCar:function(req, res, next){
     if (req.body.placa){
@@ -76,6 +87,18 @@ getAllCars:function(req, res, next){
       res.json('Not found');  
       res.status(400);
     }
+  },
+
+  paymentValue:function(req, res, next){
+    var placa = req.params.id;
+    carsService.paymentValue(placa, function(response){
+      if(response){
+        res.json(response);
+      } else {
+          res.json('Bad request');
+          res.status(400);
+        }
+    });
   }
 
 }

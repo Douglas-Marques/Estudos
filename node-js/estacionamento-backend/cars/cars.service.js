@@ -1,11 +1,15 @@
 var Cars = require('./cars.schema');
 var service = {};
+const MAXIMUM_CAPACITY = 10;
+const VALOR_ESTACIONAMENTO = 5;
 
 service.registerCar = registerCar;
 service.getCarById = getCarById;
 service.getAllCars = getAllCars;
 service.deleteCar = deleteCar;
 service.payParking = payParking;
+service.pesquisarVagas = pesquisarVagas;
+service.paymentValue = paymentValue;
 module.exports = service;
 
 function getCarById(id, callback){
@@ -17,6 +21,24 @@ function getCarById(id, callback){
 	});
 }
 
+function paymentValue(id, callback){
+  Cars.find({'placa':id}, function (err, cars){
+    if(err){
+      callback({status: 500, error: err});
+    }
+    var dataEntrada = cars[0].date;
+    var dataAtual = new Date();
+
+    var diferencaMiliSegundos = dataAtual - dataEntrada;
+
+    var diferencaHoras = ((diferencaMiliSegundos/1000)/60)/60;
+
+    var valorEstacionamento = diferencaHoras * VALOR_ESTACIONAMENTO;
+
+    callback(valorEstacionamento < 5 ? 5 : valorEstacionamento);
+  })
+}
+
 function getAllCars(callback){
 	Cars.find({}, function(err, cars) {
 		if (err) {
@@ -24,6 +46,15 @@ function getAllCars(callback){
     }
 			callback(cars);
 	});
+}
+
+function pesquisarVagas(callback){
+  Cars.find({}, function(err, cars){
+		if (err) {
+      callback({status:500, error: err });
+    }
+    callback((MAXIMUM_CAPACITY - cars.length));
+  });
 }
 
 function registerCar (placa, callback){

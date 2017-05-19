@@ -3,12 +3,19 @@ package com.example.android.estacionamento.model;
 /**
  * Created by eribas on 17/05/2017.
  */
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Carro {
 
+    @SerializedName("placa")
     private String placa;
+
+    @SerializedName("date")
     private Date date;
+
+    @SerializedName("pago")
     private boolean pago;
 
     public Carro(){
@@ -44,8 +51,8 @@ public class Carro {
         this.date = date;
     }
 
-    @Override
+   @Override
     public String toString() {
-        return "{ 'placa':" + "'"+placa +"'" + ", 'date':" + "'"+date +"'"+ "}";
+        return "placa: " + placa + " date: " + date + " pago: " + pago;
     }
 }
