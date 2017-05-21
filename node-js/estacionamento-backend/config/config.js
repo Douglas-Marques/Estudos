@@ -15,7 +15,6 @@ config.server = {
 
 // MongoDB configurações
 config.mongodb = {
-    //dbURI: "mongodb://localhost:27017/estacionamento"
       dbURI: "mongodb://localhost:27017/estacionamento"
 };
 
