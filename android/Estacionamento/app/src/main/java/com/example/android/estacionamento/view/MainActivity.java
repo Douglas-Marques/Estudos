@@ -1,5 +1,6 @@
 package com.example.android.estacionamento.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,12 +24,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private final static EstacionamentoAPI api = EstacionamentoAPI.retrofit.create(EstacionamentoAPI.class);
 
-    private CarAdapter adapter;
+
+    private ListView cars_listView;
+
+    CarAdapter carAdapter;
 
 
     @Override
@@ -37,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        cars_listView = (ListView)findViewById(R.id.list_cars_view);
+
+        final Activity activity = this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,18 +54,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-      /*  adapter = new CarAdapter(this, new ArrayList<Carro>());
+        //Obter todos os carros
+        getAllCars("");
+
+        carAdapter = new CarAdapter(this, new ArrayList<Carro>());
+        cars_listView.setAdapter(carAdapter);
+
         cars_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Carro carroAtual = adapter.getItem(position);
-
-
+                Carro carroAtual = carAdapter.getItem(position);
+                avisarBotao(carroAtual);
             }
         });
-*/
-        //Obter todos os carros
-        getAllCars("");
+    }
+
+    private void avisarBotao(Carro carroAtual){
+        Toast.makeText(this, "Clique pay para pagar placa: " + carroAtual.getPlaca() , Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -85,14 +97,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void getAllCars(String placa){
 
-        final ListView cars_listView = (ListView)findViewById(R.id.list_cars_view);
         final Call<List<Carro>> carros = api.getAllCars(placa);
+
+        cars_listView = (ListView)findViewById(R.id.list_cars_view);
 
         carros.enqueue(new Callback<List<Carro>>() {
             @Override
             public void onResponse(Call<List<Carro>> call, Response<List<Carro>> response) {
                 List<Carro> carrosResponseBody = response.body();
-                CarAdapter carAdapter = new CarAdapter(getApplicationContext(), new ArrayList<Carro>());
 
                 carAdapter.addAll(carrosResponseBody);
                 cars_listView.setAdapter(carAdapter);

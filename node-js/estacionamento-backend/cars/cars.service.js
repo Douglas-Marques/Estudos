@@ -31,10 +31,13 @@ function paymentValue(id, callback){
 
     var diferencaMiliSegundos = dataAtual - dataEntrada;
 
+    //transformando milisegundos em hora
     var diferencaHoras = ((diferencaMiliSegundos/1000)/60)/60;
 
-    var valorEstacionamento = diferencaHoras * VALOR_ESTACIONAMENTO;
+    //math.floor vai arredondar o double do valor para inteiro (sem casas decimais)
+    var valorEstacionamento = Math.floor(diferencaHoras * VALOR_ESTACIONAMENTO);
 
+    //se o carro ficar menos que uma hora o valor do estacionamento ficará zerado, então seto isso para 5.
     callback(valorEstacionamento < 5 ? 5 : valorEstacionamento);
   })
 }

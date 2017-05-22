@@ -8,50 +8,102 @@
     android:padding="16dp"
     tools:context=".view.EditorActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Placa:"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
-
-            <!-- Name field -->
-            <EditText
-                android:id="@+id/placa_input"
-                android:hint="AAA-1234"
-                android:inputType="textCapWords"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Salvar"/>
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/capacity"
-        android:layout_marginTop="22dp"/>
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center"
+        android:text="Vagas restantes: "/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ler código"
+        android:id="@+id/qrcode"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/price_qrcode"
+    android:layout_marginTop="22dp"
+    android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/placa_qrcode"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RadioButton android:id="@+id/paypal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paypal"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton android:id="@+id/credito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cartão de crédito"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton android:id="@+id/debito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cartão de Débito"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/list_item_payment"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+    <EditText
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Número do cartão"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome impresso no cartão"/>
+
+    <EditText
+        android:inputType="date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Data de validade do cartão"/>
+
+    <EditText
+        android:inputType="number"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:hint="CVV"/>
+
+    </LinearLayout>
+
+
+<Button
+        android:id="@+id/pagar_estacionamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:text="Pagar"/>
 
 </LinearLayout>

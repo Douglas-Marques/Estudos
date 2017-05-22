@@ -7,15 +7,18 @@
     android:paddingEnd="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingStart="16dp">
+    android:paddingStart="16dp"
+    android:id="@+id/item">
 
     <TextView
         android:id="@+id/placa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
-        tools:text="IFY - 5703"
-        android:layout_weight="0.3"/>
+        tools:text="IFY-5703"
+        android:layout_weight="0.3"
+        android:textAllCaps="true"
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -28,23 +31,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="2017-05-02:PM12:00:00"
-            android:id="@+id/data"/>
+            tools:text="2017-05-02 14:00"
+            android:id="@+id/data"
+            android:textColor="#888D90"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Pagamento pendente"
-            android:gravity="center"
-            android:id="@+id/pago"/>
+            tools:text="Pendente"
+            android:layout_gravity="center"
+            android:id="@+id/pago"
+            android:layout_marginBottom="8dp"/>
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pagar"
+        android:text="3550R$"
         android:layout_weight="0.3"
-        android:id="@+id/pagar_estacionamento"/>
+        android:gravity="center"
+        android:id="@+id/price_parking"/>
 
 </LinearLayout>

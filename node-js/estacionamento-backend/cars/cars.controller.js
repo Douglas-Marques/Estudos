@@ -100,5 +100,4 @@ getAllCars:function(req, res, next){
         }
     });
   }
-
 }

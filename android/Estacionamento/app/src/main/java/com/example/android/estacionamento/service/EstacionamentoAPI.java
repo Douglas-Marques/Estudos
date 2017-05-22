@@ -7,7 +7,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.Path;
@@ -24,17 +23,18 @@ public interface EstacionamentoAPI {
     @GET("vagas")
     Call<Integer> getCapacity();
 
+    @GET("paymentValue/{placa}")
+    Call<Integer> getPaymentValue(@Path("placa") String placa);
+
     @PATCH("cars/{placa}")
     Call<Carro> payParking(@Path("placa") String placa);
 
-    @DELETE("cars/{placa}")
-    Call<Carro> deleteCar(@Path("placa") String placa);
-
-
 
      Retrofit retrofit = new Retrofit.Builder()
-        //CI    .baseUrl("http://10.96.127.138:3000/")
-            .baseUrl("http://192.168.1.5:3000/")
+            //CI
+            .baseUrl("http://10.96.127.138:3000/")
+             //CASA
+          //  .baseUrl("http://192.168.1.5:3000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
