@@ -7,6 +7,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.Path;
@@ -26,8 +28,9 @@ public interface EstacionamentoAPI {
     @GET("paymentValue/{placa}")
     Call<Integer> getPaymentValue(@Path("placa") String placa);
 
-    @PATCH("cars/{placa}")
-    Call<Carro> payParking(@Path("placa") String placa);
+    @FormUrlEncoded
+    @PATCH("cars")
+    Call<String> payParking(@Field("placa") String placa);
 
 
      Retrofit retrofit = new Retrofit.Builder()

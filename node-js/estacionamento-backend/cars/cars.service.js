@@ -35,10 +35,10 @@ function paymentValue(id, callback){
     var diferencaHoras = ((diferencaMiliSegundos/1000)/60)/60;
 
     //math.floor vai arredondar o double do valor para inteiro (sem casas decimais)
-    var valorEstacionamento = Math.floor(diferencaHoras * VALOR_ESTACIONAMENTO);
+    var valorTotalEstacionamento = parseInt(diferencaHoras, 10) * VALOR_ESTACIONAMENTO;
 
     //se o carro ficar menos que uma hora o valor do estacionamento ficará zerado, então seto isso para 5.
-    callback(valorEstacionamento < 5 ? 5 : valorEstacionamento);
+    callback(valorTotalEstacionamento < 5 ? 5 : valorTotalEstacionamento);
   })
 }
 
@@ -53,10 +53,11 @@ function getAllCars(callback){
 
 function pesquisarVagas(callback){
   Cars.find({}, function(err, cars){
+    console.log(cars);
 		if (err) {
       callback({status:500, error: err });
     }
-    callback((MAXIMUM_CAPACITY - cars.length));
+    callback(MAXIMUM_CAPACITY - cars.length);
   });
 }
 
@@ -85,18 +86,19 @@ function registerCar (placa, callback){
 	});
 }
 
-//{ new: true }, depois do pago = true caso de erro.
-function payParking(id, callback){
-	Cars.findOneAndUpdate({'placa': id }, { $set: { pago: true } }, function(err, response) {
-		if (err) {
-			callback(false);
-		}else if(response){
-			callback("Carro pago com sucesso");
-		}
-		else {
-			callback("Erro ao efetuar pagamento");
-		}
-	});
+
+function payParking(placa, callback){
+  Cars.findOneAndUpdate({'placa': placa, 'pago': false}, {$set : {pago: true} }, function(err, cars){
+    if(err){
+      callback(false);
+    }
+    else if(cars){
+      callback("Carro pago com sucesso");
+    }
+    else{
+      callback("Erro ao efetuar pagamento");
+    }
+  })
 }
 
 function deleteCar(id, callback){

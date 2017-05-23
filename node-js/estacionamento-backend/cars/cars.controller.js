@@ -31,7 +31,8 @@ getAllCars:function(req, res, next){
 
   pesquisarVagas:function(req, res, next){
     carsService.pesquisarVagas(function(response){
-      if(response){
+      //se o estacionamento estiver vazio o serviço retorna 0, a controller identificava isso como erro e pulava pro else
+      if(response || response === 0){
         res.json(response);
       } else {
           res.json('Bad request');
@@ -58,18 +59,23 @@ getAllCars:function(req, res, next){
     }
 },
 
-  payParking:function(req, res, next){
-    var placa = req.params.id;
-    carsService.payParking(placa, function(response){
-      if(response){
-        res.json(response);
-        res.status(response[0].status);
-      }else {
-        res.json('Bad request');
+    payParking:function(req, res, next){
+      if(req.body.placa){
+        var placa = req.body.placa;
+        carsService.payParking(placa, function(response){
+          if(response){
+            res.json(response);
+            res.status(response[0].status);
+          }else{
+            res.json('Bad request');
+            res.status(400);
+          }
+        });
+      }else{
         res.status(400);
       }
-    })
-},
+    }
+,
 
   deleteCar:function(req, res, next){
     if (req.params.id){

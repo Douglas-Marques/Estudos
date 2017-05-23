@@ -1,9 +1,12 @@
 package com.example.android.estacionamento.view;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -64,35 +67,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Carro carroAtual = carAdapter.getItem(position);
-                avisarBotao(carroAtual);
+               // avisarBotao(carroAtual);
+                exibirModal();
             }
         });
     }
 
     private void avisarBotao(Carro carroAtual){
-        Toast.makeText(this, "Clique pay para pagar placa: " + carroAtual.getPlaca() , Toast.LENGTH_SHORT).show();
+        if (carroAtual.isPago()) {
+            Toast.makeText(this, "Deseja sair do estacionamento?" , Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Clique pay para pagar placa: " + carroAtual.getPlaca() , Toast.LENGTH_SHORT).show();
+        }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private void exibirModal(){
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog_NoActionBar);
+        } else {
+            builder = new AlertDialog.Builder(this);
         }
 
-        return super.onOptionsItemSelected(item);
+        builder.setTitle("titulo")
+                .setMessage("mensagem")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(R.drawable.ic_cancel_black_24dp)
+                .show();
     }
 
     public void getAllCars(String placa){
@@ -115,6 +126,28 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Não foi encontrado nenhum carro", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

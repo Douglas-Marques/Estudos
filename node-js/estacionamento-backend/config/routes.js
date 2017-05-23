@@ -12,8 +12,10 @@ router.get('/cars', carsController.getAllCars);
 router.get('/vagas', carsController.pesquisarVagas);
 router.get('/paymentValue/:id', carsController.paymentValue);
 router.post('/cars', carsController.registerCar);
-router.patch('/cars/:id', carsController.payParking);
 router.delete('/cars/:id', carsController.deleteCar);
+
+//router.patch('/cars/:id', carsController.payParking);
+router.patch('/cars', carsController.payParking);
 
 
 module.exports = router;

@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="2017-05-02 14:00"
+            tools:text="2017/05/02 14:00"
             android:id="@+id/data"
             android:textColor="#888D90"
             android:layout_marginTop="8dp"

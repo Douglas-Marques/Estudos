@@ -3,8 +3,10 @@ package com.example.android.estacionamento.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.estacionamento.R;
-import com.example.android.estacionamento.model.Carro;
 import com.example.android.estacionamento.service.EstacionamentoAPI;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -22,6 +23,7 @@ import com.google.zxing.integration.android.IntentResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -33,12 +35,17 @@ public class EditorActivity extends AppCompatActivity {
 
     private TextView qrPlaca;
 
-    private String placaPaga = "";
+    private String placaPaga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
+        setTitle("Vagas/Pagamento");
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         qrCode = (Button) this.findViewById(R.id.qrcode);
         final Activity activity = this;
@@ -57,15 +64,16 @@ public class EditorActivity extends AppCompatActivity {
         });
 
         qrPlaca = (TextView)findViewById(R.id.placa_qrcode);
+
+        getCapacity();
+
         pagar = (Button) this.findViewById(R.id.pagar_estacionamento);
         pagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                payParking(placaPaga);
+                payParking();
             }
         });
-
-        getCapacity();
     }
 
     public void onRadioButtonClicked(View view) {
@@ -118,8 +126,12 @@ public class EditorActivity extends AppCompatActivity {
         capacity.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
-                String quantidadeDeVagas = (response.body() > 0) ? response.body().toString() : "Não há vagas";
-                capacity_text.setText("Vagas restantes: " + quantidadeDeVagas);
+                if (response.body() > 0){
+                    capacity_text.setText("Vagas restantes: " + response.body());
+                }
+                else{
+                    capacity_text.setText("Não há vagas!");
+                }
             }
 
             @Override
@@ -153,23 +165,38 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
 
-    private void payParking(String placa){
-        final Call<Carro> carroAtual = api.payParking(placa.toLowerCase());
+    private void payParking(){
+        final Call<String> carroAtual = api.payParking(placaPaga.toLowerCase());
 
-        carroAtual.enqueue(new Callback<Carro>() {
+        carroAtual.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Carro> call, Response<Carro> response) {
-                Intent intent = new Intent(EditorActivity.this, MainActivity.class);
-                startActivity(intent);
+            public void onResponse(Call<String> call, Response<String> response) {
+              //  Intent intent = new Intent(EditorActivity.this, MainActivity.class);
+              //  startActivity(intent);
+                Toast.makeText(EditorActivity.this, response.body(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(intent, 0);
             }
 
             @Override
-            public void onFailure(Call<Carro> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(EditorActivity.this, "Não foi encontrado nenhum carro", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+
+    }
 
 }
