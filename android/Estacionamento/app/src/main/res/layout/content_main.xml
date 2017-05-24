@@ -11,8 +11,8 @@
         tools:context=".view.MainActivity"
         tools:showIn="@layout/activity_main"
         android:id="@+id/list_cars_view"
-    android:divider="#488730"
+    android:divider="#D2D8DC"
     android:dividerHeight="1dp"
-    android:background="#eaebf9">
+    android:background="#FAFBFC">
     </ListView>
 

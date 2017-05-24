@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:src="@android:color/transparent"
             android:id="@+id/fab"
-            android:backgroundTint="#488730"/>
+            android:backgroundTint="#2293D7"/>
 
         <TextView
             android:layout_width="wrap_content"

@@ -18,6 +18,8 @@ public class Carro {
     @SerializedName("pago")
     private boolean pago;
 
+    private int valorTotalEstacionamento;
+
     public Carro(){
     }
 
@@ -49,6 +51,14 @@ public class Carro {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public void setValorTotalEstacionamento(int valorTotalEstacionamento){
+        this.valorTotalEstacionamento = valorTotalEstacionamento;
+    }
+
+    public int getValorTotalEstacionamento(){
+        return valorTotalEstacionamento;
     }
 
    @Override

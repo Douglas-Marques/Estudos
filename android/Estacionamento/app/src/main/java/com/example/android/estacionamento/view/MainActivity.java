@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.estacionamento.R;
@@ -36,11 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
     CarAdapter carAdapter;
 
+    private TextView price_textView;
+
+    private static final int PRICE_PARKING = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -66,23 +71,14 @@ public class MainActivity extends AppCompatActivity {
         cars_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //se quiser pegar o evento de clique do carro atual descomente o codigo abaixo
                 Carro carroAtual = carAdapter.getItem(position);
-               // avisarBotao(carroAtual);
-                exibirModal();
+                exibirModal(carroAtual);
             }
         });
     }
 
-    private void avisarBotao(Carro carroAtual){
-        if (carroAtual.isPago()) {
-            Toast.makeText(this, "Deseja sair do estacionamento?" , Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this, "Clique pay para pagar placa: " + carroAtual.getPlaca() , Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void exibirModal(){
+    private void exibirModal(Carro carroAtual){
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog_NoActionBar);
@@ -90,19 +86,21 @@ public class MainActivity extends AppCompatActivity {
             builder = new AlertDialog.Builder(this);
         }
 
-        builder.setTitle("titulo")
-                .setMessage("mensagem")
+        int totalHoursParking = carroAtual.getValorTotalEstacionamento() / PRICE_PARKING;
+
+        builder.setTitle("Estacionamento")
+                .setMessage("Seu carro está " + totalHoursParking + " hora(s) no estacionamento")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
+                        //clicou no ok
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
+                        //clicou no cancelar
                     }
                 })
-                .setIcon(R.drawable.ic_cancel_black_24dp)
+                .setIcon(R.drawable.ic_time_to_leave_black_24dp)
                 .show();
     }
 

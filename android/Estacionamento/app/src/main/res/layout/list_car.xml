@@ -18,7 +18,8 @@
         tools:text="IFY-5703"
         android:layout_weight="0.3"
         android:textAllCaps="true"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="#000000"/>
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -43,7 +44,7 @@
             tools:text="Pendente"
             android:layout_gravity="center"
             android:id="@+id/pago"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" />
 
     </LinearLayout>
 
@@ -53,6 +54,7 @@
         android:text="3550R$"
         android:layout_weight="0.3"
         android:gravity="center"
-        android:id="@+id/price_parking"/>
+        android:id="@+id/price_parking"
+        android:textColor="#000000"/>
 
 </LinearLayout>

@@ -42,7 +42,7 @@ public class CarAdapter extends ArrayAdapter<Carro>{
         if (listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_car, parent, false);
         }
-        Carro carroAtual = getItem(position);
+        final Carro carroAtual = getItem(position);
 
         TextView placaView = (TextView) listItemView.findViewById(placa);
         placaView.setText(carroAtual.getPlaca());
@@ -60,6 +60,7 @@ public class CarAdapter extends ArrayAdapter<Carro>{
         price.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
+                carroAtual.setValorTotalEstacionamento(response.body());
                 priceParkingView.setText(response.body() + "R$");
             }
 
