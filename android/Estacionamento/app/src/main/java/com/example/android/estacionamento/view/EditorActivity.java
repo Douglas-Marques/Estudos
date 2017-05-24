@@ -43,6 +43,7 @@ public class EditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editor);
         setTitle("Vagas/Pagamento");
 
+        //botão voltar para main activity
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -50,6 +51,7 @@ public class EditorActivity extends AppCompatActivity {
         qrCode = (Button) this.findViewById(R.id.qrcode);
         final Activity activity = this;
 
+        //leitor de qr code (receita de bolo)
         qrCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +69,7 @@ public class EditorActivity extends AppCompatActivity {
 
         getCapacity();
 
+        //caso clique chama o método para pagar o estacionamento
         pagar = (Button) this.findViewById(R.id.pagar_estacionamento);
         pagar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,12 +79,13 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
 
+    //usuário clicou em uma das opções do radio button
     public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
+        // Radio button foi clicado?
         boolean checked = ((RadioButton) view).isChecked();
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.list_item_payment);
 
-        // Check which radio button was clicked
+        // Verificar qual radio button foi clicado
         switch(view.getId()) {
             case R.id.credito:
                 if (checked){

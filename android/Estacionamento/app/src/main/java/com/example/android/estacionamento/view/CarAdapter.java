@@ -1,6 +1,7 @@
 package com.example.android.estacionamento.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -51,12 +52,15 @@ public class CarAdapter extends ArrayAdapter<Carro>{
         dataView.setText(formatDate(carroAtual.getDate()));
 
         TextView payParkingView = (TextView) listItemView.findViewById(R.id.pago);
+        //operador ternário para saber se o usuário já pagou ou não
         String verificarPagamento = carroAtual.isPago() ? "Pago com sucesso" : "Pendente";
         payParkingView.setText(verificarPagamento);
 
+        //requisição para obter o valor de cada carro - lower case pq no front eu coloco upperCase e no back fica salvo em lower
         final Call<Integer> price = api.getPaymentValue(carroAtual.getPlaca().toLowerCase());
         final TextView priceParkingView = (TextView)listItemView.findViewById(R.id.price_parking);
 
+        //obter preço de cada carro no estacionamento
         price.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -70,9 +74,17 @@ public class CarAdapter extends ArrayAdapter<Carro>{
             }
         });
 
+        //verificar se já pagou e alterar cor do texto do preço
+        if (carroAtual.isPago()) {
+            priceParkingView.setTextColor(Color.parseColor("#1999E3"));
+        }else{
+            priceParkingView.setTextColor(Color.parseColor("#FF3034"));
+        }
+
         return listItemView;
     }
 
+    //formatar data de entrada
     private String formatDate(Date date){
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 

@@ -22,6 +22,7 @@ getAllCars:function(req, res, next){
     carsService.getAllCars(function(response){
       if (response){
         res.json(response);
+        res.status(200);
       }else {
         res.json('Bad request');
         res.status(400);

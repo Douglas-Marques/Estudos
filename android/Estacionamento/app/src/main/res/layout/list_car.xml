@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             tools:text="2017/05/02 14:00"
             android:id="@+id/data"
-            android:textColor="#888D90"
+            android:textColor="#B4B4B4"
             android:layout_marginTop="8dp"
             android:layout_gravity="center" />
 
@@ -54,7 +54,6 @@
         android:text="3550R$"
         android:layout_weight="0.3"
         android:gravity="center"
-        android:id="@+id/price_parking"
-        android:textColor="#000000"/>
+        android:id="@+id/price_parking" />
 
 </LinearLayout>

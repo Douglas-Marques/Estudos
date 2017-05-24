@@ -14,7 +14,8 @@
         android:id="@+id/capacity"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
-        android:text="Vagas restantes: "/>
+        android:text="Vagas restantes: "
+        />
 
     <Button
         android:layout_width="wrap_content"

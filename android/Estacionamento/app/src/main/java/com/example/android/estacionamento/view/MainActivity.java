@@ -1,6 +1,6 @@
 package com.example.android.estacionamento.view;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.estacionamento.R;
@@ -37,22 +36,20 @@ public class MainActivity extends AppCompatActivity {
 
     CarAdapter carAdapter;
 
-    private TextView price_textView;
+    //declarar variavel que vai exibir o loader
+    ProgressDialog mProgressDialog;
 
+    //valor do estacionamento
     private static final int PRICE_PARKING = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        cars_listView = (ListView)findViewById(R.id.list_cars_view);
-
-        final Activity activity = this;
-
+        //evento de clique do botão pagar
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,19 +62,24 @@ public class MainActivity extends AppCompatActivity {
         //Obter todos os carros
         getAllCars("");
 
+        //iniciar adapter da minha lista de carros
+        cars_listView = (ListView)findViewById(R.id.list_cars_view);
         carAdapter = new CarAdapter(this, new ArrayList<Carro>());
         cars_listView.setAdapter(carAdapter);
 
+        //evento de clique de cada carro
         cars_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //se quiser pegar o evento de clique do carro atual descomente o codigo abaixo
                 Carro carroAtual = carAdapter.getItem(position);
+
                 exibirModal(carroAtual);
             }
         });
     }
 
+    //modal que exibe a quantidade de horas totais que o carro está no estacionamento
     private void exibirModal(Carro carroAtual){
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             builder = new AlertDialog.Builder(this);
         }
 
+        //variavel que guarda a quantidade de horas que determinado carro está no estacionamento
         int totalHoursParking = carroAtual.getValorTotalEstacionamento() / PRICE_PARKING;
 
         builder.setTitle("Estacionamento")
@@ -104,11 +107,19 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    //obter todos os carros
     public void getAllCars(String placa){
+        //instanciar a variavel que vai exibir o loader
+        mProgressDialog = new ProgressDialog(this);
+        //chamar funções para exibir loader
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.show();
 
         final Call<List<Carro>> carros = api.getAllCars(placa);
 
         cars_listView = (ListView)findViewById(R.id.list_cars_view);
+
 
         carros.enqueue(new Callback<List<Carro>>() {
             @Override
@@ -118,10 +129,14 @@ public class MainActivity extends AppCompatActivity {
                 carAdapter.addAll(carrosResponseBody);
                 cars_listView.setAdapter(carAdapter);
 
+                //fechar loader
+                mProgressDialog.dismiss();
             }
             @Override
             public void onFailure(Call<List<Carro>> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Não foi encontrado nenhum carro", Toast.LENGTH_SHORT).show();
+                //fechar loader
+                mProgressDialog.dismiss();
             }
         });
     }

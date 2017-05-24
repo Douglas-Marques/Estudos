@@ -43,11 +43,11 @@ function paymentValue(id, callback){
 }
 
 function getAllCars(callback){
-	Cars.find({}, function(err, cars) {
+  	Cars.find({}, function(err, cars) {
 		if (err) {
       callback({status:500, error: err });
     }
-			callback(cars);
+    callback(cars);
 	});
 }
 
