@@ -19,15 +19,19 @@ import retrofit2.http.Path;
 
 public interface EstacionamentoAPI {
 
+    //obter um ou todos os carros
     @GET("cars/{placa}")
     Call<List<Carro>> getAllCars(@Path("placa") String placa );
 
+    //obter vagas restantes
     @GET("vagas")
     Call<Integer> getCapacity();
 
+    //obter valor total de determinada placa
     @GET("paymentValue/{placa}")
     Call<Integer> getPaymentValue(@Path("placa") String placa);
 
+    //pagar o estacionamento
     @FormUrlEncoded
     @PATCH("cars")
     Call<String> payParking(@Field("placa") String placa);

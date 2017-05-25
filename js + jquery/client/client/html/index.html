@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <script src='../js/jquery-3.2.1.min.js'></script>
+        <script src='../js/bootstrap.min.js'></script>
+        <script src='../js/bootstrap.js'></script>
+        <link href='../css/bootstrap.min.css' rel=stylesheet>
+        <link href='../css/font-awesome.min.css' rel=stylesheet> 
+        <link href='../css/index.css' rel="stylesheet">
+        <script src='../js/index.js'></script>
+	</head>
+	<body>
+        <nav class="navbar navbar-inverse">
+        </nav>
+        <div class="container-body">
+            <form name='cadastro' id='formCadastro'>
+                <div class="input-group">
+                    <input id='txtPlaca' class="form-control" placeholder="Informe a placa do carro">
+                    <span class="input-group-btn">
+                        <button type='submit' id="btnSubmit" class="btn btn-default" type="button">Entrar no estacionamento</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="container-table">
+            <table id='carsTable' class='myTable'>
+                <tr>
+                    <td>Placa</td>
+                    <td>Horário</td>
+                    <td>Pagar/Sair</td>
+                </tr>
+            </table>
+        </div>
+	</body>
+</html>
+

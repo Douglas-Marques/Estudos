@@ -103,26 +103,31 @@ public class EditorActivity extends AppCompatActivity {
                 }
                  break;
         }
+        //deixar visivel botão de pagar independente da forma de pagamento
         findViewById(R.id.pagar_estacionamento).setVisibility(View.VISIBLE);
     }
 
+    //método que é chamado apos a leitura ou cancelamento do QRCode
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {
                 Log.d("MainActivity", "Cancelled scan");
+                //se
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Log.d("MainActivity", "Scanned");
+                //Se encontrar a placa no mongo, imprime informações na tela
                 paymentValue(result.getContents());
             }
         } else {
-            // This is important, otherwise the result will not be passed to the fragment
+            // Isto é importante, caso contrário o resultado não será passado para o fragmento
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
+    //Obter quantidade de vagas restantes
     public void getCapacity(){
         final Call<Integer> capacity = api.getCapacity();
         final TextView capacity_text = (TextView)findViewById(R.id.capacity);
@@ -130,8 +135,9 @@ public class EditorActivity extends AppCompatActivity {
         capacity.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
-                if (response.body() > 0){
-                    capacity_text.setText("Vagas restantes: " + response.body());
+                int quantidadeDeVagas = response.body();
+                if (quantidadeDeVagas > 0){
+                    capacity_text.setText("Vagas restantes: " + quantidadeDeVagas);
                 }
                 else{
                     capacity_text.setText("Não há vagas!");
@@ -145,8 +151,11 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
 
-    private void paymentValue(final String placa){
-        final Call<Integer> price = api.getPaymentValue(placa.toLowerCase());
+    private void paymentValue(String placa){
+        //requisição para obter o valor deste carro
+        final Call<Integer> price = api.getPaymentValue(placa);
+
+        //para não declarar o parametro placa como 'final' atribuo a variavel placaPaga
         placaPaga = placa;
 
         final TextView qrCode = (TextView)findViewById(R.id.price_qrcode);
@@ -177,7 +186,7 @@ public class EditorActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
               //  Intent intent = new Intent(EditorActivity.this, MainActivity.class);
               //  startActivity(intent);
-                Toast.makeText(EditorActivity.this, response.body(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditorActivity.this, response.body(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivityForResult(intent, 0);
             }

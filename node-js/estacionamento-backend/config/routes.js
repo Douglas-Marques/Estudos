@@ -13,8 +13,6 @@ router.get('/vagas', carsController.pesquisarVagas);
 router.get('/paymentValue/:id', carsController.paymentValue);
 router.post('/cars', carsController.registerCar);
 router.delete('/cars/:id', carsController.deleteCar);
-
-//router.patch('/cars/:id', carsController.payParking);
 router.patch('/cars', carsController.payParking);
 
 

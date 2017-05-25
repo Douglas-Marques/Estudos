@@ -13,22 +13,31 @@ service.paymentValue = paymentValue;
 module.exports = service;
 
 function getCarById(id, callback){
+  id = id.toLowerCase();
 	Cars.find({'placa':id}, function(err, cars) {
 		if (err) {
       callback({status:500, error: err });
+    }
+    else if(cars.length === 0){
+      callback('Nenhum carro encontrado com esta placa');
     }
 		callback(cars);
 	});
 }
 
 function paymentValue(id, callback){
+  id = id.toLowerCase();
   Cars.find({'placa':id}, function (err, cars){
     if(err){
       callback({status: 500, error: err});
     }
+    else if(cars.length === 0){
+      callback('Nenhum carro encontrado com esta placa');
+    }
     var dataEntrada = cars[0].date;
     var dataAtual = new Date();
 
+    //subtrair data de agora com a data que o carro entrou no estacionamento (o JS transforma em milisegundos automagicamente)
     var diferencaMiliSegundos = dataAtual - dataEntrada;
 
     //transformando milisegundos em hora
@@ -53,7 +62,6 @@ function getAllCars(callback){
 
 function pesquisarVagas(callback){
   Cars.find({}, function(err, cars){
-    console.log(cars);
 		if (err) {
       callback({status:500, error: err });
     }
@@ -62,13 +70,20 @@ function pesquisarVagas(callback){
 }
 
 function registerCar (placa, callback){
-	Cars.find({'placa':placa}, function(err, cars){
+  placa = placa.toLowerCase();
+	Cars.find({}, function(err, cars){
 		if (err) {
       callback({status:500, error: err });
     }
-		if(cars[0]){
-			callback("Já existe um carro com esta placa");
-		}else{
+    for(var i = 0; i < cars.length; i++){
+      if(cars[i].placa === placa){
+        callback("Já existe um carro com esta placa");
+      }
+    }
+    if(cars.length >= 10){
+      callback("Estacionamento lotado");
+    }
+    else {
 			var newCar = new Cars({
 				'placa': placa,
         'date': new Date(),
@@ -93,17 +108,16 @@ function payParking(placa, callback){
       callback(false);
     }
     else if(cars){
-      callback("Carro pago com sucesso");
+      callback("Carro pago com sucesso!");
     }
     else{
-      callback("Erro ao efetuar pagamento");
+      callback("Este carro já foi pago!");
     }
   })
 }
 
 function deleteCar(id, callback){
       Cars.findOneAndRemove({'placa': id}, function (err,response){
-				console.log(response);
         if (err) {
 					callback({status:500, error: err });
 				}else if(response){

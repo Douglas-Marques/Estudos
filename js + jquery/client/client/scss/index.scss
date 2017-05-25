@@ -1,0 +1,57 @@
+.menu{
+    height: 50px;
+    position: relative;
+    vertical-align: top;
+    width: 100%;
+    background-color: #808080;
+    padding: 5px;
+}
+
+.container-body{
+    padding: 2% 10%;
+}
+
+.container-table{
+    padding: 1% 5%;
+    .myTable{
+        background-color: #e2e2e2;
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px #333;
+        tr{
+            cursor: default;
+            &:hover{
+                background-color: #989898;
+                color: #fff;
+            }
+            &:first-child{
+                font-size: 17px;
+                color: #141414;
+                border-radius: 10px 0px 10px 0px;
+                &:hover{
+                    color: #141414;
+                    background-color: #e2e2e2;
+                }
+            }
+            font-size: 14px;
+            color: #808080;
+            transition: all 0.2s ease-in-out;
+            td{
+                text-align: center;
+                padding: 10px;
+                border-bottom: 1px solid #aaa;
+                i{
+                    color: #519661;
+                    cursor: pointer;
+                }
+                .red{
+                    color: #aa3636;
+                }
+            }
+        }
+    }
+    
+}
+body{
+	margin: 0;
+}
