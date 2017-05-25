@@ -1,6 +1,10 @@
 var Cars = require('./cars.schema');
 var service = {};
+
+//capacidade maxima do estacionamento
 const MAXIMUM_CAPACITY = 10;
+
+//estacionamento custa 5 reais
 const VALOR_ESTACIONAMENTO = 5;
 
 service.registerCar = registerCar;
@@ -12,6 +16,7 @@ service.pesquisarVagas = pesquisarVagas;
 service.paymentValue = paymentValue;
 module.exports = service;
 
+//obter o carro recebendo id por parametro 
 function getCarById(id, callback){
   id = id.toLowerCase();
 	Cars.find({'placa':id}, function(err, cars) {
@@ -25,6 +30,7 @@ function getCarById(id, callback){
 	});
 }
 
+//obter valor do estaciomento
 function paymentValue(id, callback){
   id = id.toLowerCase();
   Cars.find({'placa':id}, function (err, cars){
@@ -51,6 +57,7 @@ function paymentValue(id, callback){
   })
 }
 
+//obter todos os carros
 function getAllCars(callback){
   	Cars.find({}, function(err, cars) {
 		if (err) {
@@ -60,6 +67,7 @@ function getAllCars(callback){
 	});
 }
 
+//verificar se há vagas disponiveis no estacionamento
 function pesquisarVagas(callback){
   Cars.find({}, function(err, cars){
 		if (err) {
@@ -69,6 +77,7 @@ function pesquisarVagas(callback){
   });
 }
 
+//adicionar um novo carro
 function registerCar (placa, callback){
   placa = placa.toLowerCase();
 	Cars.find({}, function(err, cars){
@@ -101,7 +110,7 @@ function registerCar (placa, callback){
 	});
 }
 
-
+//pagar estacionamento( o atributo pago vira true )
 function payParking(placa, callback){
   Cars.findOneAndUpdate({'placa': placa, 'pago': false}, {$set : {pago: true} }, function(err, cars){
     if(err){
@@ -116,6 +125,7 @@ function payParking(placa, callback){
   });
 }
 
+//deletar um carro 
 function deleteCar(id, callback){
       Cars.findOneAndRemove({'placa': id}, function (err,response){
         if (err) {
