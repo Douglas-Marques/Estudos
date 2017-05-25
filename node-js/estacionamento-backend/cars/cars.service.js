@@ -113,7 +113,7 @@ function payParking(placa, callback){
     else{
       callback("Este carro já foi pago!");
     }
-  })
+  });
 }
 
 function deleteCar(id, callback){
