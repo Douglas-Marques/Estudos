@@ -1,8 +1,11 @@
 package com.example.android.estacionamento.view;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -59,13 +62,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Obter todos os carros
-        getAllCars("");
-
         //iniciar adapter da minha lista de carros
         cars_listView = (ListView)findViewById(R.id.list_cars_view);
         carAdapter = new CarAdapter(this, new ArrayList<Carro>());
         cars_listView.setAdapter(carAdapter);
+
+        //obter detalhes da conexão para checar estado da internet
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        //verificar se há conexão com a internet
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        //se existir conexão com a internet, realiza as devidas requisições
+        if (networkInfo != null && networkInfo.isConnected()) {
+            //Obter todos os carros
+            getAllCars("");
+
+        }
+        else{
+            Toast.makeText(MainActivity.this, "Sem conexão com a internet", Toast.LENGTH_LONG).show();
+        }
 
         //evento de clique de cada carro
         cars_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -126,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Carro>> call, Response<List<Carro>> response) {
                 List<Carro> carrosResponseBody = response.body();
 
+                //adicionar adapter com todos os carros vindo do banco
                 carAdapter.addAll(carrosResponseBody);
                 cars_listView.setAdapter(carAdapter);
 

@@ -146,7 +146,7 @@ public class EditorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
-                capacity_text.setText("Erro");
+                capacity_text.setText("Verifique sua conexão com a internet.");
             }
         });
     }

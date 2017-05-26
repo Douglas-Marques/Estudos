@@ -1,7 +1,7 @@
 var Cars = require('./cars.schema');
 var service = {};
 
-//capacidade maxima do estacionamento
+//capacidade maxima de vagas no estacionamento
 const MAXIMUM_CAPACITY = 10;
 
 //estacionamento custa 5 reais
@@ -79,17 +79,21 @@ function pesquisarVagas(callback){
 
 //adicionar um novo carro
 function registerCar (placa, callback){
+  //para não haver problemas de case sempre salvo em minusculo e posteriormente faço buscas em minusculo
   placa = placa.toLowerCase();
 	Cars.find({}, function(err, cars){
 		if (err) {
       callback({status:500, error: err });
     }
-    for(var i = 0; i < cars.length; i++){
+    //guardar length em uma variavel para o JS não recalcular a cada iteração
+    var totalCarros = cars.length;
+    for(var i = 0; i < totalCarros; i++){
       if(cars[i].placa === placa){
         callback("Já existe um carro com esta placa");
       }
     }
-    if(cars.length >= 10){
+    //se estacionamento estiver lotado não registra o novo carro o bd
+    if(totalCarros >= MAXIMUM_CAPACITY){
       callback("Estacionamento lotado");
     }
     else {
@@ -125,15 +129,43 @@ function payParking(placa, callback){
   });
 }
 
-//deletar um carro 
-function deleteCar(id, callback){
-      Cars.findOneAndRemove({'placa': id}, function (err,response){
-        if (err) {
-					callback({status:500, error: err });
-				}else if(response){
-					callback("Carro saiu do estacionamento");
-				}else{
-					callback("Carro não encontrado");
+
+function deleteCar(placa, callback){
+  placa = placa.toLowerCase();
+  Cars.find({'placa': placa}, function(err, cars){
+    if(err){
+      callback({status:500, error: err });
+    }
+    else if(cars.length === 0){
+      callback('Nenhum carro encontrado com esta placa');
+    }
+    else if(cars[0].pago === false){
+      callback('Este carro ainda não foi pago');
+    }
+    else{
+      cars[0].remove(function(err, removed){
+        if (err){
+          callback(false);
+        }
+				else {
+					callback("Carro deletado com sucesso");
 				}
       });
+    }
+  });
+
 }
+
+//exemplo deletar um carro com find one and remove
+/*function deleteCar(placa, callback){
+      Cars.findOneAndRemove({'placa': placa, 'pago': true}, function (err,response){
+        if (err) {
+					callback({status:500, error: err });
+				}
+        else if(response){
+					callback("Carro saiu do estacionamento");
+				}else{
+					callback("Carro não encontrado ou ainda não foi pago");
+				}
+      });
+}*/

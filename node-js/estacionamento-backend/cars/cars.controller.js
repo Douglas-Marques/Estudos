@@ -79,8 +79,8 @@ getAllCars:function(req, res, next){
 ,
 
   deleteCar:function(req, res, next){
-    if (req.params.id){
-      var placa = req.params.id;
+    if (req.body.placa){
+      var placa = req.body.placa;
       carsService.deleteCar(placa, function(response){
         if (response){
           res.json(response);

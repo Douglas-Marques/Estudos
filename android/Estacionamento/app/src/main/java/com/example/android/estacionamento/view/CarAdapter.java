@@ -76,15 +76,17 @@ public class CarAdapter extends ArrayAdapter<Carro>{
 
         //verificar se já pagou e alterar cor do texto do preço
         if (carroAtual.isPago()) {
+            //se pagou cor do texto fica azul
             priceParkingView.setTextColor(Color.parseColor("#1999E3"));
         }else{
+            //se pagou cor do texto fica vermelho
             priceParkingView.setTextColor(Color.parseColor("#FF3034"));
         }
 
         return listItemView;
     }
 
-    //formatar data de entrada
+    //formatar data de entrada do carro
     private String formatDate(Date date){
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
