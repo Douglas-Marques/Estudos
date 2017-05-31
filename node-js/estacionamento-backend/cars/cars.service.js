@@ -155,17 +155,3 @@ function deleteCar(placa, callback){
   });
 
 }
-
-//exemplo deletar um carro com find one and remove
-/*function deleteCar(placa, callback){
-      Cars.findOneAndRemove({'placa': placa, 'pago': true}, function (err,response){
-        if (err) {
-					callback({status:500, error: err });
-				}
-        else if(response){
-					callback("Carro saiu do estacionamento");
-				}else{
-					callback("Carro não encontrado ou ainda não foi pago");
-				}
-      });
-}*/

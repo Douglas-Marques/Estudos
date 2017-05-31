@@ -56,6 +56,7 @@ getAllCars:function(req, res, next){
         }
       })
     }else {
+      res.json("Placa vazia");
       res.status(400);
     }
 },

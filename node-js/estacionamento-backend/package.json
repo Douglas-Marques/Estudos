@@ -1,4 +1,3 @@
-
 {
   "name": "estacionamento-backend",
   "version": "1.0.0",
@@ -17,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "chai": "^4.0.0",
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "helmet": "^3.6.0",
@@ -24,6 +24,7 @@
     "mm-node-logger": "0.0.1",
     "mongoose": "^4.9.8",
     "morgan": "^1.7.0",
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "sinon": "^2.3.2"
   }
 }

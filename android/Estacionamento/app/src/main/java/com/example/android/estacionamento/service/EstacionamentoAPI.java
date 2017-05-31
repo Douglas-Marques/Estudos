@@ -11,6 +11,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -35,6 +36,11 @@ public interface EstacionamentoAPI {
     @FormUrlEncoded
     @PATCH("cars")
     Call<String> payParking(@Field("placa") String placa);
+
+    //criar carro no banco, apenas para motivos de teste
+    @FormUrlEncoded
+    @POST("cars")
+    Call<String> saveCar(@Field("placa") String placa);
 
 
      Retrofit retrofit = new Retrofit.Builder()

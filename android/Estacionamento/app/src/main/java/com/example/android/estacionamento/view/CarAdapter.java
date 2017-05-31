@@ -56,7 +56,7 @@ public class CarAdapter extends ArrayAdapter<Carro>{
         String verificarPagamento = carroAtual.isPago() ? "Pago com sucesso" : "Pendente";
         payParkingView.setText(verificarPagamento);
 
-        //requisição para obter o valor de cada carro - lower case pq no front eu coloco upperCase e no back fica salvo em lower
+        //requisição para obter o valor de cada carro - lower case para não haver erros de case
         final Call<Integer> price = api.getPaymentValue(carroAtual.getPlaca().toLowerCase());
         final TextView priceParkingView = (TextView)listItemView.findViewById(R.id.price_parking);
 
