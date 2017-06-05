@@ -18,6 +18,8 @@ module.exports = service;
 
 //obter o carro recebendo id por parametro 
 function getCarById(id, callback){
+
+  //lower case para motivos de comparação
   id = id.toLowerCase();
 	Cars.find({'placa':id}, function(err, cars) {
 		if (err) {
@@ -32,6 +34,8 @@ function getCarById(id, callback){
 
 //obter valor do estaciomento
 function paymentValue(id, callback){
+
+  //lower case para motivos de comparação
   id = id.toLowerCase();
   Cars.find({'placa':id}, function (err, cars){
     if(err){
@@ -40,10 +44,12 @@ function paymentValue(id, callback){
     else if(cars.length === 0){
       callback('Nenhum carro encontrado com esta placa');
     }
+    //data de entrada do carro
     var dataEntrada = cars[0].date;
+    //data atual
     var dataAtual = new Date();
 
-    //subtrair data de agora com a data que o carro entrou no estacionamento (o JS transforma em milisegundos automagicamente)
+    //subtrair data atual com a data que o carro entrou no estacionamento (o JS transforma em milisegundos automagicamente)
     var diferencaMiliSegundos = dataAtual - dataEntrada;
 
     //transformando milisegundos em hora
@@ -54,7 +60,7 @@ function paymentValue(id, callback){
 
     //se o carro ficar menos que uma hora o valor do estacionamento ficará zerado, então seto isso para 5.
     callback(valorTotalEstacionamento < 5 ? 5 : valorTotalEstacionamento);
-  })
+  });
 }
 
 //obter todos os carros
@@ -81,6 +87,10 @@ function pesquisarVagas(callback){
 function registerCar (placa, callback){
   //para não haver problemas de case sempre salvo em minusculo e posteriormente faço buscas em minusculo
   placa = placa.toLowerCase();
+
+  //se o carro existir seto para true e não entro no método de salvar um novo carro
+  var carroJaExiste = false;
+
 	Cars.find({}, function(err, cars){
 		if (err) {
       callback({status:500, error: err });
@@ -89,14 +99,17 @@ function registerCar (placa, callback){
     var totalCarros = cars.length;
     for(var i = 0; i < totalCarros; i++){
       if(cars[i].placa === placa){
+        carroJaExiste = true;
         callback("Já existe um carro com esta placa");
+        break;
       }
     }
     //se estacionamento estiver lotado não registra o novo carro o bd
     if(totalCarros >= MAXIMUM_CAPACITY){
       callback("Estacionamento lotado");
     }
-    else {
+    //se carro não existir cria um novo e salva no banco
+    else if(!carroJaExiste) {
 			var newCar = new Cars({
 				'placa': placa,
         'date': new Date(),
@@ -116,21 +129,37 @@ function registerCar (placa, callback){
 
 //pagar estacionamento( o atributo pago vira true )
 function payParking(placa, callback){
-  Cars.findOneAndUpdate({'placa': placa, 'pago': false}, {$set : {pago: true} }, function(err, cars){
-    if(err){
-      callback(false);
-    }
-    else if(cars){
-      callback("Carro pago com sucesso!");
-    }
-    else{
-      callback("Este carro já foi pago!");
-    }
+//lower case para motivos de comparação
+  placa = placa.toLowerCase();
+
+  Cars.find({'placa':placa}, function (err, cars){
+  if(err){
+    callback({status: 500, error: err});
+  }
+  //verificar se o carro já existe
+  else if(cars.length === 0){
+    callback('Nenhum carro encontrado com esta placa');
+  }
+  //se já foi pago não atualiza novamente
+  else if(cars[0].pago){
+    callback('Este carro já foi pago');
+  }
+  //se passar pelas verificações eu atualizo o carro no banco
+   else{
+     cars[0].update({ $set:{pago:true}}, function(err, updated){
+      if (err){
+        callback({status:500, error:err});
+      }
+        callback('Carro pago com sucesso!');
+     });
+   }
   });
 }
 
-
+//deletar carro
 function deleteCar(placa, callback){
+
+  //lower case para motivos de comparação
   placa = placa.toLowerCase();
   Cars.find({'placa': placa}, function(err, cars){
     if(err){
@@ -139,9 +168,11 @@ function deleteCar(placa, callback){
     else if(cars.length === 0){
       callback('Nenhum carro encontrado com esta placa');
     }
+    //carro só pode sair se já pagou
     else if(cars[0].pago === false){
       callback('Este carro ainda não foi pago');
     }
+    //deletar carro se ele já pagou
     else{
       cars[0].remove(function(err, removed){
         if (err){

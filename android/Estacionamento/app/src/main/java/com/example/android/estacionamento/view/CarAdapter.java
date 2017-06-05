@@ -17,6 +17,7 @@ import com.example.android.estacionamento.service.EstacionamentoAPI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,7 +80,7 @@ public class CarAdapter extends ArrayAdapter<Carro>{
             //se pagou cor do texto fica azul
             priceParkingView.setTextColor(Color.parseColor("#1999E3"));
         }else{
-            //se pagou cor do texto fica vermelho
+            //se não pagou cor do texto fica vermelho
             priceParkingView.setTextColor(Color.parseColor("#FF3034"));
         }
 
@@ -88,7 +89,7 @@ public class CarAdapter extends ArrayAdapter<Carro>{
 
     //formatar data de entrada do carro
     private String formatDate(Date date){
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
 
         return format.format(date);
     }

@@ -32,7 +32,7 @@ getAllCars:function(req, res, next){
 
   pesquisarVagas:function(req, res, next){
     carsService.pesquisarVagas(function(response){
-      //se o estacionamento estiver vazio o serviço retorna 0, a controller identificava isso como erro e pulava pro else
+      //se o estacionamento estiver lotado o serviço retorna 0, a controller identificava isso como erro e pulava pro else
       if(response || response === 0){
         res.json(response);
       } else {
