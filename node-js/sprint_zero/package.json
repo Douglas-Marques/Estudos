@@ -1,0 +1,28 @@
+{
+  "name": "sprint_zero",
+  "version": "1.0.0",
+  "description": "API do node-api-example.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "npm run dev"
+  },
+  "keywords": [],
+  "author": "Eduardo Dornel Ribas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "chai": "^4.0.0",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "helmet": "^3.6.0",
+    "method-override": "^2.3.8",
+    "mm-node-logger": "0.0.1",
+    "mongoose": "^4.9.8",
+    "morgan": "^1.7.0",
+    "node-isbn": "^1.3.0",
+    "nodemon": "^1.9.2",
+    "requestify": "^0.2.5",
+    "sinon": "^2.3.2"
+  }
+}
