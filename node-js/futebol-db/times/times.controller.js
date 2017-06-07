@@ -29,11 +29,13 @@ module.exports = {
     });
   },
 
-  obterVitoria:function(req, res, next){
-    var nome = req.body.nome;
-    var golpro = parseInt(req.body.golpro);
-    var golcontra = parseInt(req.body.golcontra);
-      timesService.obterVitoria(nome, golpro, golcontra, function(response){
+  obterResultadoJogo:function(req, res, next){
+    var mandante = req.body.mandante;
+    var visitante = req.body.visitante;
+    var golsMandante = parseInt(req.body.golsMandante);
+    var golsVisitante = parseInt(req.body.golsVisitante);
+
+      timesService.obterResultadoJogo(mandante, golsMandante, visitante, golsVisitante, function(response){
         if(response){
             res.json(response);
             res.status(response[0].status);
@@ -44,32 +46,16 @@ module.exports = {
       });
   },
 
-  obterDerrota:function(req, res, next){
-    var nome = req.body.nome;
-    var golpro = parseInt(req.body.golpro);
-    var golcontra = parseInt(req.body.golcontra);
-      timesService.obterDerrota(nome, golpro, golcontra, function(response){
-        if(response){
-            res.json(response);
-            res.status(response[0].status);
-          }else{
-            res.json('Bad request');
-            res.status(400);
-          }
-      });
-  },
-
-  obterEmpate:function(req, res, next){
-    var nome = req.body.nome;
-    var gols = parseInt(req.body.gols);
-      timesService.obterEmpate(nome, gols, function(response){
-        if(response){
-            res.json(response);
-            res.status(response[0].status);
-          }else{
-            res.json('Bad request');
-            res.status(400);
-          }
-      });
+  obterTimePeloNome:function(req, res, next){
+    var nome = req.params.nome;
+    timesService.obterTimePeloNome(nome, function(response){
+      if(response){
+        res.json(response);
+        res.status(response[0].status);
+      }else{
+        res.json('Bad request');
+        res.status(400);
+      }
+    })
   }
 }

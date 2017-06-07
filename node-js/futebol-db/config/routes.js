@@ -8,10 +8,10 @@ router.get('/',function(req, res){
     res.send("Hello World");
 })
 
-//declarar rotas
-router.post('/times', timesController.salvarTime);
+//declarar rotas da controller times
 router.get('/times', timesController.obterTodosTimes);
-router.patch('/vitoria', timesController.obterVitoria);
-router.patch('/derrota', timesController.obterDerrota);
-router.patch('/empate', timesController.obterEmpate);
+router.get('/times/:nome', timesController.obterTimePeloNome);
+router.post('/times', timesController.salvarTime);
+router.patch('/jogo', timesController.obterResultadoJogo);
+
 module.exports = router;
