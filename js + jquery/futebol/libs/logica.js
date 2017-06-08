@@ -10,7 +10,7 @@ function registrarEventos(){
 }
 
 function adicionarTimes(){
-  renderizarTabela();
+  obterTimes();
 }
 
 function iniciar(){
@@ -50,3 +50,47 @@ function atualizarPosicao(){
     $('.times tr:nth-child('+i+') td:nth-child(1)').text(i);
   }
 }
+
+function obterTimes(){
+  $.ajax({
+      url: 'http://localhost:3000/times',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+          console.log(data);
+          renderizarTabela(data);
+     },
+      error: function (request, error){
+          alert("Request: "+JSON.stringify(request));
+      }
+    });  
+}
+
+//Aqui renderizo os 20 clubes vindo do banco na tabela
+function renderizarTabela(times){
+  for(var i = 0; i < 20; i++){
+    var nomeTime = times[i].nome;
+    var dadosEstatisticos = formatarLinha(times[i].pontos, 
+                                          times[i].qtdJogos,
+                                          times[i].vitorias,
+                                          times[i].empates,
+                                          times[i].derrotas, 
+                                          times[i].golpro,
+                                          times[i].golcontra);
+                                          console.log(dadosEstatisticos);
+    $('.times').append('<tr id="'+nomeTime+'"><td>' + (i+1) + '</td><td>' + nomeTime + '</td>' + dadosEstatisticos + '</tr>');
+  }
+}
+
+function formatarLinha(pontos, jogos, vitorias, empates, derrotas, golpro, golcontra){
+  var saldoDeGol = golpro - golcontra;  
+  var linhaFormatada = '<td>'+pontos+'</td>';
+      linhaFormatada += '<td>'+jogos+'</td>';
+      linhaFormatada += '<td>'+vitorias+'</td>';
+      linhaFormatada += '<td>'+empates+'</td>';
+      linhaFormatada += '<td>'+derrotas+'</td>';
+      linhaFormatada += '<td>'+golpro+'</td>';
+      linhaFormatada += '<td>'+golcontra+'</td>';
+      linhaFormatada += '<td>'+saldoDeGol+'</td>';
+      return linhaFormatada;
+  }

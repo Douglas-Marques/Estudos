@@ -19,13 +19,15 @@ function lerIsbn(numeroIsbn, callback){
   });
 }
 
-function enviarMsgSlack(texto, callback){
+function enviarMsgSlack(texto, icon, callback){
+  console.log(icon);
   requestify.request(url + "chat.postMessage", {
     method: 'POST',
     body: {
-        token: 'xoxp-62107491250-170933007798-194235539811-317e289e56d366b6d049afbc470fa435',
+        token: 'xoxp-62107491250-177744055633-194275747395-6db2707608d331cb50b47c2791143dc1',
         channel: 'C5LL6K5PA',
-        text: texto
+        text: texto,
+        icon_url: icon
     },    
     dataType: 'form-url-encoded'        
 })

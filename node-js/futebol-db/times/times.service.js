@@ -44,7 +44,6 @@ function obterTodosTimes(callback){
 }
 
 function obterResultadoJogo(mandante, golsMandante, visitante, golsVisitante, callback){
-  var textResponse = "";
   var resultadoJogoFormatado = formatarResultadoJogo(mandante, golsMandante, visitante, golsVisitante);
 
   salvarNovoJogo(mandante, resultadoJogoFormatado);
@@ -52,29 +51,29 @@ function obterResultadoJogo(mandante, golsMandante, visitante, golsVisitante, ca
 
   if(golsMandante > golsVisitante){
     obterVitoria(mandante, golsMandante, golsVisitante, function(response){
-      textResponse += response;
-    })
-    obterDerrota(visitante, golsVisitante, golsMandante, function(response){
-      textResponse += response;
+
+    });
+    obterDerrota(visitante, golsVisitante, golsMandante, function(response2){
+
     });
   }
   else if(golsMandante === golsVisitante){
     obterEmpate(mandante, golsMandante, function(response){
-      textResponse += response;
-    })
+
+    });
     obterEmpate(visitante, golsVisitante, function(response){
-      textResponse += response;
+
     });
   }
   else{
-    obterVitoria(visitante, golsVisitante, golsMandantefunction, function(response){
-      textResponse += response;
-    })
+    obterVitoria(visitante, golsVisitante, golsMandante, function(response){
+
+    });
     obterDerrota(mandante, golsMandante, golsVisitante, function(response){
-      textResponse += response;
+
     });   
   }
-   callback(textResponse)
+   callback(resultadoJogoFormatado);
 }
 
 function obterVitoria(nome, golpro, golcontra, callback){
@@ -96,7 +95,7 @@ function obterVitoria(nome, golpro, golcontra, callback){
         if(err){
           return{status: 500, error: err};
         }
-        return nome + " venceu o jogo";
+        return true;
       })
     }
   })
@@ -120,7 +119,7 @@ function obterDerrota(nome, golpro, golcontra, callback){
         if(err){
           return{status: 500, error: err};
         }
-        return nome + " perdeu o jogo";
+        return true;
       })
     }
   })
@@ -145,7 +144,7 @@ function obterEmpate(nome, gols, callback){
         if(err){
           return {status: 500, error: err};
         }
-        return nome + " empatou o jogo";
+        return true;
       });
     }
   });

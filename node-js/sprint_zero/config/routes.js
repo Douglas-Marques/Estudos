@@ -7,6 +7,6 @@ router.get('/',function(req, res){
 });
 
 router.post('/slack', controller.enviarMsgSlack);
-router.post('/isbn', controller.lerIsbn);
+router.get('/isbn/:isbn', controller.lerIsbn);
 
 module.exports = router;

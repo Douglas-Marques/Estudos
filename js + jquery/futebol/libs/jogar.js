@@ -1,21 +1,9 @@
-let times = ['Atlético-GO','Atlético-MG','Atlético-PR','Avaí','Bahia','Botafogo','Chapecoense','Corinthians','Coritiba','Cruzeiro',
-                'Flamengo','Fluminense','Grêmio','Palmeiras','Ponte-Preta','Santos','São-Paulo','Sport','Vasco-da-Gama','Vitória'];
-
 let jogos = [];
 
 //desabilito o botão jogar quando o campeonato acabar
 window.verificarQtdJogos = function(){
   if(jogos.length >= 380){
      $('#jogar').attr('disabled', 'true');
-  }
-}
-
-//Aqui renderizo os 20 clubes zerados na tabela
-window.renderizarTabela = function(){
-  let td = '<td>0</td>'
-  for (let i = 0; i < 20; i++) {
-    let classeNomeDoTimeAtual = times[i];
-    $('.times').append('<tr class="'+classeNomeDoTimeAtual+'"><td>'+ (i+1) + '</td><td>' + times[i] + '</td>' + td+td+td+td+td+td+td+td+ '</tr>');
   }
 }
 
@@ -137,10 +125,10 @@ function montarDerrota(perdedor, golPro, golContra){
 function sortearGols(){
   var primeiraFase = Math.floor(Math.random() * 11);
 
-  if(primeiraFase <= 6){
+  if(primeiraFase <= 7){
     return Math.floor(Math.random(0) * 3);
   }
-  else if(primeiraFase >= 7 && primeiraFase <= 9){
+  else if(primeiraFase >= 8 && primeiraFase <= 9){
     return Math.floor(Math.random(0) * 5);
   }
   else{

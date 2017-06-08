@@ -7,7 +7,7 @@ controller.lerIsbn = lerIsbn;
 module.exports = controller;
 
 function lerIsbn(req, res, next){
-  var numeroIsbn = req.body.isbn;
+  var numeroIsbn = req.params.isbn;
   testeService.lerIsbn(numeroIsbn, function(response){
     if(response){
       res.json(response);
@@ -21,7 +21,8 @@ function lerIsbn(req, res, next){
 
 function enviarMsgSlack(req, res, next){
   var texto = req.body.texto;
-  testeService.enviarMsgSlack(texto, function(response){
+  var icon = req.body.icon_url;
+  testeService.enviarMsgSlack(texto, icon, function(response){
     if(response){
       res.json(response);
     }
