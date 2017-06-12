@@ -1,125 +1,25 @@
-let jogos = [];
+//$('#jogar').attr('disabled', 'true');
 
-//desabilito o botão jogar quando o campeonato acabar
-window.verificarQtdJogos = function(){
-  if(jogos.length >= 380){
-     $('#jogar').attr('disabled', 'true');
-  }
+window.verificarJogo = function(times){
+    prepararJogo(times);
 }
 
-window.verificarJogo = function(){
-  var mandante = Math.floor(Math.random(0) * 20);
-  var visitante = Math.floor(Math.random(0) * 20);
-
-  if(mandante !== visitante){
-    var nomeDoJogo = times[mandante] + times[visitante];
-    if($.inArray(nomeDoJogo, jogos) === -1){
-      jogos.push(nomeDoJogo);
-      jogar(mandante, visitante);
-    }
-    else{
-      verificarJogo();
-    }
-  }
-  else{
-    verificarJogo();
-  }
+function prepararJogo(times){
+  var numeroMandante = Math.floor(Math.random(0) * 20);
+  var numeroVisitante = Math.floor(Math.random(0) * 20);
+    
+  var mandante = times[numeroMandante];
+  var visitante = times[numeroVisitante];
+    
+  realizarJogo(mandante, visitante);
 }
 
-function jogar(mandante, visitante){
+function realizarJogo(mandante, visitante){
   var golMandante = sortearGols();
   var golVisitante = sortearGols();
-
-  if(golMandante > golVisitante){
-    montarVitoria(mandante, golMandante, golVisitante);
-    montarDerrota(visitante, golVisitante, golMandante);
-  }
-  else if(golMandante === golVisitante){
-    montarEmpate(mandante, visitante, golMandante);
-  }
-  else{
-    montarVitoria(visitante, golVisitante, golMandante);
-    montarDerrota(mandante, golMandante, golVisitante)
-  }
-
-//mostrar resultado do jogo de forma simples
-  $('#lista-jogos').append("<li>" + times[mandante] + " " + golMandante + "  X  " + golVisitante + " " + times[visitante] + "</li>");
-
-  //jogos
-  var jogosMandante = parseInt($('.' + times[mandante] + ' td:nth-child(4)').text());
-  $('.' + times[mandante] +' td:nth-child(4)').text( jogosMandante + 1 );
-
-  var jogosVisitante = parseInt($('.' + times[visitante] + ' td:nth-child(4)').text());
-  $('.' + times[visitante] +' td:nth-child(4)').text( jogosVisitante + 1 );
-
-  //saldo de gols
-  var sgMandante = parseInt($('.' + times[mandante] + ' td:nth-child(10)').text());
-  $('.' + times[mandante] +' td:nth-child(10)').text( sgMandante + (golMandante - golVisitante));
-
-  var sgVisitante = parseInt($('.' + times[visitante] + ' td:nth-child(10)').text());
-  $('.' + times[visitante] +' td:nth-child(10)').text( sgVisitante + (golVisitante - golMandante));
-}
-
-function montarEmpate(mandante, visitante, gols){
-  //pontuacao
-  var pegarPontuacaoAtualMandante = parseInt($('.' + times[mandante] + ' td:nth-child(3)').text());
-  $('.' + times[mandante] +' td:nth-child(3)').text( pegarPontuacaoAtualMandante + 1 );
-
-  var pegarPontuacaoAtualVisitante = parseInt($('.' + times[visitante] + ' td:nth-child(3)').text());
-  $('.' + times[visitante] +' td:nth-child(3)').text( pegarPontuacaoAtualVisitante + 1 );
-
-  //empate
-  var pegarEmpateMandante = parseInt($('.' + times[mandante] + ' td:nth-child(6)').text());
-  $('.' + times[mandante] + ' td:nth-child(6)').text( pegarEmpateMandante + 1 );
-
-  var pegarEmpateVisitante = parseInt($('.' + times[visitante] + ' td:nth-child(6)').text());
-  $('.' + times[visitante] + ' td:nth-child(6)').text( pegarEmpateVisitante + 1 );
-
-  //gol pro
-  var pegarQtdgolsProMandante = parseInt($('.' + times[mandante] + ' td:nth-child(8)').text());
-  $('.' + times[mandante] + ' td:nth-child(8)').text( pegarQtdgolsProMandante + gols);
-
-  var pegarQtdgolsProVisitante = parseInt($('.' + times[visitante] + ' td:nth-child(8)').text());
-  $('.' + times[visitante] + ' td:nth-child(8)').text( pegarQtdgolsProVisitante + gols);
-
-  //gol contra
-  var pegarQtdgolsContraMandante = parseInt($('.' + times[mandante] + ' td:nth-child(9)').text());
-  $('.' + times[mandante] + ' td:nth-child(9)').text( pegarQtdgolsContraMandante + gols);
-
-  var pegarQtdgolsContraVisitante = parseInt($('.' + times[visitante] + ' td:nth-child(9)').text());
-  $('.' + times[visitante] + ' td:nth-child(9)').text( pegarQtdgolsContraVisitante + gols);
-}
-
-function montarVitoria(ganhador, golPro, golContra){
-  //pontuacao
-  var pegarPontuacaoAtual = parseInt($('.' + times[ganhador] + ' td:nth-child(3)').text());
-  $('.' + times[ganhador] +' td:nth-child(3)').text( pegarPontuacaoAtual + 3 );
-
-  //vitoria
-  var pegarQtdVitorias = parseInt($('.' + times[ganhador] + ' td:nth-child(5)').text());
-  $('.' + times[ganhador] + ' td:nth-child(5)').text( pegarQtdVitorias + 1 );
-
-  //gol pro
-  var pegarQtdgolsPro = parseInt($('.' + times[ganhador] + ' td:nth-child(8)').text());
-  $('.' + times[ganhador] + ' td:nth-child(8)').text( pegarQtdgolsPro + golPro);
-
-  //gol contra
-  var pegarQtdgolsContra = parseInt($('.' + times[ganhador] + ' td:nth-child(9)').text());
-  $('.' + times[ganhador] + ' td:nth-child(9)').text( pegarQtdgolsContra + golContra);
-}
-
-function montarDerrota(perdedor, golPro, golContra){
-  //derrota
-  var pegarQtdDerrotas = parseInt($('.' + times[perdedor] + ' td:nth-child(7)').text());
-  $('.' + times[perdedor] + ' td:nth-child(7)').text( pegarQtdDerrotas + 1 );
-
-  //gol pro
-  var pegarQtdgolsPro = parseInt($('.' + times[perdedor] + ' td:nth-child(8)').text());
-  $('.' + times[perdedor] + ' td:nth-child(8)').text( pegarQtdgolsPro + golPro);
-
-  //gol contra
-  var pegarQtdgolsContra = parseInt($('.' + times[perdedor] + ' td:nth-child(9)').text());
-  $('.' + times[perdedor] + ' td:nth-child(9)').text( pegarQtdgolsContra + golContra);
+    
+  obterResultadoJogo(mandante, visitante, golMandante, golVisitante);
+  
 }
 
 function sortearGols(){
@@ -135,3 +35,32 @@ function sortearGols(){
     return Math.floor(Math.random(0) * 7);
   }
 }
+
+function mostrarResultadoJogo(resultado){
+   $('#lista-jogos').append("<li>" + resultado + "</li>");
+}
+
+function obterResultadoJogo(mandante, visitante, golsMandante, golsVisitante){
+    var resultado = {
+          mandante: mandante, 
+          golsMandante: golsMandante,
+          visitante: visitante,
+          golsVisitante: golsVisitante
+    }
+
+    $.ajax({
+      url: 'http://localhost:3000/jogo',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data:  resultado,               
+      type: 'PATCH',
+      crossDomain: true,
+      dataType: 'json',
+      }).done(function(data) {
+        mostrarResultadoJogo(data);
+        obterTimes();
+      })
+      .fail(function(){
+        alert('Errouuu');  
+      });  
+}
+

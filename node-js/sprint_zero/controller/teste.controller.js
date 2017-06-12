@@ -4,6 +4,7 @@ var controller = {};
 
 controller.enviarMsgSlack = enviarMsgSlack;
 controller.lerIsbn = lerIsbn;
+controller.concetarFirebase = concetarFirebase;
 module.exports = controller;
 
 function lerIsbn(req, res, next){
@@ -30,5 +31,18 @@ function enviarMsgSlack(req, res, next){
       res.json('Bad request');
       res.status(400);
     }      
+  });
+}
+
+function concetarFirebase(req, res, next){
+  var token = req.body.token;
+  testeService.concetarFirebase(token, function(response){
+    if(response){
+      res.json(response);
+    }
+    else{
+      res.json('Bad request');
+      res.status(400);
+    }       
   })
 }

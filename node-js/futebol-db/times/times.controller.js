@@ -57,5 +57,17 @@ module.exports = {
         res.status(400);
       }
     })
+  },
+
+  obterArrayDeNomeDosTimes:function(req, res, next){
+    timesService.obterArrayDeNomeDosTimes(function(response){
+      if(response){
+        res.json(response);
+        res.status(response[0].status);
+      }else{
+        res.json('Bad request');
+        res.status(400);
+      }
+    })
   }
 }

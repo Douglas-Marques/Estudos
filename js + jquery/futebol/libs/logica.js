@@ -1,23 +1,24 @@
+let nomeDosTimes = []; 
+
 $(document).ready(function(){
   registrarEventos();
 });
 
 function registrarEventos(){
   adicionarTimes();
-  iniciar();
   atualizarTabela();
   inserirCores();
+  jogar();
+}
+
+function jogar(){
+    $('#jogar').click(function(){
+        verificarJogo(nomeDosTimes);
+    })
 }
 
 function adicionarTimes(){
   obterTimes();
-}
-
-function iniciar(){
-  $('#jogar').click(function(){
-    verificarJogo();
-    verificarQtdJogos();
-  });
 }
 
 function atualizarTabela(){
@@ -51,25 +52,12 @@ function atualizarPosicao(){
   }
 }
 
-function obterTimes(){
-  $.ajax({
-      url: 'http://localhost:3000/times',
-      type: 'GET',
-      dataType: 'json',
-      success: function(data) {
-          console.log(data);
-          renderizarTabela(data);
-     },
-      error: function (request, error){
-          alert("Request: "+JSON.stringify(request));
-      }
-    });  
-}
-
 //Aqui renderizo os 20 clubes vindo do banco na tabela
 function renderizarTabela(times){
+  $('.times').children().remove();
   for(var i = 0; i < 20; i++){
     var nomeTime = times[i].nome;
+     nomeDosTimes.push(nomeTime);
     var dadosEstatisticos = formatarLinha(times[i].pontos, 
                                           times[i].qtdJogos,
                                           times[i].vitorias,
@@ -77,7 +65,7 @@ function renderizarTabela(times){
                                           times[i].derrotas, 
                                           times[i].golpro,
                                           times[i].golcontra);
-                                          console.log(dadosEstatisticos);
+    
     $('.times').append('<tr id="'+nomeTime+'"><td>' + (i+1) + '</td><td>' + nomeTime + '</td>' + dadosEstatisticos + '</tr>');
   }
 }
@@ -94,3 +82,26 @@ function formatarLinha(pontos, jogos, vitorias, empates, derrotas, golpro, golco
       linhaFormatada += '<td>'+saldoDeGol+'</td>';
       return linhaFormatada;
   }
+
+function obterNomeDosTimes(arrayDeTimes){
+  for(var i = 0; i < 20; i++){
+    nomeDosTimes.push(arrayDeTimes[i].nome);
+  }
+}
+
+//obter todos os times vindo do banco
+window.obterTimes = function(){
+  $.ajax({
+      url: 'http://localhost:3000/times',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+          renderizarTabela(data);
+          //obterNomeDosTimes(data);
+     },
+      error: function (request, error){
+          alert("Request: "+JSON.stringify(request));
+      }
+    });  
+}
+

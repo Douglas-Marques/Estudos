@@ -10,6 +10,7 @@ service.obterDerrota = obterDerrota;
 service.obterEmpate = obterEmpate;
 service.obterTimePeloNome = obterTimePeloNome;
 service.obterResultadoJogo = obterResultadoJogo;
+service.obterArrayDeNomeDosTimes = obterArrayDeNomeDosTimes;
 module.exports = service;
 
 function salvarTime(nome, callback){
@@ -35,12 +36,29 @@ function salvarTime(nome, callback){
 }
 
 function obterTodosTimes(callback){
-  Times.find({}, function(err, times){
+  Times.find({}, ['nome','pontos','qtdJogos', 'vitorias', 'empates', 'derrotas', 'golpro', 'golcontra', 'jogos'], {sort:{nome:1}}, function(err, times){
     if(err){
         callback(err)
       }
+    else if(times.length === 0){
+      callback('Nenhum time encontrado com esse nome');
+    }  
     callback(times);
   })
+}
+
+function obterArrayDeNomeDosTimes(callback){
+  Times.find({}, 'nome', {sort:{nome: 1}}, function(err, times){
+    if(err){
+      callback({status: 500, error: err});
+    }
+    else if(times.length === 0){
+      callback("Nenhum time encontrado");
+    }
+    else{
+      callback(times);
+    }
+  });
 }
 
 function obterResultadoJogo(mandante, golsMandante, visitante, golsVisitante, callback){
@@ -161,7 +179,7 @@ function obterTimePeloNome(nome, callback){
     else{
       callback(times);
     }
-  })
+  });
 }
 
 function salvarNovoJogo(nome, resultadoJogo){

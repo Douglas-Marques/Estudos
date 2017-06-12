@@ -11,6 +11,7 @@ router.get('/',function(req, res){
 //declarar rotas da controller times
 router.get('/times', timesController.obterTodosTimes);
 router.get('/times/:nome', timesController.obterTimePeloNome);
+router.get('/nomes', timesController.obterArrayDeNomeDosTimes);
 router.post('/times', timesController.salvarTime);
 router.patch('/jogo', timesController.obterResultadoJogo);
 
