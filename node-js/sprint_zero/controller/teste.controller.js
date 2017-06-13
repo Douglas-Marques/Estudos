@@ -5,6 +5,9 @@ var controller = {};
 controller.enviarMsgSlack = enviarMsgSlack;
 controller.lerIsbn = lerIsbn;
 controller.concetarFirebase = concetarFirebase;
+controller.sendEmail = sendEmail;
+controller.salvarLivro = salvarLivro;
+controller.obterTodosLivros = obterTodosLivros;
 module.exports = controller;
 
 function lerIsbn(req, res, next){
@@ -16,7 +19,7 @@ function lerIsbn(req, res, next){
     else{
       res.json('Bad request');
       res.status(400);
-    }    
+    }
   })
 }
 
@@ -30,7 +33,7 @@ function enviarMsgSlack(req, res, next){
     else{
       res.json('Bad request');
       res.status(400);
-    }      
+    }
   });
 }
 
@@ -43,6 +46,46 @@ function concetarFirebase(req, res, next){
     else{
       res.json('Bad request');
       res.status(400);
-    }       
+    }
   })
+}
+
+function sendEmail(req, res, next){
+  var emailDestinatario = req.body.email;
+  var titulo = req.body.titulo;
+  var msg = req.body.msg;
+  testeService.sendEmail(emailDestinatario, titulo, msg, function(response){
+    if(response){
+      res.json(response);
+    }
+    else{
+      res.json('Bad request');
+      res.status(400);
+    }
+  })
+}
+
+function salvarLivro(req, res, next){
+   testeService.salvarLivro(req.body, function(response){
+    if(response){
+      res.json(response);
+    }
+    else{
+      res.json('Bad request');
+      res.status(400);
+    }
+  });
+}
+
+function obterTodosLivros(req, res, next){
+    testeService.obterTodosLivros(function(response){
+      if(response){
+        res.json(response);
+        res.status(200);
+      }
+      else{
+        res.json('Bad request');
+        res.status(400);
+      }
+    }); 
 }
