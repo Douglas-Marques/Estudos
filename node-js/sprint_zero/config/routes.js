@@ -1,18 +1,27 @@
 var express = require('express');
 var router = express.Router();
-var controller = require('../controller/teste.controller')
+var emailController = require('../controller/email.controller');
+var firebaseController = require('../controller/firebase.controller');
+var isbnController = require('../controller/isbn.controller');
+var slackController = require('../controller/slack.controller');
+
 
 router.get('/',function(req, res){
     res.send("Hello World");
 });
 
-router.get('/isbn/:isbn', controller.lerIsbn);
-router.get('/livros', controller.obterTodosLivros);
+//ISBN
+router.get('/isbn/:isbn', isbnController.lerIsbn);
+router.get('/livros', isbnController.obterTodosLivros);
+router.get('/livros/:array', isbnController.pesquisarPorVoz);
+router.post('/isbn', isbnController.salvarLivro);
+//FIREBASE
+router.post('/notification', firebaseController.concetarFirebase);
+//EMAIL
+router.post('/email', emailController.sendEmail);
+//SLACK
+router.post('/slack', slackController.enviarMsgSlack);
 
-router.post('/notification', controller.concetarFirebase);
-router.post('/email', controller.sendEmail);
-router.post('/slack', controller.enviarMsgSlack);
-router.post('/isbn', controller.salvarLivro);
 module.exports = router;
 
 //token celular

@@ -3,17 +3,13 @@ var mongoose = require('mongoose');
 var livrosSchema = new mongoose.Schema({
   titulo: String,
   subtitulo: String,
-  autores: [
-
-  ],
+  autores: [String],
   descricao: String,
   icone: String,
   idioma: String,
   avaliacao: Number,
   qtdPaginas: Number,
-  categorias: [
-
-  ],
+  categorias: [String],
   isbn: String
 });
 
