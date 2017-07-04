@@ -9,9 +9,7 @@ var timesSchema = new mongoose.Schema({
   derrotas: Number,
   golpro: Number,
   golcontra: Number,
-  jogos: [
-  
-  ]
+  jogos: [String]
 })
 
 module.exports = mongoose.model('Times', timesSchema);

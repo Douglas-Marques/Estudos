@@ -38,9 +38,9 @@ public interface EstacionamentoAPI {
 
      Retrofit retrofit = new Retrofit.Builder()
             //CI
-            .baseUrl("http://10.96.127.138:3000/")
+            //.baseUrl("http://10.96.127.138:3000/")
              //CASA
-          //  .baseUrl("http://192.168.1.5:3000/")
+            .baseUrl("http://192.168.1.5:3000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

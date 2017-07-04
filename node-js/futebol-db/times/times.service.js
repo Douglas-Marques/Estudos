@@ -36,7 +36,7 @@ function salvarTime(nome, callback){
 }
 
 function obterTodosTimes(callback){
-  Times.find({}, ['nome','pontos','qtdJogos', 'vitorias', 'empates', 'derrotas', 'golpro', 'golcontra', 'jogos'], {sort:{nome:1}}, function(err, times){
+  Times.find({}, ['nome','pontos','qtdJogos', 'vitorias', 'empates', 'derrotas', 'golpro', 'golcontra', 'jogos'], {sort:{pontos:-1}}, function(err, times){
     if(err){
         callback(err)
       }
