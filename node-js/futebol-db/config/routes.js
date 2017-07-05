@@ -14,5 +14,6 @@ router.get('/times/:nome', timesController.obterTimePeloNome);
 router.get('/nomes', timesController.obterArrayDeNomeDosTimes);
 router.post('/times', timesController.salvarTime);
 router.patch('/jogo', timesController.obterResultadoJogo);
+router.patch('/zerarTabela', timesController.zerarRegistrosTimes);
 
 module.exports = router;

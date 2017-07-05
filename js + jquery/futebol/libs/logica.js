@@ -1,4 +1,4 @@
-let nomeDosTimes = []; 
+let nomeDosTimes = [];
 
 $(document).ready(function(){
   registrarEventos();
@@ -14,7 +14,7 @@ function registrarEventos(){
 function jogar(){
     $('#jogar').click(function(){
         verificarJogo(nomeDosTimes);
-    })
+    });
 }
 
 function adicionarTimes(){
@@ -58,20 +58,20 @@ function renderizarTabela(times){
   for(var i = 0; i < 20; i++){
     var nomeTime = times[i].nome;
      nomeDosTimes.push(nomeTime);
-    var dadosEstatisticos = formatarLinha(times[i].pontos, 
+    var dadosEstatisticos = formatarLinha(times[i].pontos,
                                           times[i].qtdJogos,
                                           times[i].vitorias,
                                           times[i].empates,
-                                          times[i].derrotas, 
+                                          times[i].derrotas,
                                           times[i].golpro,
                                           times[i].golcontra);
-    
+
     $('.times').append('<tr id="'+nomeTime+'"><td>' + (i+1) + '</td><td>' + nomeTime + '</td>' + dadosEstatisticos + '</tr>');
   }
 }
 
 function formatarLinha(pontos, jogos, vitorias, empates, derrotas, golpro, golcontra){
-  var saldoDeGol = golpro - golcontra;  
+  var saldoDeGol = golpro - golcontra;
   var linhaFormatada = '<td>'+pontos+'</td>';
       linhaFormatada += '<td>'+jogos+'</td>';
       linhaFormatada += '<td>'+vitorias+'</td>';
@@ -102,6 +102,5 @@ window.obterTimes = function(){
       error: function (request, error){
           alert("Request: "+JSON.stringify(request));
       }
-    });  
+    });
 }
-

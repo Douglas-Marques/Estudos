@@ -9,7 +9,14 @@ var timesSchema = new mongoose.Schema({
   derrotas: Number,
   golpro: Number,
   golcontra: Number,
-  jogos: [String]
-})
+  jogos: [{
+    _id: false,
+    rodada: Number,
+    mandante: String,
+    golsMandante: Number,
+    visitante: String,
+    golsVisitante: Number
+  }]
+});
 
 module.exports = mongoose.model('Times', timesSchema);

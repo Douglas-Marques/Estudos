@@ -11,6 +11,7 @@ service.obterEmpate = obterEmpate;
 service.obterTimePeloNome = obterTimePeloNome;
 service.obterResultadoJogo = obterResultadoJogo;
 service.obterArrayDeNomeDosTimes = obterArrayDeNomeDosTimes;
+service.zerarRegistrosTimes = zerarRegistrosTimes;
 module.exports = service;
 
 function salvarTime(nome, callback){
@@ -23,7 +24,6 @@ function salvarTime(nome, callback){
     'derrotas': 0,
     'golpro': 0,
     'golcontra': 0,
-    'jogos': []
   });
   newTime.save(function(err, response){
     if(err){
@@ -62,36 +62,29 @@ function obterArrayDeNomeDosTimes(callback){
 }
 
 function obterResultadoJogo(mandante, golsMandante, visitante, golsVisitante, callback){
-  var resultadoJogoFormatado = formatarResultadoJogo(mandante, golsMandante, visitante, golsVisitante);
 
-  salvarNovoJogo(mandante, resultadoJogoFormatado);
-  salvarNovoJogo(visitante, resultadoJogoFormatado);
+  salvarNovoJogo(mandante, mandante, golsMandante, visitante, golsVisitante);
+  salvarNovoJogo(visitante, mandante, golsMandante, visitante, golsVisitante);
 
   if(golsMandante > golsVisitante){
     obterVitoria(mandante, golsMandante, golsVisitante, function(response){
-
     });
     obterDerrota(visitante, golsVisitante, golsMandante, function(response2){
-
     });
   }
   else if(golsMandante === golsVisitante){
     obterEmpate(mandante, golsMandante, function(response){
-
     });
     obterEmpate(visitante, golsVisitante, function(response){
-
     });
   }
   else{
     obterVitoria(visitante, golsVisitante, golsMandante, function(response){
-
     });
     obterDerrota(mandante, golsMandante, golsVisitante, function(response){
-
     });   
   }
-   callback(resultadoJogoFormatado);
+   callback({status: 200, mensagem: 'Sucesso'});
 }
 
 function obterVitoria(nome, golpro, golcontra, callback){
@@ -182,28 +175,56 @@ function obterTimePeloNome(nome, callback){
   });
 }
 
-function salvarNovoJogo(nome, resultadoJogo){
-  Times.find({'nome': nome}, function(err, times){
+function salvarNovoJogo(nome, mandanteJogo, golsMandanteJogo, visitanteJogo, golsVisitanteJogo){
+  Times.findOne({'nome': nome}, function(err, time){
     if(err){
       return {status: 500, error: err};     
     }
-    else if(times.length === 0){
-      return "Nenhum time encontrado com este nome";
+    else if(!time){
+      return "Nenhum time encontrado";
     }
-    else{
-      times[0].update({$push:{ jogos: resultadoJogo}}, function(err, updated){
-        if(err){
-          return {status: 500, error: err};
-        }
-        else{
-          return true;
-        }        
-      });
-    }    
+    var rodadaAtual = time.jogos.length + 1;
+    var novoJogo = {
+      mandante: mandanteJogo,
+      golsMandante: golsMandanteJogo,
+      visitante: visitanteJogo,
+      golsVisitante: golsVisitanteJogo,
+      rodada: rodadaAtual
+    }
+    time.update({$push:{ jogos: novoJogo}}, function(err, updated){
+      if(err){
+        return {status: 500, error: err};
+      }
+      else{
+        return true;
+      }        
+    });
+       
   });
 }
 
-function formatarResultadoJogo(mandante, golsMandante, visitante, golsVisitante){
-  return mandante + " " + golsMandante + "X" + golsVisitante + " " + visitante;
+function zerarRegistrosTimes(callback){
+  Times.find({}, function(err, times){
+    if(err){
+      callback({status: 500, error: err});     
+    }
+    for(var i = 0; i < times.length; i++){
+      times[i].update({$set: {pontos: 0, qtdJogos: 0, vitorias: 0, empates: 0, derrotas: 0, golpro: 0, golcontra: 0, jogos: []}}, function(err, timeAtualizado){
+        if(err){
+          callback({status: 500, error: err});     
+        }
+        console.log(timeAtualizado);
+      });
+    }
+    callback('Feitoria');
+  });
 }
 
+function obterJogosRodada(rodada, callback){
+  Times.find({rodada: {$in : 1}}, function (err, rodadas) {
+    if(err){
+      callback({status: 500, error: err});     
+    }
+    callback('a   ' + rodadas );
+  });
+}

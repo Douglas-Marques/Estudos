@@ -38,7 +38,7 @@ module.exports = {
       timesService.obterResultadoJogo(mandante, golsMandante, visitante, golsVisitante, function(response){
         if(response){
             res.json(response);
-            res.status(response[0].status);
+            res.status(200);
           }else{
             res.json('Bad request');
             res.status(400);
@@ -64,6 +64,18 @@ module.exports = {
       if(response){
         res.json(response);
         res.status(response[0].status);
+      }else{
+        res.json('Bad request');
+        res.status(400);
+      }
+    })
+  },
+
+  zerarRegistrosTimes:function(req, res, next){
+    timesService.zerarRegistrosTimes(function(response){
+      if(response){
+        res.json(response);
+        res.status(200);
       }else{
         res.json('Bad request');
         res.status(400);
