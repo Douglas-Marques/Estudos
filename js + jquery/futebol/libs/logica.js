@@ -12,9 +12,9 @@ function registrarEventos(){
 }
 
 function jogar(){
-    $('#jogar').click(function(){
-        verificarJogo(nomeDosTimes);
-    });
+  $('#jogar').click(function(){
+    verificarJogo(nomeDosTimes);
+  });
 }
 
 function adicionarTimes(){
@@ -29,18 +29,18 @@ function atualizarTabela(){
 
 function inserirCores(){
   $('#cores').click(function(){
-    for(var i = 1; 4 >= i; i++){
-      $(".times tr:nth-child("+i+")").css('background-color', 'rgba(50, 177, 255, 0.5)');
+    for(let i = 1; 4 >= i; i++){
+      $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(50, 177, 255, 0.5)');
     }
-    $(".times tr:nth-child(5)").css('background-color', 'rgba(10, 232, 189, 0.5)');
-    $(".times tr:nth-child(6)").css('background-color', 'rgba(10, 232, 189, 0.5)');
-    for(var i = 7; 14 >= i; i++){
-      $(".times tr:nth-child("+i+")").css('background-color', 'rgba(39, 180, 35, 0.5)');
+    $(".times tr:nth-child(5) td:first-child").css('background-color', 'rgba(10, 232, 189, 0.5)');
+    $(".times tr:nth-child(6) td:first-child").css('background-color', 'rgba(10, 232, 189, 0.5)');
+    for(let i = 7; 14 >= i; i++){
+      $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(39, 180, 35, 0.5)');
     }
-    $(".times tr:nth-child(15)").css('background-color', 'rgb(255, 255, 255)');
-    $(".times tr:nth-child(16)").css('background-color', 'rgb(255, 255, 255)');
-    for(var i = 17; 20 >= i; i++){
-      $(".times tr:nth-child("+i+")").css('background-color', 'rgba(255, 37, 37, 0.5)');
+    $(".times tr:nth-child(15) td:first-child").css('background-color', 'rgb(255, 255, 255)');
+    $(".times tr:nth-child(16) td:first-child").css('background-color', 'rgb(255, 255, 255)');
+    for(let i = 17; 20 >= i; i++){
+      $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(255, 37, 37, 0.5)');
     }
     atualizarPosicao();
   });
@@ -55,10 +55,10 @@ function atualizarPosicao(){
 //Aqui renderizo os 20 clubes vindo do banco na tabela
 function renderizarTabela(times){
   $('.times').children().remove();
-  for(var i = 0; i < 20; i++){
-    var nomeTime = times[i].nome;
+  for(let i = 0; i < 20; i++){
+    let nomeTime = times[i].nome;
      nomeDosTimes.push(nomeTime);
-    var dadosEstatisticos = formatarLinha(times[i].pontos,
+    let dadosEstatisticos = formatarLinha(times[i].pontos,
                                           times[i].qtdJogos,
                                           times[i].vitorias,
                                           times[i].empates,
@@ -71,8 +71,8 @@ function renderizarTabela(times){
 }
 
 function formatarLinha(pontos, jogos, vitorias, empates, derrotas, golpro, golcontra){
-  var saldoDeGol = golpro - golcontra;
-  var linhaFormatada = '<td>'+pontos+'</td>';
+  let saldoDeGol = golpro - golcontra;
+  let linhaFormatada = '<td>'+pontos+'</td>';
       linhaFormatada += '<td>'+jogos+'</td>';
       linhaFormatada += '<td>'+vitorias+'</td>';
       linhaFormatada += '<td>'+empates+'</td>';
@@ -84,7 +84,7 @@ function formatarLinha(pontos, jogos, vitorias, empates, derrotas, golpro, golco
   }
 
 function obterNomeDosTimes(arrayDeTimes){
-  for(var i = 0; i < 20; i++){
+  for(let i = 0; i < 20; i++){
     nomeDosTimes.push(arrayDeTimes[i].nome);
   }
 }

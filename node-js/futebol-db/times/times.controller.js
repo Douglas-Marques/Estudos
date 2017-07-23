@@ -68,7 +68,7 @@ module.exports = {
         res.json('Bad request');
         res.status(400);
       }
-    })
+    });
   },
 
   zerarRegistrosTimes:function(req, res, next){
@@ -80,6 +80,6 @@ module.exports = {
         res.json('Bad request');
         res.status(400);
       }
-    })
+    });
   }
 }

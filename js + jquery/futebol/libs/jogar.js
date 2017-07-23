@@ -5,24 +5,24 @@ window.verificarJogo = function(times){
 }
 
 function prepararJogo(times){
-  var numeroMandante = Math.floor(Math.random(0) * 20);
-  var numeroVisitante = Math.floor(Math.random(0) * 20);
+  let numeroMandante = Math.floor(Math.random(0) * 20);
+  let numeroVisitante = Math.floor(Math.random(0) * 20);
 
-  var mandante = times[numeroMandante];
-  var visitante = times[numeroVisitante];
+  let mandante = times[numeroMandante];
+  let visitante = times[numeroVisitante];
 
   realizarJogo(mandante, visitante);
 }
 
 function realizarJogo(mandante, visitante){
-  var golMandante = sortearGols();
-  var golVisitante = sortearGols();
+  let golMandante = sortearGols();
+  let golVisitante = sortearGols();
 
   obterResultadoJogo(mandante, visitante, golMandante, golVisitante);
 }
 
 function sortearGols(){
-  var primeiraFase = Math.floor(Math.random() * 11);
+  let primeiraFase = Math.floor(Math.random() * 11);
 
   if(primeiraFase <= 7){
     return Math.floor(Math.random(0) * 3);
@@ -36,13 +36,11 @@ function sortearGols(){
 }
 
 function mostrarResultadoJogo(resultado){
-  
-
    $('#lista-jogos').append("<li>" + resultado + "</li>");
 }
 
 function obterResultadoJogo(mandante, visitante, golsMandante, golsVisitante){
-    var resultado = {
+    let resultado = {
           mandante: mandante,
           golsMandante: golsMandante,
           visitante: visitante,
@@ -57,7 +55,7 @@ function obterResultadoJogo(mandante, visitante, golsMandante, golsVisitante){
       crossDomain: true,
       dataType: 'json',
       }).done(function(data) {
-        mostrarResultadoJogo();
+        mostrarResultadoJogo(data);
         obterTimes();
       })
       .fail(function(){

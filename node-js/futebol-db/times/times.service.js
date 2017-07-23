@@ -1,5 +1,5 @@
-var Times = require('./times.schema');
-var service = {};
+let Times = require('./times.schema');
+let service = {};
 
 const PONTOS_VITORIA = 3;
 
@@ -15,7 +15,7 @@ service.zerarRegistrosTimes = zerarRegistrosTimes;
 module.exports = service;
 
 function salvarTime(nome, callback){
-  var newTime = new Times({
+  let newTime = new Times({
     'nome': nome,
     'pontos': 0,
     'qtdJogos': 0,
@@ -96,11 +96,11 @@ function obterVitoria(nome, golpro, golcontra, callback){
       return "Nenhum time encontrado com este nome";
     }
     else{
-      var golproTotal = times[0].golpro + golpro;
-      var golcontraTotal = times[0].golcontra + golcontra;
-      var pontos = times[0].pontos + PONTOS_VITORIA;
-      var vitorias = times[0].vitorias + 1;
-      var jogos = times[0].qtdJogos + 1;
+      let golproTotal = times[0].golpro + golpro;
+      let golcontraTotal = times[0].golcontra + golcontra;
+      let pontos = times[0].pontos + PONTOS_VITORIA;
+      let vitorias = times[0].vitorias + 1;
+      let jogos = times[0].qtdJogos + 1;
 
       times[0].update({$set:{'qtdJogos':jogos, 'vitorias': vitorias, 'pontos': pontos, 'golpro': golproTotal, 'golcontra': golcontraTotal}}, function(err, updated){
         if(err){
@@ -121,10 +121,10 @@ function obterDerrota(nome, golpro, golcontra, callback){
       return"Nenhum time encontrado com este nome";
     }
     else{
-      var golproTotal =  times[0].golpro + golpro;
-      var golcontraTotal = times[0].golcontra + golcontra;
-      var derrotas = times[0].derrotas + 1;
-      var jogos = times[0].qtdJogos + 1;
+      let golproTotal =  times[0].golpro + golpro;
+      let golcontraTotal = times[0].golcontra + golcontra;
+      let derrotas = times[0].derrotas + 1;
+      let jogos = times[0].qtdJogos + 1;
 
       times[0].update({$set:{'qtdJogos':jogos, 'derrotas': derrotas, 'golpro': golproTotal, 'golcontra': golcontraTotal}}, function(err, updated){
         if(err){
@@ -145,11 +145,11 @@ function obterEmpate(nome, gols, callback){
       return "Nenhum time encontrado com este nome";
     }
     else{
-      var golProTotal = times[0].golpro + gols;
-      var golContraTotal = times[0].golcontra + gols;
-      var jogos = times[0].qtdJogos + 1;
-      var empates = times[0].empates + 1;
-      var pontos = times[0].pontos + 1;
+      let golProTotal = times[0].golpro + gols;
+      let golContraTotal = times[0].golcontra + gols;
+      let jogos = times[0].qtdJogos + 1;
+      let empates = times[0].empates + 1;
+      let pontos = times[0].pontos + 1;
 
        times[0].update({$set:{'pontos': pontos, 'qtdJogos':jogos, 'empates': empates, 'golpro': golProTotal, 'golcontra': golContraTotal}}, function(err, updated){
         if(err){
@@ -183,8 +183,8 @@ function salvarNovoJogo(nome, mandanteJogo, golsMandanteJogo, visitanteJogo, gol
     else if(!time){
       return "Nenhum time encontrado";
     }
-    var rodadaAtual = time.jogos.length + 1;
-    var novoJogo = {
+    let rodadaAtual = time.jogos.length + 1;
+    let novoJogo = {
       mandante: mandanteJogo,
       golsMandante: golsMandanteJogo,
       visitante: visitanteJogo,
@@ -199,7 +199,6 @@ function salvarNovoJogo(nome, mandanteJogo, golsMandanteJogo, visitanteJogo, gol
         return true;
       }        
     });
-       
   });
 }
 
@@ -208,7 +207,7 @@ function zerarRegistrosTimes(callback){
     if(err){
       callback({status: 500, error: err});     
     }
-    for(var i = 0; i < times.length; i++){
+    for(let i = 0; i < times.length; i++){
       times[i].update({$set: {pontos: 0, qtdJogos: 0, vitorias: 0, empates: 0, derrotas: 0, golpro: 0, golcontra: 0, jogos: []}}, function(err, timeAtualizado){
         if(err){
           callback({status: 500, error: err});     
@@ -217,14 +216,5 @@ function zerarRegistrosTimes(callback){
       });
     }
     callback('Feitoria');
-  });
-}
-
-function obterJogosRodada(rodada, callback){
-  Times.find({rodada: {$in : 1}}, function (err, rodadas) {
-    if(err){
-      callback({status: 500, error: err});     
-    }
-    callback('a   ' + rodadas );
   });
 }

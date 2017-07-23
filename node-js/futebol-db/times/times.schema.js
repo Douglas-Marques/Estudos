@@ -10,7 +10,6 @@ var timesSchema = new mongoose.Schema({
   golpro: Number,
   golcontra: Number,
   jogos: [{
-    _id: false,
     rodada: Number,
     mandante: String,
     golsMandante: Number,
