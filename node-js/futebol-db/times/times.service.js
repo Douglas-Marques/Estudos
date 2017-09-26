@@ -71,20 +71,18 @@ function obterResultadoJogo(mandante, golsMandante, visitante, golsVisitante, ca
     });
     obterDerrota(visitante, golsVisitante, golsMandante, function(response2){
     });
-  }
-  else if(golsMandante === golsVisitante){
+  }else if(golsMandante === golsVisitante){
     obterEmpate(mandante, golsMandante, function(response){
     });
     obterEmpate(visitante, golsVisitante, function(response){
     });
-  }
-  else{
+  }else{
     obterVitoria(visitante, golsVisitante, golsMandante, function(response){
     });
     obterDerrota(mandante, golsMandante, golsVisitante, function(response){
     });   
   }
-   callback({status: 200, mensagem: 'Sucesso'});
+   callback(mandante + ' ' + golsMandante + 'X' + golsVisitante + ' ' + visitante);
 }
 
 function obterVitoria(nome, golpro, golcontra, callback){

@@ -3,7 +3,8 @@
 	<head>
 		<title>Lista de compras com AngularJS</title>
     <meta charset="utf-8">
-		<link rel="stylesheet" href="style/bootstrap.min.css">
+   <!-- <link rel="stylesheet" href="style/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
     <link rel="stylesheet" href="style/lista-compras.css">
 		<script src="libs/angular.min.js"></script>
 		<script src="libs/lista-compras.js"></script>
@@ -22,22 +23,26 @@
               <th>Comprado?</th>
               <th>Produto</th>
               <th>Quantidade</th>
+              <th>Excluir</th>
+              <th>Editar</th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="item in itens" class="comprado-{{ item.comprado }}">
               <td><input type="checkbox" ng-model="item.comprado"></td>
-              <td><strong>{{ item.produto }}</strong></td>
+              <td id="{{ item.produto }}"><strong>{{ item.produto }}</strong></td>
               <td>{{ item.quantidade }}</td>
+              <td><i class="glyphicon glyphicon-remove remover-item" ng-click="removerItem(item)"></i></td>
+              <td><i class="glyphicon glyphicon-edit editar-item" ng-click="editarItem(item)"></i></td>
             </tr>
           </tbody>
         </table>
 			</div>
       <div class="row">
         <form class="form-inline" name="formItem">
-          <input type="text" ng-model="item.produto" placeholder="Produto">
-          <input type="number" ng-model="item.quantidade" placeholder="Quantidade" class="input-small">
-          <button class="btn btn-primary" ng-click="adicionaItem()">adicionar ítem</button>
+          <input type="text" ng-model="item.produto" placeholder="Produto" required="true">
+          <input type="number" ng-model="item.quantidade" placeholder="Quantidade" class="input-small" required="true">
+          <button class="btn btn-primary" ng-click="adicionaItem()">Adicionar item</button>
         </form>
       </div>
 		</div>

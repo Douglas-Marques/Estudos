@@ -8,3 +8,9 @@
 	text-decoration: line-through;
 	color: red;
 }
+.remover-item:hover{
+	color:red;
+}
+.editar-item:hover{
+	color: green;
+}

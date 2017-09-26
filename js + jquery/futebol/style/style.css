@@ -35,3 +35,27 @@ div[role="main"] {
 div[role="main"], nav, aside {
  height: 600px;
 }
+
+#proxima-rodada{
+  cursor:pointer;
+  color:blue;
+  float: right;
+}
+
+#proxima-rodada:hover{
+  text-shadow: 1px 1px 1px #555;
+}
+
+#rodada-anterior{
+  cursor:pointer;
+  color:blue;
+  float: left;
+}
+
+#rodada-anterior:hover{
+  text-shadow: 1px 1px 1px #555;
+}
+
+#div-rodadas{
+  padding: 8px;
+}

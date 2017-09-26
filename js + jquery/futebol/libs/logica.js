@@ -1,4 +1,5 @@
 let nomeDosTimes = [];
+let rodadaAtual = 1;
 
 $(document).ready(function(){
   registrarEventos();
@@ -9,6 +10,26 @@ function registrarEventos(){
   atualizarTabela();
   inserirCores();
   jogar();
+  proximaRodada();
+  rodadaAnterior();
+}
+
+function proximaRodada(){
+  $('#proxima-rodada').click(function(){
+    rodadaAtual++;
+    atualizarLabelRodadas();
+  });
+}
+
+function rodadaAnterior(){
+  $('#rodada-anterior').click(function(){
+    rodadaAtual--;
+    atualizarLabelRodadas();
+  });
+}
+
+function atualizarLabelRodadas(){
+  $('#label-rodadas').text('Rodada ' + rodadaAtual);
 }
 
 function jogar(){
@@ -29,18 +50,18 @@ function atualizarTabela(){
 
 function inserirCores(){
   $('#cores').click(function(){
-    for(let i = 1; 4 >= i; i++){
-      $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(50, 177, 255, 0.5)');
-    }
-    $(".times tr:nth-child(5) td:first-child").css('background-color', 'rgba(10, 232, 189, 0.5)');
-    $(".times tr:nth-child(6) td:first-child").css('background-color', 'rgba(10, 232, 189, 0.5)');
-    for(let i = 7; 14 >= i; i++){
-      $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(39, 180, 35, 0.5)');
-    }
-    $(".times tr:nth-child(15) td:first-child").css('background-color', 'rgb(255, 255, 255)');
-    $(".times tr:nth-child(16) td:first-child").css('background-color', 'rgb(255, 255, 255)');
-    for(let i = 17; 20 >= i; i++){
-      $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(255, 37, 37, 0.5)');
+    for(let i = 1; i <= 20; i++){
+      if(i <= 4){
+        $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(50, 177, 255, 0.5)');
+      }else if(i <= 6){
+        $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(10, 232, 189, 0.5)');
+      }else if(i <= 12){
+        $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(39, 180, 35, 0.5)');
+      }else if(i <= 16){
+        $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgb(255, 255, 255)');
+      }else if(i <= 20){
+        $(".times tr:nth-child("+i+") td:first-child").css('background-color', 'rgba(255, 37, 37, 0.5)');
+      }
     }
     atualizarPosicao();
   });

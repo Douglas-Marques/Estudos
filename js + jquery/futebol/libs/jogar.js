@@ -40,25 +40,24 @@ function mostrarResultadoJogo(resultado){
 }
 
 function obterResultadoJogo(mandante, visitante, golsMandante, golsVisitante){
-    let resultado = {
-          mandante: mandante,
-          golsMandante: golsMandante,
-          visitante: visitante,
-          golsVisitante: golsVisitante
-    }
+  let resultado = {
+    mandante: mandante,
+    golsMandante: golsMandante,
+    visitante: visitante,
+    golsVisitante: golsVisitante
+  }
 
-    $.ajax({
-      url: 'http://localhost:3000/jogo',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      data:  resultado,
-      type: 'PATCH',
-      crossDomain: true,
-      dataType: 'json',
-      }).done(function(data) {
-        mostrarResultadoJogo(data);
-        obterTimes();
-      })
-      .fail(function(){
-        alert('Errouuu');
-      });
+  $.ajax({
+    url: 'http://localhost:3000/jogo',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    data:  resultado,
+    type: 'PATCH',
+    crossDomain: true,
+    dataType: 'json',
+  }).done(function(data) {
+    mostrarResultadoJogo(data);
+    obterTimes();
+  }).fail(function(){
+    alert('Errouuu');
+  });
 }
