@@ -33,7 +33,10 @@
               <td id="{{ item.produto }}"><strong>{{ item.produto }}</strong></td>
               <td>{{ item.quantidade }}</td>
               <td><i class="glyphicon glyphicon-remove remover-item" ng-click="removerItem(item)"></i></td>
-              <td><i class="glyphicon glyphicon-edit editar-item" ng-click="editarItem(item)"></i></td>
+              <td>
+				<i class="glyphicon glyphicon-edit" ng-click="editarItem(item)" ng-if="!flag_editar"></i> 
+				<i ng-if="flag_editar" class="glyphicon glyphicon-ok" ng-click="salvarEdicao(item)"></i> 
+			  </td>
             </tr>
           </tbody>
         </table>
