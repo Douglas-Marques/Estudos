@@ -6,8 +6,6 @@ function ListaComprasController($scope) {
 	
 	$scope.flag_editar = false;
 	
-	$scope.nomeNovo = '';
-
 	$scope.adicionaItem = function () {
 		let item = {
 			produto : $scope.item.produto,
@@ -25,7 +23,7 @@ function ListaComprasController($scope) {
 	$scope.editarItem = function(item){
 		$scope.flag_editar = true;
 		let elementoProduto = document.getElementById(item.produto);
-		elementoProduto.innerHTML = '<input type="text" ng-model="nomeNovo" placeholder="Produto" value='+item.produto+' required="true">';
+		elementoProduto.innerHTML = '<input type="text" id="editar-item" placeholder="Produto" value='+item.produto+' required="true">';
 	}
 	
 	$scope.salvarEdicao = function(item){
@@ -33,17 +31,20 @@ function ListaComprasController($scope) {
 		let len = $scope.itens.length;
 		for(let i = 0; i < len; i++){
 			if($scope.itens[i].produto === item.produto){
-				atualizarHtml(item, $scope.nomeNovo);
-				$scope.itens[i].produto = $scope.nomeNovo;
+				atualizarHtml(item, i);
 				return;
 			}
 		}
 	}
 	
-	function atualizarHtml(item, nomeNovo){
-		let elementoProduto = document.getElementById(item.produto);
-		elementoProduto.id = $scope.nomeNovo;
-		elementoProduto.innerHTML = '<strong>'+nomeNovo+'</strong>'
+	function atualizarHtml(item, posicao){
+		let elementoProduto = document.getElementById(item.produto);	
+
+		let nomeNovo = document.getElementById('editar-item').value;
+
+		elementoProduto.id = nomeNovo;
+		elementoProduto.innerHTML = '<strong class="ng-binding">' + nomeNovo + '</strong>'
+		$scope.itens[posicao].produto = nomeNovo;		
 	}
 
 	$scope.removerItem = function(item){
