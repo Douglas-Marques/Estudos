@@ -15,15 +15,8 @@ public class ProdutoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 
-	public ArrayList<Produto> obterProdutos(){
-		return new ArrayList<Produto>(){{
-			add(new Produto("Arroz", 5));
-			add(new Produto("Feijão", 10));
-		}};
-	}
-	
     public Produto save(Produto produto) {
-    	if(produto != null){
+    	if(produto.getNome() != null && produto.getNome().trim().length() > 0 && produto.getQuantidade() > 0){
     		return produtoRepository.save(produto);
     	}else{
             throw new IllegalArgumentException("Digite um id válido");          

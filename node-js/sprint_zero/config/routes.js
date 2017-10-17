@@ -4,7 +4,7 @@ var emailController = require('../controller/email.controller');
 var firebaseController = require('../controller/firebase.controller');
 var isbnController = require('../controller/isbn.controller');
 var slackController = require('../controller/slack.controller');
-
+var adController = require('../controller/ad.controller');
 
 router.get('/',function(req, res){
     res.send("Hello World");
@@ -13,7 +13,7 @@ router.get('/',function(req, res){
 //ISBN
 router.get('/isbn/:isbn', isbnController.lerIsbn);
 router.get('/livros', isbnController.obterTodosLivros);
-router.get('/livros/:array', isbnController.pesquisarPorVoz);
+router.get('/livros/:texto', isbnController.pesquisarPorVoz);
 router.post('/isbn', isbnController.salvarLivro);
 //FIREBASE
 router.post('/notification', firebaseController.concetarFirebase);
@@ -21,6 +21,8 @@ router.post('/notification', firebaseController.concetarFirebase);
 router.post('/email', emailController.sendEmail);
 //SLACK
 router.post('/slack', slackController.enviarMsgSlack);
+//AD
+router.post('/ad', adController.conectarAd);
 
 module.exports = router;
 

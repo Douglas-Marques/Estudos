@@ -43,15 +43,14 @@ function lerIsbn(req, res, next){
       res.json('Bad request');
       res.status(400);
     }
-  })
+  });
 }
 
 function pesquisarPorVoz(req, res, next){
-  var stringao = req.params.array;
-    isbnService.pesquisarPorVoz(stringao, function(response){
+  var texto = req.params.texto;
+    isbnService.pesquisarPorVoz(texto, function(response){
       if(response){
         res.json(response);
-        res.status(200);
       }
       else{
         res.json('Bad request');

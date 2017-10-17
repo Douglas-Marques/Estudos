@@ -23,5 +23,11 @@ function enviarMsgSlack(titulo, subtitulo, imagem){
 }
 
 function preparaMsgNovoLivro(titulo, subtitulo, imagem){
-  return imagem + '\nNovo livro cadastrado no sistema: ' + titulo + '\n' + subtitulo;
+  var texto = imagem + '\nNovo livro:\n' + titulo;
+  if(subtitulo){
+    return texto + '\n' + subtitulo;
+  }
+  else{
+    return texto;
+  } 
 }

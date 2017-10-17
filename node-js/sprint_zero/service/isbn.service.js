@@ -57,33 +57,34 @@ function lerIsbn(numeroIsbn, callback){
   });
 }
 
-function pesquisarPorVoz(stringao, callback){
-  var array = stringao.split('-');
-  console.log(array);
-     // badges: ['black', 'blue']
+function pesquisarPorVoz(texto, callback){
+    texto = new RegExp(".*" + texto + ".*", "i")
 
-    Livros.find({titulo: {$in: array }}, function(err, response){
+    Livros.find({titulo: texto}, function(err, response){
     if(err){
-      return err;
+      callback('Erro..', err);
     }
-    else if(response){
-      callback(response);            
+    else if(response.length === 0){
+      callback('Não foi encontrado nenhum item com este nome');
     }
+    else{
+      callback(response);
+    }            
   });    
 }
 
 function prepararLivro(book, numeroIsbn){
   var livro = { 
-                  'titulo': book.title,
-                  'subtitulo': book.subtitle,
-                  'autores': book.authors,
-                  'descricao': book.description,
-                  'icone': book.imageLinks.thumbnail,
-                  'idioma': book.language,
-                  'avaliacao': book.averageRating,
-                  'qtdPaginas': book.pageCount,
-                  'categorias': book.categories,
-                  'isbn': numeroIsbn
-            }
+    'titulo': book.title,
+    'subtitulo': book.subtitle,
+    'autores': book.authors,
+    'descricao': book.description,
+    'icone': book.imageLinks.thumbnail,
+    'idioma': book.language,
+    'avaliacao': book.averageRating,
+    'qtdPaginas': book.pageCount,
+    'categorias': book.categories,
+    'isbn': numeroIsbn
+  }
   return livro;               
 }
