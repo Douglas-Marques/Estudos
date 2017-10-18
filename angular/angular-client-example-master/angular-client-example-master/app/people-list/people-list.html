@@ -1,0 +1,48 @@
+<div ng-if="!flagUpdate">
+  <div class="container search-div">
+    <form class="form-inline" name="peopleSearch" ng-submit="searchPeopleById(id)">
+      <div class="form-group">
+        <label>Search people by id: </label>
+        <input type="number" class="form-control" placeholder="ID" ng-required="true" name="id" ng-model="id" required>
+      </div>
+      <button type="submit" class="btn btn-success">Search</button>
+    </form>
+  </div>
+  <div class="container list-all-people-div">
+    <div class="table-responsive">
+      <label ng-if=!people[0]>There are no people with this id. <a href="#/register">Do you want to register?</a></label>
+      <table ng-if="people[0]" class="table table-bordered">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <tr ng-repeat="p in people | orderBy:'people'">
+          <td>{{p.people}}</td>
+          <td ng-if="p.name">{{p.name}}</td>
+          <td ng-if="!p.name">No name</td>
+          <td class="td-icon"><i ng-click="deletePeople(p.people);" class="icon glyphicon glyphicon-trash icon-delete"></i></td>
+          <td class="td-icon"><i ng-click="openUpdate(p);" class="icon glyphicon glyphicon-plus icon-update"></i></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div ng-if="flagUpdate" class="container register-div">
+  <form name="updateForm" ng-submit="updatePeople(peopleUpdate.people, updateForm.name.$viewValue)">
+    <h2>Update people</h2>
+    <div class="form-group">
+      <label>ID*</label>
+      <input type="number" class="form-control" name="id" placeholder="{{peopleUpdate.people}}" disabled>
+    </div>
+    <div class="form-group">
+      <label>Name*</label>
+      <input ng-if="peopleUpdate.name" type="text" name="name" ng-model="name" class="form-control" placeholder="{{peopleUpdate.name}}" required>
+      <input ng-if="!peopleUpdate.name" type="text" name="name" ng-model="name" class="form-control" placeholder="Name" required>
+    </div>
+    <div class="new-button">
+      <button type="submit" class="btn btn-success">Save</button>
+    </div>
+  </form>
+</div>

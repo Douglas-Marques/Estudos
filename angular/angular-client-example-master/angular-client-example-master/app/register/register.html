@@ -1,0 +1,16 @@
+<div class="container register-div">
+  <form name="registerForm" ng-submit="registerPeople(people)">
+    <h2>Register people</h2>
+    <div class="form-group">
+      <label>ID*</label>
+      <input type="number" class="form-control" name="id" ng-model="people.id" placeholder="ID*" required>
+    </div>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" name="name" ng-model="people.name" class="form-control" placeholder="Name">
+    </div>
+    <div class="new-button">
+      <button type="submit" class="btn btn-success">Register</button>
+    </div>
+  </form>
+</div>

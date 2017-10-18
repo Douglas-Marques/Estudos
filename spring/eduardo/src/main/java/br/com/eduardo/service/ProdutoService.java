@@ -1,7 +1,6 @@
 package br.com.eduardo.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +14,12 @@ public class ProdutoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 
-    public Produto save(Produto produto) {
-    	if(produto.getNome() != null && produto.getNome().trim().length() > 0 && produto.getQuantidade() > 0){
-    		return produtoRepository.save(produto);
+    public String save(Produto produto) {
+    	if(camposPreenchidos(produto)){
+    		produtoRepository.save(produto);
+    		return "Produto adicionado com sucesso";
     	}else{
-            throw new IllegalArgumentException("Digite um id válido");          
+            return "Erro ao adicionar produto";          
     	}
     }
     
@@ -31,22 +31,29 @@ public class ProdutoService {
     	}
     }
     
-    public Produto findByNome(String nome){
-    	if(nome != null && nome.trim().length() > 0){
-    		return produtoRepository.findByNome(nome);
+    public String editarProduto(Produto produto){
+    	if(camposPreenchidos(produto)){
+    		produtoRepository.editarProduto(produto.getQuantidade(), produto.getNome(), produto.getId());
+    		return "Produto editado com sucesso";
     	}else{
-            throw new IllegalArgumentException("Digite um id válido");          
+            return "Erro ao editar produto";          
     	}
     }
     
-    public ArrayList<Produto> findAll(){
-    	Iterable<Produto> todosProdutos = produtoRepository.findAll();
-    	return iterableToArrayList(todosProdutos);
+    public String delete (Long id){
+    	if(id != null && id > 0){
+    		produtoRepository.delete(id);
+    		return "Produto deletado com sucesso";
+    	}else{
+    		return "Digite um id válido";
+    	}
     }
     
-    public ArrayList<Produto> iterableToArrayList(Iterable<Produto> produto){
-    	ArrayList<Produto> produtos = new ArrayList<Produto>();
-    	produto.forEach(produtos::add);
-    	return produtos;
+    public Iterable<Produto> findAll(){
+    	return produtoRepository.findAll();
+    }
+    
+    public boolean camposPreenchidos(Produto produto){
+    	return (produto.getNome() != null && produto.getNome().trim().length() > 0 && produto.getQuantidade() > 0);
     }
 }
