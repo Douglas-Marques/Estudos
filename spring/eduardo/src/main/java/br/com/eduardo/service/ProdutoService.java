@@ -33,8 +33,12 @@ public class ProdutoService {
     
     public String editarProduto(Produto produto){
     	if(camposPreenchidos(produto)){
-    		produtoRepository.editarProduto(produto.getQuantidade(), produto.getNome(), produto.getId());
-    		return "Produto editado com sucesso";
+    		int produtosAlterados = produtoRepository.editarProduto(produto.getQuantidade(), produto.getNome(), produto.getId());
+		if(produtosAlterados > 0){
+			return "Produto editado com sucesso";
+		}else{
+			return "Nenhum produto encontrado com este ID";
+		}
     	}else{
             return "Erro ao editar produto";          
     	}
