@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Lista de compras com AngularJS</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
+  <link rel="stylesheet" href="lista-compras/lista-compras.css">
+
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app.config.js"></script>
+  <script src="lista-compras/lista-compras-controller.js"></script>  
+  <script src="lista-compras/lista-compras-service.js"></script>  
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/">INDEX</a>
+            </div>
+    
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#/lista">Carrinho de compras</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    
+      <div id="main">
+        <div ng-view></div>
+      </div>
+</body>
+</html>

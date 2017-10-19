@@ -3,9 +3,7 @@ function ListaComprasController($scope) {
 		{produto: 'Leite', quantidade: 2, comprado: false},
 		{produto: 'Cerveja', quantidade: 12, comprado: false}
 	];
-	
-	$scope.flag_editar = false;
-	
+		
 	$scope.adicionaItem = function () {
 		let item = {
 			produto : $scope.item.produto,
@@ -20,31 +18,27 @@ function ListaComprasController($scope) {
 		}
 	};
 
-	$scope.editarItem = function(item){
-		$scope.flag_editar = true;
-		let elementoProduto = document.getElementById(item.produto);
+	$scope.editarItem = function(item, index){
+    let elementoProduto = document.getElementById(item.produto);
+    alterarVisibilidadeElemento("editar-" + index, 'none');
+    alterarVisibilidadeElemento("excluir-" + index, 'block');    
 		elementoProduto.innerHTML = '<input type="text" id="editar-item" placeholder="Produto" value='+item.produto+' required="true">';
+  }
+	
+	$scope.salvarEdicao = function(item, index){
+    atualizarHtml(item, index)
 	}
 	
-	$scope.salvarEdicao = function(item){
-		$scope.flag_editar = false;
-		let len = $scope.itens.length;
-		for(let i = 0; i < len; i++){
-			if($scope.itens[i].produto === item.produto){
-				atualizarHtml(item, i);
-				return;
-			}
-		}
-	}
-	
-	function atualizarHtml(item, posicao){
+	function atualizarHtml(item, index){
 		let elementoProduto = document.getElementById(item.produto);	
 
 		let nomeNovo = document.getElementById('editar-item').value;
 
 		elementoProduto.id = nomeNovo;
 		elementoProduto.innerHTML = '<strong class="ng-binding">' + nomeNovo + '</strong>'
-		$scope.itens[posicao].produto = nomeNovo;		
+    $scope.itens[index].produto = nomeNovo;		
+    alterarVisibilidadeElemento("editar-" + index, 'block');
+    alterarVisibilidadeElemento("excluir-" + index, 'none');
 	}
 
 	$scope.removerItem = function(item){
@@ -53,6 +47,9 @@ function ListaComprasController($scope) {
 	}
 }
 
+function alterarVisibilidadeElemento(id, visibilidade){
+  document.getElementById(id).style.display = visibilidade;  
+}
 
 function limparInputs(escopo){
 	escopo.item.produto = '';

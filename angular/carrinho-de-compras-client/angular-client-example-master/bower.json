@@ -1,0 +1,17 @@
+{
+  "name": "carrinho-de-compras-client",
+  "description": "Cliente para acessar o web-service de produtos",
+  "version": "1.0.0",
+  "homepage": "https://github.com/EduardoDornel/Estudos/tree/master/angular",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "1.5.x",
+    "angular-animate": "1.5.x",
+    "angular-mocks": "1.5.x",
+    "angular-resource": "1.5.x",
+    "angular-route": "1.5.x",
+    "bootstrap": "3.3.x",
+    "jquery": "2.2.x",
+    "angular-ui-router": "^0.4.2"
+  }
+}

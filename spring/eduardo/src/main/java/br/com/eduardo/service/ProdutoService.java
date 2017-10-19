@@ -15,32 +15,23 @@ public class ProdutoService {
 	ProdutoRepository produtoRepository;
 
     public String save(Produto produto) {
-    	if(camposPreenchidos(produto)){
-    		produtoRepository.save(produto);
+    	if(camposPreenchidos(produto)){    		
     		return "Produto adicionado com sucesso";
     	}else{
-            return "Erro ao adicionar produto";          
-    	}
-    }
-    
-    public Produto findOne(Long id){
-    	if(id != null){
-    		return produtoRepository.findOne(id);
-    	}else{
-            throw new IllegalArgumentException("Digite um id válido");          
+            return "Faltam campos obrigatórios";          
     	}
     }
     
     public String editarProduto(Produto produto){
     	if(camposPreenchidos(produto)){
     		int produtosAlterados = produtoRepository.editarProduto(produto.getQuantidade(), produto.getNome(), produto.getId());
-		if(produtosAlterados > 0){
-			return "Produto editado com sucesso";
-		}else{
-			return "Nenhum produto encontrado com este ID";
-		}
+    		if(produtosAlterados > 0){
+    			return "Produto editado com sucesso";
+    		}else{
+    			return "Nenhum produto encontrado com este ID";
+    		}
     	}else{
-            return "Erro ao editar produto";          
+            return "Faltam campos obrigatórios";          
     	}
     }
     

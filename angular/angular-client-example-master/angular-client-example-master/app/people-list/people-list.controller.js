@@ -36,7 +36,4 @@ module.controller('PeopleListCtrl', function($scope, PeopleListService){
       $scope.listAllPeople();
     })
   }
-
-
-
 });

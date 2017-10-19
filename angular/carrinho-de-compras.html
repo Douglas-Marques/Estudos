@@ -3,7 +3,6 @@
 	<head>
 		<title>Lista de compras com AngularJS</title>
     <meta charset="utf-8">
-   <!-- <link rel="stylesheet" href="style/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
     <link rel="stylesheet" href="style/lista-compras.css">
 		<script src="libs/angular.min.js"></script>
@@ -34,8 +33,8 @@
               <td>{{ item.quantidade }}</td>
               <td><i class="glyphicon glyphicon-remove remover-item" ng-click="removerItem(item)"></i></td>
               <td>
-				<i class="glyphicon glyphicon-edit" ng-click="editarItem(item)" ng-if="!flag_editar"></i> 
-				<i ng-if="flag_editar" class="glyphicon glyphicon-ok" ng-click="salvarEdicao(item)"></i> 
+				<i ng-click="editarItem(item, $index)" class="glyphicon glyphicon-edit" id="editar-{{$index}}"></i> 
+				<i ng-click="salvarEdicao(item, $index)" class="glyphicon glyphicon-ok" id="excluir-{{$index}}"></i> 
 			  </td>
             </tr>
           </tbody>
