@@ -1,0 +1,19 @@
+#lista-compras {
+	width: 460px;
+}
+#lista-compras td, #lista-compras th {
+	text-align: center;
+}
+.comprado-true {
+	text-decoration: line-through;
+	color: red;
+}
+.remover-item:hover{
+	color:red;
+}
+.editar-item:hover{
+	color: green;
+}
+.glyphicon-ok{
+  display: none
+}

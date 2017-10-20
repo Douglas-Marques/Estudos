@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('myApp', [
+  'ngAnimate',  
   'ngRoute',
   'ui.router',
   'myApp.routes',
-  'myApp.lista.controller',
-  'myApp.lista.service'
+  'myApp.list.controller',
+  'myApp.list.service'
 ]);

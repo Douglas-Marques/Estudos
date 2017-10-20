@@ -1,6 +1,7 @@
 let module = angular.module('myApp.list.controller', ['myApp.list.service']);
+
 module.controller('ListaComprasController', function($scope, ListaComprasService){
-  
+  console.log('oi')
   $scope.listAllProducts = function(){
     ListaComprasService.getList().then(function(response){
       $scope.itens = response;     
