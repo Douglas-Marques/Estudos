@@ -1,7 +1,5 @@
 package br.com.eduardo.service;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,8 @@ public class ProdutoService {
 	ProdutoRepository produtoRepository;
 
     public String save(Produto produto) {
-    	if(camposPreenchidos(produto)){    		
+    	if(camposPreenchidos(produto)){
+    		produtoRepository.save(produto);
     		return "Produto adicionado com sucesso";
     	}else{
             return "Faltam campos obrigatórios";          
@@ -37,8 +36,12 @@ public class ProdutoService {
     
     public String delete (Long id){
     	if(id != null && id > 0){
-    		produtoRepository.delete(id);
-    		return "Produto deletado com sucesso";
+    		if(produtoRepository.findOne(id) != null){
+        		produtoRepository.delete(id);
+        		return "Produto deletado com sucesso";
+    		}else{
+    			return "Nenhum produto encontrado com este ID";
+    		}
     	}else{
     		return "Digite um id válido";
     	}
