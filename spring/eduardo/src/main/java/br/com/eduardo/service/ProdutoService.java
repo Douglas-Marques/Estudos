@@ -36,12 +36,12 @@ public class ProdutoService {
     
     public String delete (Long id){
     	if(id != null && id > 0){
-    		if(produtoRepository.findOne(id) != null){
+    		try{
         		produtoRepository.delete(id);
-        		return "Produto deletado com sucesso";
-    		}else{
+    		}catch(Exception e){
     			return "Nenhum produto encontrado com este ID";
     		}
+    		return "Produto deletado com sucesso";
     	}else{
     		return "Digite um id válido";
     	}
