@@ -1,10 +1,9 @@
 package br.com.eduardo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.eduardo.entity.dao.ProdutoRepository;
 import br.com.eduardo.entity.model.Produto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ProdutoService {

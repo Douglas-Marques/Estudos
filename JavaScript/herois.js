@@ -33,11 +33,12 @@ seriesPorLongevidade(){
     this.arrayDeHerois.map(heroi => heroi.series.items)
     .reduce(
       (acumulador, series) => acumulador.concat(series)
-      , []);
+      , []
+    );
 
-      let diff = serie => serie.endYear - serie.startYear;
+    let diff = serie => serie.endYear - serie.startYear;
 
-      return todasSeries.sort((serie1, serie2) => diff(serie2) - diff(serie1));
+    return todasSeries.sort((serie1, serie2) => diff(serie2) - diff(serie1));
 }
 
 
