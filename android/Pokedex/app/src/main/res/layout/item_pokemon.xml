@@ -48,7 +48,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:background="#bad79e"
+                android:background="#bdc7b6"
                 tools:text="Grass"/>
 
             <TextView
@@ -58,7 +58,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:background="#bad79e"
+                android:background="#bdc7b6"
                 tools:text="Grass"/>
         </LinearLayout>
 

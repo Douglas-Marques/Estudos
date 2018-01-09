@@ -1,4 +1,4 @@
-package dornel.com.pokedex
+package dornel.com.pokedex.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import dornel.com.pokedex.R
 import dornel.com.pokedex.model.Pokemon
-import dornel.com.pokedex.util.ComparePokemons
 
 
 /**
@@ -40,7 +40,7 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
         return when(id.length){
             1 -> "#00" + id
             2 -> "#0" + id
-            else -> id
+            else -> "#" + id
         }
     }
 }

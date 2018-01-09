@@ -1,7 +1,8 @@
-package dornel.com.pokedex
+package dornel.com.pokedex.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import dornel.com.pokedex.R
 
 class RegisterActivity : AppCompatActivity() {
 
