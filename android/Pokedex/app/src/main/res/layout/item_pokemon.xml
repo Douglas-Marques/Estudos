@@ -48,7 +48,8 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:background="#bdc7b6"
+                android:background="#8b8b8b"
+                android:textColor="#FFFF"
                 tools:text="Grass"/>
 
             <TextView
@@ -58,7 +59,8 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:background="#bdc7b6"
+                android:background="#8b8b8b"
+                android:textColor="#FFFF"
                 tools:text="Grass"/>
         </LinearLayout>
 

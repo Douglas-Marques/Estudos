@@ -17,6 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.support.v7.widget.RecyclerView
+import android.view.View.GONE
 import dornel.com.pokedex.adapter.PokemonViewHolder
 import kotlin.collections.ArrayList
 
@@ -35,9 +36,9 @@ class MainActivity : AppCompatActivity() {
 
         recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recycler_view.layoutManager = mLayoutManager
-        recycler_view.addOnScrollListener(OnScrollListener(mLayoutManager, adapter, pokemons))
-
         recycler_view.adapter = adapter
+
+        recycler_view.addOnScrollListener(OnScrollListener(mLayoutManager, adapter, pokemons))
         //progress_loader.visibility = GONE
 
         do{
@@ -55,11 +56,27 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }while (10 > index)
+
     }
 
-    private fun registerPokemon(){
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
+    override fun onPause() {
+        println("ninja pausou")
+        super.onPause()
+    }
+
+    override fun onResume() {
+        println("ninja resumiu")
+        super.onResume()
+    }
+
+    override fun onStop() {
+        println("ninja parou")
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        println("ninja saiu")
+        super.onDestroy()
     }
 }
 

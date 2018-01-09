@@ -7,7 +7,10 @@ import android.view.View.GONE
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import dornel.com.pokedex.R
+import dornel.com.pokedex.activity.DetailActivity
 import dornel.com.pokedex.model.Pokemon
+import android.content.Intent
+
 
 
 /**
@@ -33,7 +36,13 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val inflatedView = layoutInflater.inflate(R.layout.item_pokemon, parent,false)
-        return PokemonViewHolder(inflatedView)
+        val pokeViewHolder = PokemonViewHolder(inflatedView)
+
+        inflatedView.setOnClickListener {
+                goToDetailsScreen(pokemonList[(pokeViewHolder.layoutPosition)])
+            }
+
+        return pokeViewHolder
     }
 
     private fun handleId(id: String): String{
@@ -42,5 +51,12 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
             2 -> "#0" + id
             else -> "#" + id
         }
+    }
+
+    private fun goToDetailsScreen(poke: Pokemon){
+        val intent = Intent(context, DetailActivity::class.java)
+        intent.putExtra("poke", poke)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
     }
 }
