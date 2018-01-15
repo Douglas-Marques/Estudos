@@ -39,8 +39,8 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
         val pokeViewHolder = PokemonViewHolder(inflatedView)
 
         inflatedView.setOnClickListener {
-                goToDetailsScreen(pokemonList[(pokeViewHolder.layoutPosition)])
-            }
+            goToDetailsScreen(pokemonList[(pokeViewHolder.layoutPosition)])
+        }
 
         return pokeViewHolder
     }
@@ -56,7 +56,7 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
     private fun goToDetailsScreen(poke: Pokemon){
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra("poke", poke)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 }

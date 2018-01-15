@@ -19,13 +19,13 @@ class JsonConverter{
                 val srcUrl: JsonElement = sprite.get("front_default")
                 val types: JsonArray = json.getAsJsonArray("types")
                 val firstType: String = types[0].asJsonObject.getAsJsonObject("type").get("name").asString
-                if (types.size() == 2){
+                if (types.size() >= 2){
                     val secondType: String = types[1].asJsonObject.getAsJsonObject("type").get("name").asString
                     return Pokemon(id.asInt, name.asString, firstType, secondType, srcUrl.asString)
                 }
                 return Pokemon(id.asInt, name.asString, firstType, "", srcUrl.asString)
             }
-            return Pokemon(0, "bulbasaur", "fire", "grass", "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAIA_wDGAAAAAQAAAAAAAApbAAAAJDcwMGYyOTg3LTg4ZDAtNDU1MS04NTA5LWI4MGJiN2RhMWRmMg.jpg")
+            return Pokemon(0, "erro", "erro", "erro", "")
         }
     }
 }

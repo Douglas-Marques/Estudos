@@ -17,7 +17,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.support.v7.widget.RecyclerView
-import android.view.View.GONE
+import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import dornel.com.pokedex.adapter.PokemonViewHolder
 import kotlin.collections.ArrayList
 
@@ -27,19 +29,16 @@ class MainActivity : AppCompatActivity() {
     private val pokemons: ArrayList<Pokemon> = ArrayList()
     private val context: Context = this
     private val mLayoutManager = LinearLayoutManager(this)
+    val adapter = PokemonAdapter(pokemons, context)
     var index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val adapter = PokemonAdapter(pokemons, context)
 
         recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recycler_view.layoutManager = mLayoutManager
         recycler_view.adapter = adapter
-
-        recycler_view.addOnScrollListener(OnScrollListener(mLayoutManager, adapter, pokemons))
-        //progress_loader.visibility = GONE
 
         do{
             index++
@@ -56,80 +55,81 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }while (10 > index)
-
-    }
-
-    override fun onPause() {
-        println("ninja pausou")
-        super.onPause()
     }
 
     override fun onResume() {
-        println("ninja resumiu")
+        recycler_view.addOnScrollListener(OnScrollListener(mLayoutManager, adapter, pokemons, progress_lazy))
         super.onResume()
-    }
-
-    override fun onStop() {
-        println("ninja parou")
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        println("ninja saiu")
-        super.onDestroy()
     }
 }
 
-class OnScrollListener(private val layoutManager: LinearLayoutManager, private val adapter: RecyclerView.Adapter<PokemonViewHolder>, private val dataList: ArrayList<Pokemon>) : RecyclerView.OnScrollListener() {
-    var previousTotal = 0
-    var loading = true
-    val visibleThreshold = 10
-    var firstVisibleItem = 0
-    var visibleItemCount = 0
-    var totalItemCount = 0
+class OnScrollListener(private val layoutManager: LinearLayoutManager, private val adapter: RecyclerView.Adapter<PokemonViewHolder>, private val dataList: ArrayList<Pokemon>, private val lazyLoad: ProgressBar) : RecyclerView.OnScrollListener() {
+    private var visibleThreshold = 5
+    // The current offset index of data you have loaded
+    private var currentPage = 0
+    // The total number of items in the dataset after the last load
+    private var previousTotalItemCount = 0
+    // True if we are still waiting for the last set of data to load.
+    private var loading = true
+    // Sets the starting page index
+    private var startingPageIndex = 0
+
     var total = 10
-    var end = 11
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
 
-        visibleItemCount = recyclerView.childCount
-        totalItemCount = layoutManager.itemCount
-        firstVisibleItem = layoutManager.findFirstVisibleItemPosition()
+        val totalItemCount = layoutManager.itemCount
+        val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
 
-        if (loading) {
-            if (totalItemCount > previousTotal) {
-                loading = false
-                previousTotal = totalItemCount
+        // If the total item count is zero and the previous isn't, assume the
+        // list is invalidated and should be reset back to initial state
+        if (totalItemCount < previousTotalItemCount) {
+            this.currentPage = this.startingPageIndex
+            this.previousTotalItemCount = totalItemCount
+            if (totalItemCount == 0) {
+                this.loading = true
             }
         }
+        // If it’s still loading, we check to see if the dataset count has
+        // changed, if so we conclude it has finished loading and update the current page
+        // number and total item count.
+        if (loading && (totalItemCount > previousTotalItemCount)) {
+            loading = false
+            previousTotalItemCount = totalItemCount
+        }
 
-        if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
-            val initialSize = dataList.size
-            end += 10
+        // If it isn’t currently loading, we check to see if we have breached
+        // the visibleThreshold and need to reload more data.
+        // If we do need to reload some more data, we execute onLoadMore to fetch the data.
+        // threshold should reflect how many total columns there are too
+        if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
+            currentPage++
             updateDataList(dataList)
-            val updatedSize = dataList.size
-            recyclerView.post { adapter.notifyItemRangeInserted(initialSize, updatedSize) }
             loading = true
         }
     }
 
-    fun updateDataList(dataList: ArrayList<Pokemon>) : ArrayList<Pokemon> {
-        do{
-            total++
-            Reqs.getPokemon(total).enqueue(object : Callback<JsonObject> {
-                override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
-                    println("Erro na requisição " + t.toString())
-                }
+    private fun updateDataList(dataList: ArrayList<Pokemon>){
+        if (dataList.size >= 10){
+            lazyLoad.visibility = View.VISIBLE
+            val end = total + 10
+            do {
+                total++
+                Reqs.getPokemon(total).enqueue(object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                        println("Erro na requisição " + t.toString())
+                    }
 
-                override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                    val poke: Pokemon = JsonConverter.convertJsonToPoke(response?.body())
-                    dataList.add(poke)
-                    dataList.sortBy { pokeItem -> pokeItem.id }
-                    adapter.notifyDataSetChanged()
-                }
-            })
-        }while (end > total)
-        return dataList
+                    override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                        val poke: Pokemon = JsonConverter.convertJsonToPoke(response?.body())
+                        dataList.add(poke)
+                        dataList.sortBy { pokeItem -> pokeItem.id }
+                        adapter.notifyDataSetChanged()
+                        lazyLoad.visibility = View.GONE
+                    }
+                })
+            } while (end > total)
+        }
     }
 }

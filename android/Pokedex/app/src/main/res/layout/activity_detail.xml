@@ -8,9 +8,12 @@
     tools:context="dornel.com.pokedex.activity.DetailActivity"
     android:padding="8dp">
 
-    <EditText
-        android:hint="Nome"
+    <ImageView
+        android:id="@+id/image_detail_poke"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_gravity="center"
+        android:contentDescription="@string/pokemon"
+        tools:src="@drawable/bulbasaur"/>
 
 </LinearLayout>
