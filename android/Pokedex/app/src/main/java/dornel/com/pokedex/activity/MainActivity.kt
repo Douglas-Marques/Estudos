@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         recycler_view.layoutManager = mLayoutManager
         recycler_view.adapter = adapter
 
-        do{
+        do {
             index++
             Reqs.getPokemon(index).enqueue(object : Callback<JsonObject> {
                 override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
@@ -54,12 +54,9 @@ class MainActivity : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                 }
             })
-        }while (10 > index)
-    }
+        } while (10 > index)
 
-    override fun onResume() {
         recycler_view.addOnScrollListener(OnScrollListener(mLayoutManager, adapter, pokemons, progress_lazy))
-        super.onResume()
     }
 }
 
@@ -73,8 +70,6 @@ class OnScrollListener(private val layoutManager: LinearLayoutManager, private v
     private var loading = true
     // Sets the starting page index
     private var startingPageIndex = 0
-
-    var total = 10
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
@@ -113,23 +108,19 @@ class OnScrollListener(private val layoutManager: LinearLayoutManager, private v
     private fun updateDataList(dataList: ArrayList<Pokemon>){
         if (dataList.size >= 10){
             lazyLoad.visibility = View.VISIBLE
-            val end = total + 10
-            do {
-                total++
-                Reqs.getPokemon(total).enqueue(object : Callback<JsonObject> {
-                    override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
-                        println("Erro na requisição " + t.toString())
-                    }
+            Reqs.getPokemon(dataList.size + 1).enqueue(object : Callback<JsonObject> {
+                override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                    println("Erro na requisição " + t.toString())
+                }
 
-                    override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                        val poke: Pokemon = JsonConverter.convertJsonToPoke(response?.body())
-                        dataList.add(poke)
-                        dataList.sortBy { pokeItem -> pokeItem.id }
-                        adapter.notifyDataSetChanged()
-                        lazyLoad.visibility = View.GONE
-                    }
-                })
-            } while (end > total)
+                override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                    val poke: Pokemon = JsonConverter.convertJsonToPoke(response?.body())
+                    dataList.add(poke)
+                    dataList.sortBy { pokeItem -> pokeItem.id }
+                    adapter.notifyDataSetChanged()
+                    lazyLoad.visibility = View.GONE
+                }
+            })
         }
     }
 }

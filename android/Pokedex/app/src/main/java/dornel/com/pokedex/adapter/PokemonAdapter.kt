@@ -10,7 +10,7 @@ import dornel.com.pokedex.R
 import dornel.com.pokedex.activity.DetailActivity
 import dornel.com.pokedex.model.Pokemon
 import android.content.Intent
-
+import android.view.View.VISIBLE
 
 
 /**
@@ -24,6 +24,7 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
         if (pokemonList[position].second_type.equals("")){
             holder.textSecondAbility.visibility = GONE
         }else{
+            holder.textSecondAbility.visibility = VISIBLE
             holder.textSecondAbility.text = pokemonList[position].second_type
         }
         Glide.with(context).load(pokemonList[position].img_src).into(holder.imagePokemon)
@@ -56,7 +57,6 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
     private fun goToDetailsScreen(poke: Pokemon){
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra("poke", poke)
-        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 }

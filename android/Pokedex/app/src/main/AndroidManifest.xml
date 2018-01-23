@@ -21,9 +21,6 @@
         <activity
             android:name=".activity.DetailActivity"
             android:label="Register">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity" />
         </activity>
     </application>
 
