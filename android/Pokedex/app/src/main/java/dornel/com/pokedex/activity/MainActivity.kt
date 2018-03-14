@@ -1,7 +1,5 @@
 package dornel.com.pokedex.activity
 
-import android.content.Context
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
@@ -22,41 +20,35 @@ import android.view.View
 import android.widget.ProgressBar
 import dornel.com.pokedex.adapter.PokemonViewHolder
 import kotlin.collections.ArrayList
+import dornel.com.pokedex.data.PokeDao
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
 
+
+
+const val TAG = "MainActivity"
+const val TAG_SCROLL = "OnScrollListener"
 
 class MainActivity : AppCompatActivity() {
 
-    private val pokemons: ArrayList<Pokemon> = ArrayList()
-    private val context: Context = this
     private val mLayoutManager = LinearLayoutManager(this)
-    val adapter = PokemonAdapter(pokemons, context)
     var index = 0
 
+    private val pokeDao = PokeDao()
+
+    //http://www.appsdeveloperblog.com/push-notifications-example-kotlin-firebase/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        Fabric.with(this, Crashlytics())
+
         recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recycler_view.layoutManager = mLayoutManager
-        recycler_view.adapter = adapter
 
-        do {
-            index++
-            Reqs.getPokemon(index).enqueue(object : Callback<JsonObject> {
-                override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
-                    println("Erro na requisição " + t.toString())
-                }
+        pokeDao.getPokemons(this)
 
-                override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                    val poke: Pokemon = JsonConverter.convertJsonToPoke(response?.body())
-                    pokemons.add(poke)
-                    pokemons.sortBy { pokeItem -> pokeItem.id }
-                    adapter.notifyDataSetChanged()
-                }
-            })
-        } while (10 > index)
-
-        recycler_view.addOnScrollListener(OnScrollListener(mLayoutManager, adapter, pokemons, progress_lazy))
+        //recycler_view.addOnScrollListener(OnScrollListener(mLayoutManager, adapter, pokemons, progress_lazy))
     }
 }
 
@@ -70,6 +62,8 @@ class OnScrollListener(private val layoutManager: LinearLayoutManager, private v
     private var loading = true
     // Sets the starting page index
     private var startingPageIndex = 0
+
+    private val pokeDao = PokeDao()
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
@@ -105,20 +99,16 @@ class OnScrollListener(private val layoutManager: LinearLayoutManager, private v
         }
     }
 
-    private fun updateDataList(dataList: ArrayList<Pokemon>){
-        if (dataList.size >= 10){
+    private fun updateDataList(dataList: ArrayList<Pokemon>) {
+        if (dataList.size >= 10) {
             lazyLoad.visibility = View.VISIBLE
             Reqs.getPokemon(dataList.size + 1).enqueue(object : Callback<JsonObject> {
                 override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
-                    println("Erro na requisição " + t.toString())
+                    Log.e(TAG_SCROLL, "Erro na requisição do pokemon. " + t.toString())
                 }
 
                 override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
-                    val poke: Pokemon = JsonConverter.convertJsonToPoke(response?.body())
-                    dataList.add(poke)
-                    dataList.sortBy { pokeItem -> pokeItem.id }
-                    adapter.notifyDataSetChanged()
-                    lazyLoad.visibility = View.GONE
+                    //TODO trazer mais pokemons
                 }
             })
         }

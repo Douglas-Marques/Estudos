@@ -20,14 +20,16 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
         holder.textName.text = pokemonList[position].name.capitalize()
         holder.textIdNumber.text = handleId(pokemonList[position].id.toString())
-        holder.textFirstAbility.text = pokemonList[position].first_type
-        if (pokemonList[position].second_type.equals("")){
+        holder.textFirstAbility.text = pokemonList[position].firstType
+
+        if (pokemonList[position].secondType.equals("")) {
             holder.textSecondAbility.visibility = GONE
-        }else{
+        } else {
             holder.textSecondAbility.visibility = VISIBLE
-            holder.textSecondAbility.text = pokemonList[position].second_type
+            holder.textSecondAbility.text = pokemonList[position].secondType
         }
-        Glide.with(context).load(pokemonList[position].img_src).into(holder.imagePokemon)
+
+        Glide.with(context).load(pokemonList[position].imgSrc).into(holder.imagePokemon)
     }
 
     override fun getItemCount(): Int {
@@ -46,15 +48,15 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
         return pokeViewHolder
     }
 
-    private fun handleId(id: String): String{
-        return when(id.length){
+    private fun handleId(id: String): String {
+        return when(id.length) {
             1 -> "#00" + id
             2 -> "#0" + id
             else -> "#" + id
         }
     }
 
-    private fun goToDetailsScreen(poke: Pokemon){
+    private fun goToDetailsScreen(poke: Pokemon) {
         val intent = Intent(context, DetailActivity::class.java)
         intent.putExtra("poke", poke)
         context.startActivity(intent)

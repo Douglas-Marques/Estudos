@@ -14,7 +14,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         val poke: Pokemon = intent.getSerializableExtra("poke") as Pokemon
-        Glide.with(this).load(poke.img_src).into(image_detail_poke)
+        Glide.with(this).load(poke.imgSrc).into(image_detail_poke)
 
         image_detail_poke.setOnClickListener({onBackPressed()})
     }
