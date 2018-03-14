@@ -14,7 +14,7 @@ service.obterArrayDeNomeDosTimes = obterArrayDeNomeDosTimes;
 service.zerarRegistrosTimes = zerarRegistrosTimes;
 module.exports = service;
 
-function salvarTime(nome, callback){
+function salvarTime(nome, callback) {
   let newTime = new Times({
     'nome': nome,
     'pontos': 0,
@@ -25,22 +25,20 @@ function salvarTime(nome, callback){
     'golpro': 0,
     'golcontra': 0,
   });
-  newTime.save(function(err, response){
-    if(err){
+  newTime.save(function(err, response) {
+    if (err) {
       callback("Erro ao salvar time");
-    }
-    else{
+    } else {
       callback("Time cadastrado com sucesso");
     }
   });
 }
 
-function obterTodosTimes(callback){
+function obterTodosTimes(callback) {
   Times.find({}, ['nome','pontos','qtdJogos', 'vitorias', 'empates', 'derrotas', 'golpro', 'golcontra', 'jogos'], {sort:{pontos:-1}}, function(err, times){
-    if(err){
-        callback(err)
-      }
-    else if(times.length === 0){
+    if(err) {
+      callback(err)
+    } else if (times.length === 0) {
       callback('Nenhum time encontrado com esse nome');
     }  
     callback(times);
