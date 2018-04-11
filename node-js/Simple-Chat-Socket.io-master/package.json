@@ -1,0 +1,20 @@
+{
+  "name": "socketio-simple-chat",
+  "version": "1.0.0",
+  "description": "A simple NodeJS and Socket.io chat script",
+  "main": "index.js",
+  "author": "Daniel Campos <d.ericeira@hotmail.com>",
+  "license": "MIT",
+  "repository": {
+    "url": "http://",
+    "type": "git"
+  },
+  "dependencies": {
+    "express": "4.16.3",
+    "i": "0.3.6",
+    "jquery": "3.3.1",
+    "npm": "5.8.0",
+    "socket.io": "2.1.0",
+    "socket.io-client": "2.1.0"
+  }
+}
