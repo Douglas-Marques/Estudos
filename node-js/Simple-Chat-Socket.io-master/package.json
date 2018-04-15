@@ -1,15 +1,19 @@
 {
-  "name": "socketio-simple-chat",
+  "name": "socket-example-eduardo",
   "version": "1.0.0",
-  "description": "A simple NodeJS and Socket.io chat script",
-  "main": "index.js",
-  "author": "Daniel Campos <d.ericeira@hotmail.com>",
+  "description": "Um simples chat usando node e socket.io",
+  "main": "app.js",
+  "author": "Eduardo Dornel Ribas <eduardo.dornel@hotmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
   "repository": {
-    "url": "http://",
+    "url": "http://github.com/eduardodornel/estudos",
     "type": "git"
   },
   "dependencies": {
+    "body-parser": "1.18.2",
     "express": "4.16.3",
     "i": "0.3.6",
     "jquery": "3.3.1",

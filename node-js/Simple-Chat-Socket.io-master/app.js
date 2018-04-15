@@ -1,8 +1,9 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+let app = require('express')();
+let http = require('http').Server(app);
+let io = require('socket.io')(http);
 
-var clients = {}; 
+let clients = {}; 
+let port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('server is running');
@@ -31,6 +32,6 @@ io.on("connection", (client) => {
 });
 
 
-http.listen(3000, () => {
-  console.log('listening on port 3000');
+http.listen(port, () => {
+  console.log('listening on port ' + port);
 });
