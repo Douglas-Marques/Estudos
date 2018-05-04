@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CA9107F1-82E6-FCA3-2F68-A110F16BC057" name="POSICAO">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:34:27 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<ordsAlias>table_7</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_POSICAO" id="58C583A9-8D18-BFF3-5C56-C8AE4BB568A8">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:34:48 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SIGLA" id="27BEDEC2-3338-A22B-D2CC-5DAD4B42957D">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:34:59 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+<ownDataTypeParameters>2,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOME" id="D969E91C-F716-0749-A2C2-8C5E2484E0E4">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:35:15 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESCRICAO" id="A7558860-4F67-DCF6-0220-902B55DADAF4">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:35:33 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300</dataTypeSize>
+<ownDataTypeParameters>300,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9EED2302-8F8F-C2DB-00AF-E13307119059" name="POSICAO_PK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:34:48 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="58C583A9-8D18-BFF3-5C56-C8AE4BB568A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -7,7 +7,7 @@ import android.view.View.GONE
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import dornel.com.pokedex.R
-import dornel.com.pokedex.activity.DetailActivity
+import dornel.com.pokedex.ui.DetailActivity
 import dornel.com.pokedex.model.Pokemon
 import android.content.Intent
 import android.view.View.VISIBLE
@@ -22,7 +22,7 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
         holder.textIdNumber.text = handleId(pokemonList[position].id.toString())
         holder.textFirstAbility.text = pokemonList[position].firstType
 
-        if (pokemonList[position].secondType.equals("")) {
+        if (pokemonList[position].secondType == "") {
             holder.textSecondAbility.visibility = GONE
         } else {
             holder.textSecondAbility.visibility = VISIBLE
@@ -50,9 +50,9 @@ class PokemonAdapter(private var pokemonList: ArrayList<Pokemon>, private val co
 
     private fun handleId(id: String): String {
         return when(id.length) {
-            1 -> "#00" + id
-            2 -> "#0" + id
-            else -> "#" + id
+            1 -> "#00$id"
+            2 -> "#0$id"
+            else -> "#$id"
         }
     }
 

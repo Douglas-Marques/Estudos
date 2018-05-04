@@ -4,14 +4,18 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
-import android.widget.Adapter
-import android.widget.ProgressBar
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.database.*
-import dornel.com.pokedex.activity.MainActivity
+import com.google.gson.JsonObject
+import dornel.com.pokedex.ui.MainActivity
 import dornel.com.pokedex.adapter.PokemonAdapter
+import dornel.com.pokedex.controller.Reqs
 import dornel.com.pokedex.model.Pokemon
+import dornel.com.pokedex.util.JsonConverter
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 const val TAG = "PokeDao"
 const val FIREBASE_CHILD = "pokemons"
@@ -19,11 +23,12 @@ const val FIREBASE_CHILD = "pokemons"
 class PokeDao {
 
     private var mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
+    var index = 449
 
-    var recentPostsQuery = mDatabase.child(FIREBASE_CHILD).limitToFirst(10)
+    //var recentPostsQuery = mDatabase.child(FIREBASE_CHILD).limitToFirst(10)
 
     fun savePoke(poke: List<Pokemon>) {
-        //mDatabase.child(FIREBASE_CHILD).setValue(poke)
+        mDatabase.child(FIREBASE_CHILD).setValue(poke)
     }
 
     fun getPokemons(context: Context) {
@@ -34,7 +39,7 @@ class PokeDao {
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 // Getting Item failed, log a message
-                Log.w(TAG, "loadItem:onCancelled", databaseError.toException())
+                Log.w(TAG, "ninja loadItem:onCancelled", databaseError.toException())
                 Crashlytics.log(1, TAG, databaseError.toException().toString())
             }
         }
@@ -80,6 +85,24 @@ class PokeDao {
                 adapter.notifyDataSetChanged()
             }
         }
+
+        do {
+            index++
+            Reqs.getPokemon(index).enqueue(object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                            println("Erro na requisição " + t.toString())
+                        }
+
+                override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                    val poke: Pokemon = JsonConverter.convertJsonToPoke(response?.body())
+                    pokemons.add(poke)
+                    pokemons.sortBy { pokeItem -> pokeItem.id }
+                    adapter.notifyDataSetChanged()
+                    savePoke(pokemons)
+                }
+            })
+        } while (802 > index)
+
         activity.progress.visibility = View.GONE
     }
 }

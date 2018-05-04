@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="4D7AE4BB-F0C1-CC07-20ED-A0059062D1CA" containerWithKeyObject="2D98153F-6975-E211-ED0A-1E6ECA38D60F" localFKIndex="CD7DD3F0-36BA-A51E-4AA6-E0781F65ADD9" name="JOGO_TIME_MANDANTE_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:52:17 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>C37DA3CB-E816-22A4-778D-8BB63D7EF3E1</referredTableID>
+<keyObject>38DB707A-635A-7565-55AD-B4B67AB95BD5</keyObject>
+<referredKeyID>38DB707A-635A-7565-55AD-B4B67AB95BD5</referredKeyID>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

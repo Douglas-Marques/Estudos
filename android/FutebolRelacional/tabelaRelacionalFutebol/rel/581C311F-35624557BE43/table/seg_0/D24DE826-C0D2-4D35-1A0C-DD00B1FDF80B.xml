@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D24DE826-C0D2-4D35-1A0C-DD00B1FDF80B" name="PAIS">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:47:38 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<ordsAlias>table_9</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_PAIS" id="0189E97C-E579-61D8-21AB-758E5CE0E575">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:47:55 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOME" id="D266BF78-C501-6FF2-AA81-E9B0562D3D3A">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:48:02 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="05AA4276-5288-02AD-4EE7-08659245D1A5" name="PAIS_PK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:47:55 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0189E97C-E579-61D8-21AB-758E5CE0E575"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

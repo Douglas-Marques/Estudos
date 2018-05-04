@@ -1,16 +1,14 @@
-package dornel.com.pokedex.activity
+package dornel.com.pokedex.ui
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.google.gson.JsonObject
-import dornel.com.pokedex.adapter.PokemonAdapter
 import dornel.com.pokedex.R
 import dornel.com.pokedex.controller.Reqs
 import dornel.com.pokedex.model.Pokemon
-import dornel.com.pokedex.util.JsonConverter
-import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,9 +20,10 @@ import dornel.com.pokedex.adapter.PokemonViewHolder
 import kotlin.collections.ArrayList
 import dornel.com.pokedex.data.PokeDao
 import com.crashlytics.android.Crashlytics
+import dornel.com.pokedex.adapter.PokemonAdapter
+import dornel.com.pokedex.util.JsonConverter
 import io.fabric.sdk.android.Fabric
-
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 const val TAG = "MainActivity"
 const val TAG_SCROLL = "OnScrollListener"
@@ -33,6 +32,9 @@ class MainActivity : AppCompatActivity() {
 
     private val mLayoutManager = LinearLayoutManager(this)
     var index = 0
+    private val pokemons: ArrayList<Pokemon> = ArrayList()
+    private val context: Context = this
+    val adapter = PokemonAdapter(pokemons, context)
 
     private val pokeDao = PokeDao()
 
@@ -45,8 +47,26 @@ class MainActivity : AppCompatActivity() {
 
         recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         recycler_view.layoutManager = mLayoutManager
+        //recycler_view.adapter = adapter
 
         pokeDao.getPokemons(this)
+
+        /*do {
+            index++
+            Reqs.getPokemon(index).enqueue(object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>?, t: Throwable?) {
+                            println("Erro na requisição " + t.toString())
+                        }
+
+                override fun onResponse(call: Call<JsonObject>?, response: Response<JsonObject>?) {
+                    val poke: Pokemon = JsonConverter.convertJsonToPoke(response?.body())
+                    pokemons.add(poke)
+                    pokemons.sortBy { pokeItem -> pokeItem.id }
+                    adapter.notifyDataSetChanged()
+                    pokeDao.savePoke(pokemons)
+                }
+            })
+        } while (802 > index)*/
 
         //recycler_view.addOnScrollListener(OnScrollListener(mLayoutManager, adapter, pokemons, progress_lazy))
     }

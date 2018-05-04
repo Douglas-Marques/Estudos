@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CA0E4E81-C27E-840C-344C-6C210593E66C" name="JOGADOR_POSICAO">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:40:22 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<ordsAlias>table_11</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_JOGADOR_POSICAO" id="FFD100AF-671C-0495-51D5-2DEEC54F55E4">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:40:41 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="JOGADOR_ID_JOGADOR" id="89FF4FB3-A225-A5F4-4AEA-ADDDB7895545">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:46:59 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CE4BA1DB-0382-ABFD-B090-0E1D79813DEB" referredColumn="D18EF167-F5CF-D678-4416-6BEFF7522775"/>
+</associations>
+</Column>
+<Column name="POSICAO_ID_POSICAO" id="C14DFD46-09D5-8A0D-B321-32967F922AF1">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:47:10 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5911E5D7-3A8F-55F8-4661-920BD4ECDCCA" referredColumn="58C583A9-8D18-BFF3-5C56-C8AE4BB568A8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="771B1619-A1CC-B8D1-615D-3921E16E166A" name="JOGADOR_POSICAO_PK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:40:41 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FFD100AF-671C-0495-51D5-2DEEC54F55E4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B2AD743E-8D31-C423-403D-D1A16DD8B1F7" name="JOGADOR_POSICAO_JOGADOR_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:46:59 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="89FF4FB3-A225-A5F4-4AEA-ADDDB7895545"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="12C9C27E-88CD-B489-5401-5ED0121891B0" name="JOGADOR_POSICAO_POSICAO_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:47:10 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C14DFD46-09D5-8A0D-B321-32967F922AF1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

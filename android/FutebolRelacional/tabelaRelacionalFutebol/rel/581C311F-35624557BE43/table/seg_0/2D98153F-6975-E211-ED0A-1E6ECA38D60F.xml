@@ -1,0 +1,149 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2D98153F-6975-E211-ED0A-1E6ECA38D60F" name="JOGO">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:10:35 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_JOGOS" id="9E56B5B0-2DA5-B624-8DD4-52D7A1AB73AB">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:41:42 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STATUS" id="63FE874E-FA24-D8C0-7D00-88670A5C97C2">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:39:01 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA" id="86F287C6-407D-C034-C52C-D5EFFF7EAB37">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:39:19 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RODADA_ID_RODADA" id="159878F0-8B6A-3DAB-B041-F2894A1A879C">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:57:54 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AB926E45-3C03-4E96-5A82-90BE0ADC3958" referredColumn="67C06723-3CCF-ED02-442C-C07D3BEE1FF3"/>
+</associations>
+</Column>
+<Column name="TIME_ID_TIME" id="E4AF15D4-32B4-8BE5-1776-E2B1DDA41AB2">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:52:17 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4D7AE4BB-F0C1-CC07-20ED-A0059062D1CA" referredColumn="BD887C8E-6DF6-3A30-7409-AD3A246608F8"/>
+</associations>
+</Column>
+<Column name="TIME_ID_TIME1" id="2A98CF58-2512-5765-D114-62950288E544">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:52:51 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EED1557B-BEF6-2F06-A8AA-288B1A72C980" referredColumn="BD887C8E-6DF6-3A30-7409-AD3A246608F8"/>
+</associations>
+</Column>
+<Column name="GOLS_MANDANTE" id="F07E7B91-91CE-C827-E011-7774448E2F2F">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:53:36 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GOLS_VISITANTE" id="59ABAC06-2B72-AA83-BE47-87AAEA813B73">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:53:36 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BCE49D05-C6E4-9179-65B8-C18B3AFBB76A" name="JOGOS_PK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:41:42 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9E56B5B0-2DA5-B624-8DD4-52D7A1AB73AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0C5A2E45-94F6-79BF-37F6-73E2D6A7BBA6" name="JOGO_RODADA_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:57:54 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="159878F0-8B6A-3DAB-B041-F2894A1A879C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CD7DD3F0-36BA-A51E-4AA6-E0781F65ADD9" name="JOGO_TIME_MANDANTE_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:52:17 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E4AF15D4-32B4-8BE5-1776-E2B1DDA41AB2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A012E2E4-9E90-0F43-E79B-BBF3015D031B" name="JOGO_TIME_VISITANTE_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:52:51 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2A98CF58-2512-5765-D114-62950288E544"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

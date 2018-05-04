@@ -1,4 +1,4 @@
-package com.example.eduardo.futebol.view;
+package com.example.eduardo.futebol.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

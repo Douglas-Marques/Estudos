@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dornel.com.pokedex.activity.DetailActivity"
+    tools:context="dornel.com.pokedex.ui.DetailActivity"
     android:padding="8dp">
 
     <ImageView

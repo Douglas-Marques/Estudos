@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D85A66FF-F292-F1CD-3465-FCA3C1AE1DD3" name="TEMPORADA">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:15:08 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_TEMPORADA" id="FDAFE50F-362E-A10B-2EB4-2513997DD7B3">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:35:09 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANO" id="4718C1E7-99F7-F138-1C9F-3E9714B4DAAA">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:35:19 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1823842F-F03D-530D-A2AB-0585A799867D" name="TEMPORADA_PK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:35:09 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FDAFE50F-362E-A10B-2EB4-2513997DD7B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

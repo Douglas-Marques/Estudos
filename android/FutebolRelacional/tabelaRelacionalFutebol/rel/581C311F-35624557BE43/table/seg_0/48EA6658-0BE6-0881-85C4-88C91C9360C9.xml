@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="48EA6658-0BE6-0881-85C4-88C91C9360C9" name="LIGA">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:09:37 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_LIGA" id="BDCE4E56-68E0-A84E-43AB-C89E86917B0D">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:32:18 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOME" id="6FDCA552-34DC-ACFB-4ACE-8FEBF9B93A47">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:32:47 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SIGLA" id="B8FEC305-E674-8B90-AA37-347C8612ACC5">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:36:39 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<ownDataTypeParameters>5,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TEMPORADA_ID_TEMPORADA" id="14DE96D8-1BAB-1084-E65F-12E7BE41CE1A">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:54:20 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="ECE1F9CB-95D1-5BF2-F561-C52FBB9BBE78" referredColumn="FDAFE50F-362E-A10B-2EB4-2513997DD7B3"/>
+</associations>
+</Column>
+<Column name="PAIS_ID_PAIS" id="64ADA5E6-E1F0-595D-87BD-51F235873016">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:57:33 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DE087247-4BEB-2FD5-449F-F10318CA6CF5" referredColumn="0189E97C-E579-61D8-21AB-758E5CE0E575"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="406DE257-74A9-8C82-5E90-0F68B33D01FC" name="LIGA_PK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:32:18 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BDCE4E56-68E0-A84E-43AB-C89E86917B0D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9B8A6FC3-C5AD-2223-DADE-3DA399404A88" name="LIGA_TEMPORADA_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:54:20 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="14DE96D8-1BAB-1084-E65F-12E7BE41CE1A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DEC9C298-580B-ED15-A7D8-7A3050C1C9EF" name="LIGA_PAIS_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:57:33 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="64ADA5E6-E1F0-595D-87BD-51F235873016"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

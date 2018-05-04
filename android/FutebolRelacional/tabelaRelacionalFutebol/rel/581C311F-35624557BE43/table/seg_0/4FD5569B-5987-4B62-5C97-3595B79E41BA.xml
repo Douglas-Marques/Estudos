@@ -1,0 +1,145 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4FD5569B-5987-4B62-5C97-3595B79E41BA" name="JOGADOR">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:08:24 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_JOGADOR" id="D18EF167-F5CF-D678-4416-6BEFF7522775">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:23:14 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOME" id="24D09EC7-B18E-3F06-75FC-F8471616DF6D">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:23:32 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ANO_NASCIMENTO" id="BD5062A1-190A-6779-91B1-B7384E5FE07C">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:23:47 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OVERALL" id="E57E5A9D-36E0-292C-4964-AF09E44630EF">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:24:23 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LADO" id="03393453-882F-A433-AC13-0A88A625F25E">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:25:45 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRECO" id="75177912-F480-B90D-83A7-A342A1A1ECE3">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:33:28 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FIM_CONTRATO" id="7C63D543-38FD-B21F-D8D3-E48CBA410D13">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 22:51:39 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TIME_ID_TIME" id="01C19756-15AB-F1CC-6338-5202F056570C">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:32:37 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DC7D9A2D-E896-EF46-7220-9C393B88B2AE" referredColumn="BD887C8E-6DF6-3A30-7409-AD3A246608F8"/>
+</associations>
+</Column>
+<Column name="PAIS_ID_PAIS" id="CB11C8C7-025C-2025-3D69-7584955530FB">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:57:15 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CC1B4F96-CDFB-8616-5A8C-84AE208FA0E1" referredColumn="0189E97C-E579-61D8-21AB-758E5CE0E575"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DCD6F408-EA07-14B4-460C-1A892754F034" name="JOGADOR_PK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:23:14 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D18EF167-F5CF-D678-4416-6BEFF7522775"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="692CEB9D-F2CB-69B2-D9D1-852E31751E13" name="JOGADOR_TIME_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 01:32:37 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="01C19756-15AB-F1CC-6338-5202F056570C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="041E68AD-0483-C711-2EC9-B9C767EA353A" name="JOGADOR_PAIS_FK">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 02:57:15 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CB11C8C7-025C-2025-3D69-7584955530FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

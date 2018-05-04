@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="6327C19B-3B82-8DA7-8633-E2E5E9525AFA" mainViewID="47589AC3-F910-DF1E-C362-821E040AAECF">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:07:26 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

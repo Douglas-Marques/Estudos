@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="D4E1049C-2ABD-2781-B11F-8C8F23F2E2E8">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-03 00:07:26 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

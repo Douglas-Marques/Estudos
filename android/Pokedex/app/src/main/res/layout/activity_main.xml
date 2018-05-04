@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="dornel.com.pokedex.activity.MainActivity">
+    tools:context="dornel.com.pokedex.ui.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progress_lazy"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
 </LinearLayout>
 

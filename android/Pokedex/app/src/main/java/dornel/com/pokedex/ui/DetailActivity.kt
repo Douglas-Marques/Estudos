@@ -1,4 +1,4 @@
-package dornel.com.pokedex.activity
+package dornel.com.pokedex.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
