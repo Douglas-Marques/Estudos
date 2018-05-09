@@ -49,16 +49,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="LADO" id="03393453-882F-A433-AC13-0A88A625F25E">
-<createdBy>eduar</createdBy>
-<createdTime>2018-05-03 00:25:45 UTC</createdTime>
-<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="PRECO" id="75177912-F480-B90D-83A7-A342A1A1ECE3">
 <createdBy>eduar</createdBy>
 <createdTime>2018-05-03 22:33:28 UTC</createdTime>
@@ -107,6 +97,17 @@
 <associations>
 <colAssociation fkAssociation="CC1B4F96-CDFB-8616-5A8C-84AE208FA0E1" referredColumn="0189E97C-E579-61D8-21AB-758E5CE0E575"/>
 </associations>
+</Column>
+<Column name="Lado_ID_LADO" id="F574B1FE-E119-0518-71F0-94295E3E77EF">
+<createdBy>eduar</createdBy>
+<createdTime>2018-05-04 22:43:44 UTC</createdTime>
+<ownerDesignName>tabelaRelacionalFutebol</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

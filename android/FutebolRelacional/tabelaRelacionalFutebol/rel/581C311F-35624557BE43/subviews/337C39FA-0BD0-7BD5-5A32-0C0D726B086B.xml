@@ -24,15 +24,15 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="4FD5569B-5987-4B62-5C97-3595B79E41BA" otype="Table" vid="0D3C50E1-FBBB-88A9-1A6F-184AE4373D8A">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="362" y="47" width="232" height="201"/>
+<bounds x="362" y="47" width="232" height="221"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="80F78595-F4B2-EC38-E74D-8131620F0C10" otype="Table" vid="223CBD91-DD5D-BBCE-8639-368EB024359C">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="398" y="507" width="195" height="80"/>
+<bounds x="398" y="507" width="195" height="109"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="C37DA3CB-E816-22A4-778D-8BB63D7EF3E1" otype="Table" vid="2F4BB863-5265-45B9-112D-00940B060CEC">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="76" y="105" width="199" height="123"/>
+<bounds x="76" y="121" width="199" height="123"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="CA0E4E81-C27E-840C-344C-6C210593E66C" otype="Table" vid="63F23EB2-992A-632E-DD06-8C3C8086D1F7">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -60,8 +60,8 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="185" y="228"/>
-<point x="185" y="376"/>
+<point x="175" y="244"/>
+<point x="175" y="376"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="5911E5D7-3A8F-55F8-4661-920BD4ECDCCA" otype="FKIndexAssociation" vid_source="0249B419-08F1-3908-0A6E-F8C9F79C5A4F" vid_target="63F23EB2-992A-632E-DD06-8C3C8086D1F7">
@@ -76,7 +76,7 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="275" y="222"/>
+<point x="275" y="234"/>
 <point x="399" y="383"/>
 </points>
 </Connector>
@@ -84,16 +84,16 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="675" y="547"/>
-<point x="593" y="547"/>
+<point x="675" y="561"/>
+<point x="593" y="561"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="AB926E45-3C03-4E96-5A82-90BE0ADC3958" otype="FKIndexAssociation" vid_source="223CBD91-DD5D-BBCE-8639-368EB024359C" vid_target="590B3C39-1388-9D19-6C3E-0FAD14531A97">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="398" y="547"/>
-<point x="305" y="547"/>
+<point x="398" y="541"/>
+<point x="305" y="541"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="AFDF37E8-281C-0EB1-F125-A6395420C47D" otype="FKIndexAssociation" vid_source="133106F9-BC3A-D149-E125-CCCF1E248FA3" vid_target="864F5C5E-34AF-8646-3685-1DF6121B9290">
@@ -109,7 +109,7 @@
 <lineWidth>1</lineWidth>
 <points>
 <point x="827" y="321"/>
-<point x="594" y="241"/>
+<point x="594" y="157"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="CE4BA1DB-0382-ABFD-B090-0E1D79813DEB" otype="FKIndexAssociation" vid_source="0D3C50E1-FBBB-88A9-1A6F-184AE4373D8A" vid_target="63F23EB2-992A-632E-DD06-8C3C8086D1F7">
@@ -124,8 +124,8 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="275" y="144"/>
-<point x="362" y="144"/>
+<point x="275" y="182"/>
+<point x="362" y="182"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="DE087247-4BEB-2FD5-449F-F10318CA6CF5" otype="FKIndexAssociation" vid_source="CFB7A9A7-64D9-BB35-AE3C-2B5508604EA8" vid_target="133106F9-BC3A-D149-E125-CCCF1E248FA3">
@@ -148,8 +148,8 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="145" y="228"/>
-<point x="145" y="376"/>
+<point x="185" y="244"/>
+<point x="185" y="376"/>
 </points>
 </Connector>
 </connectors>
