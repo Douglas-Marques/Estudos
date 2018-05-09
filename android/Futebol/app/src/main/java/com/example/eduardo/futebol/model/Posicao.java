@@ -1,38 +1,37 @@
 package com.example.eduardo.futebol.model;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 public class Posicao extends RealmObject {
     @PrimaryKey
-    private String id;
+    @Index
+    private long id;
 
-    @Required
     private String sigla;
 
-    @Required
     private String nome;
 
-    @Required
-    private String descricao;
-
-    //TODO ver se precisa desse metodo q faz a relacao ont to many invertida para obter resultados
+    //TODO ver se precisa desse metodo q faz a relacao one to many invertida para obter resultados
+    //Isso n sera mais necessario mas fica aqui para eu poder usar em outros lugares
     /*@LinkingObjects("posicoes")
     private final RealmResults<Jogador> jogadores;*/
 
-    public Posicao(String id, String sigla, String nome, String descricao) {
+    public Posicao() {
+    }
+
+    public Posicao(long id, String sigla, String nome) {
         this.id = id;
         this.sigla = sigla;
         this.nome = nome;
-        this.descricao = descricao;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -52,11 +51,4 @@ public class Posicao extends RealmObject {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 }

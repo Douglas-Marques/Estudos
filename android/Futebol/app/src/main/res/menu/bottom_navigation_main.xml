@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tab_escalacao"
+        android:title="Escalação"
+        android:icon="@drawable/ic_football"/>
+
+    <item
+        android:id="@+id/tab_tabela"
+        android:title="Tabela"
+        android:icon="@drawable/ic_calendar"/>
+
+    <item
+        android:id="@+id/tab_jogos"
+        android:title="Jogos"
+        android:icon="@drawable/ic_soccer_ball"/>
+
+    <item
+        android:id="@+id/tab_mercado"
+        android:title="Mercado"
+        android:icon="@drawable/ic_attach_money_black_24dp"/>
+
+    <item
+        android:id="@+id/tab_opcoes"
+        android:title="Opções"
+        android:icon="@drawable/ic_settings_black_24dp"/>
+
+</menu>

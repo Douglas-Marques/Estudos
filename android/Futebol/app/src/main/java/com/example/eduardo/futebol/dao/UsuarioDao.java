@@ -18,7 +18,6 @@ public class UsuarioDao {
 
     public UsuarioDao(Context ctx){
         context = ctx;
-        Realm.init(ctx);
     }
 
     public void  cadastrarUsuario(){
