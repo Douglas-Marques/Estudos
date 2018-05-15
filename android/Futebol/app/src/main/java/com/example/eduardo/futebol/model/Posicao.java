@@ -16,7 +16,7 @@ public class Posicao extends RealmObject {
     //TODO ver se precisa desse metodo q faz a relacao one to many invertida para obter resultados
     //Isso n sera mais necessario mas fica aqui para eu poder usar em outros lugares
     /*@LinkingObjects("posicoes")
-    private final RealmResults<Jogador> jogadores;*/
+    private final RealmResults<JogadorDao> jogadores;*/
 
     public Posicao() {
     }

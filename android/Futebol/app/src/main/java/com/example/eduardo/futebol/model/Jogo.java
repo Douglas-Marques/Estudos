@@ -3,9 +3,9 @@ package com.example.eduardo.futebol.model;
 import java.util.Date;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 public class Jogo extends RealmObject {
     @PrimaryKey
@@ -18,6 +18,8 @@ public class Jogo extends RealmObject {
 
     private int golsVisitante;
 
+    private String status;
+
     /***FK'S***/
 
     private Rodada rodada;
@@ -26,10 +28,15 @@ public class Jogo extends RealmObject {
 
     private Time timeVisitante;
 
-    private Status status;
+    /**CONSTANTES STATUS **/
+    @Ignore
+    public final static String JOGO_AGENDADO = "AGENDADO";
+
+    @Ignore
+    public final static String JOGO_FINALIZADO = "FINALIZADO";
 
     public Jogo(long id, Date dataJogo, int golsMandante, int golsVisitante, Rodada rodada,
-                Time timeMandante, Time timeVisitante, Status status) {
+                Time timeMandante, Time timeVisitante, String status) {
         this.id = id;
         this.dataJogo = dataJogo;
         this.golsMandante = golsMandante;
@@ -37,7 +44,10 @@ public class Jogo extends RealmObject {
         this.rodada = rodada;
         this.timeMandante = timeMandante;
         this.timeVisitante = timeVisitante;
-        this.status = status;
+
+        if (status.equals(JOGO_AGENDADO) || status.equals(JOGO_FINALIZADO)) {
+            this.status = status;
+        }
     }
 
     public Jogo () {}
@@ -98,11 +108,11 @@ public class Jogo extends RealmObject {
         this.timeVisitante = timeVisitante;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

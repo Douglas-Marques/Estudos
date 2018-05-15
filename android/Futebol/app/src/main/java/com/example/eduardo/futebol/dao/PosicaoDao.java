@@ -8,9 +8,7 @@ import com.example.eduardo.futebol.model.Posicao;
 
 import java.util.ArrayList;
 
-import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class PosicaoDao {
 
@@ -48,7 +46,7 @@ public class PosicaoDao {
     }
 
     private static ArrayList<Posicao> criarPosicoes() {
-        int id = 0;
+        long id = 0;
         final Posicao goleiro = new Posicao(id++, "GO", "Goleiro");
         final Posicao zagueiro = new Posicao(id++, "ZG", "Zagueiro");
         final Posicao lateralEsquerdo = new Posicao(id++, "LE", "Lateral esquerdo");

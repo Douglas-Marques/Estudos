@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.eduardo.futebol.R;
 import com.example.eduardo.futebol.model.Jogo;
-import com.example.eduardo.futebol.model.Status;
 
 import java.util.ArrayList;
 
@@ -46,13 +45,13 @@ public class RodadaAdapter extends RecyclerView.Adapter<RodadaViewHolder> {
                 mContext.getResources().getIdentifier(
                         jogoAtual.getTimeVisitante().getEscudo(), "drawable", mContext.getPackageName()));
 
-        if (jogoAtual.getStatus().getStatus().equals(Status.JOGO_FINALIZADO)) {
+        if (jogoAtual.getStatus().equals(Jogo.JOGO_FINALIZADO)) {
             holder.mandanteGols.setVisibility(View.VISIBLE);
             holder.mandanteGols.setText(String.valueOf(jogoAtual.getGolsMandante()));
 
             holder.visitanteGols.setVisibility(View.VISIBLE);
             holder.visitanteGols.setText(String.valueOf(jogoAtual.getGolsVisitante()));
-        } else if (jogoAtual.getStatus().getStatus().equals(Status.JOGO_AGENDADO)) {
+        } else if (jogoAtual.getStatus().equals(Jogo.JOGO_AGENDADO)) {
             holder.mandanteGols.setVisibility(View.INVISIBLE);
             holder.visitanteGols.setVisibility(View.INVISIBLE);
         }

@@ -4,27 +4,27 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
-import com.example.eduardo.futebol.model.Time;
+import com.example.eduardo.futebol.model.Jogo;
 import com.example.eduardo.futebol.util.RealmUtils;
 
 import io.realm.Realm;
 
-public class TimeDao {
+public class JogoDao {
 
-    private final static String TAG = "TimeDao";
+    private static final String TAG = "JogoDao";
 
-    public static void salvarTime(final Time time) {
+    public static void salvarJogo(final Jogo jogo) {
         final Realm realmInstance = Realm.getDefaultInstance();
         realmInstance.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(@NonNull Realm realm) {
-                time.setId(RealmUtils.incrementarId(Time.class));
-                realm.copyToRealm(time);
+                jogo.setId(RealmUtils.incrementarId(Jogo.class));
+                realm.copyToRealm(jogo);
             }
         }, new Realm.Transaction.OnSuccess() {
             @Override
             public void onSuccess() {
-                Log.i(TAG, "salvarTime " + time.getNome());
+                Log.i(TAG, "salvarJogo - SUCESSO");
                 realmInstance.close();
             }
         }, new Realm.Transaction.OnError() {
@@ -36,5 +36,4 @@ public class TimeDao {
             }
         });
     }
-
 }
